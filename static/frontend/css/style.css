@@ -1675,6 +1675,14 @@ h1, h2, h3, h4, h5, h6, figure {
 .js .animate-box {
   opacity: 0;
 }
+.info-page{
+  margin-top: 100px;
+}
+wp-block.property.list .wp-block-footer.style2 ul.aux-info {
+  display: table;
+  width: 100%;
+  border: 1px solid #eaebec;
+}
 
 
 /*# sourceMappingURL=style.css.map */

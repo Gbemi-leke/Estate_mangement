@@ -1,0 +1,28 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!Doctype html>
+{% block title %}
+info
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row info-page">
+            <a href="#">back to property list</a>
+            <div class="">
+                <h3>5 Bed room Duplex for sale <span style="margin-left: 700px;">#2000000</span></h3>
+                <img src="{% static 'frontend/images/house.jpg' %}" alt="">
+                <div class="row">
+                    <div clo-12>
+                        <ul style="list-style: none; display: inline;">
+                            <li class="col-3">2 Bedrooms</li>
+                            <li class="col-3">2 Bathrooms</li>
+                            <li class="col-3">2 Toilets</li>
+                            <li class="col-3">2 Parking Spaces</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

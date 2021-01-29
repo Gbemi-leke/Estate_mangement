@@ -10,4 +10,5 @@ urlpatterns = [
     path('rent-page', views.rent, name='rent'),
     path('login-page', views.login, name='login'),
     path('signup-page', views.signup, name='signup'),
+    path('propinfo-page', views.propinfo, name='propinfo'),
 ]
