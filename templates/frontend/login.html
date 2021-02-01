@@ -1,15 +1,11 @@
+{% extends 'frontend/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html class="no-js">
-	<head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      
-      <title>
-          {% block title %}
+<!Doctype html>
+{% block title %}
+Home
+{% endblock %}
 
-          {% endblock %}
-      </title>
+{% block content %}
       
       <link rel="stylesheet" href="{% static 'frontend/css/animate.css' %}">
       <link rel="stylesheet" href="{% static 'frontend/css/icomoon.css' %}">
@@ -20,7 +16,7 @@
       <link rel="stylesheet" href="{% static 'frontend/css/style.css' %}">
       <script src="{% static 'frontend/js/modernizr-2.6.2.min.js' %}"></script>
 	</head>
-  <body style="background-image: url({% static 'frontend/images/bg-6.jpg' %}); background-size: cover; background-position: center; font: size 20px;">
+  <body style="background-color: #68ccd3, !important;">
       <div class="container" >
         <div class="row">
           <div class="col-sm-4 col-sm-offset-4 pb-5" style="margin-top:100px;">
@@ -35,11 +31,11 @@
               <form method='post' action="" class="form">
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" name="username" placeholder="Username" class="form-control" style="border-radius:10px;">
+                  <input type="text" name="username" placeholder="Username" class="form-control" style="border-radius:10px; background-color: #ffffff;">
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="password" placeholder="Password" class="form-control" style="border-radius:10px;">
+                  <input type="password" name="password" placeholder="Password" class="form-control" style="border-radius:10px; background-color: #ffffff;">
                 </div>
                 <input type="submit" name="login" value="Login" class="btn btn-success btn-block">
                 <div class="row">
@@ -73,5 +69,6 @@
      <!-- MAIN JS -->
      <script src="{% static 'frontend/js/main.js' %}"></script>
 
- </body>
-</html>
+  </body>
+
+ {% endblock %}

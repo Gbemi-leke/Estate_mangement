@@ -1676,5 +1676,9 @@ h1, h2, h3, h4, h5, h6, figure {
   opacity: 0;
 }
 
-
+#fh5co-page {
+	position: relative;
+	z-index: 2;
+	background: #34c9b6 !important;
+}
 /*# sourceMappingURL=style.css.map */
