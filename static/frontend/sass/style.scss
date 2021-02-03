@@ -1433,7 +1433,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-page {
 	position: relative;
 	z-index: 2;
-	background: $brand-white;
+	background: $brand-white !important;
 }
 // Offcanvas Menu
 #fh5co-offcanvas, .fh5co-nav-toggle, #fh5co-page {

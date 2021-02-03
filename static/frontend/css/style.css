@@ -362,7 +362,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 #fh5co-header .header-inner {
-  height: 40px;
+  height: 80px;
   padding-left: 20px;
   padding-right: 20px;
   float: left;
@@ -1403,7 +1403,7 @@ h1, h2, h3, h4, h5, h6, figure {
 #fh5co-page {
   position: relative;
   z-index: 2;
-  background: #fff;
+  background: #fff !important;
 }
 
 #fh5co-offcanvas, .fh5co-nav-toggle, #fh5co-page {
@@ -1676,9 +1676,4 @@ h1, h2, h3, h4, h5, h6, figure {
   opacity: 0;
 }
 
-#fh5co-page {
-	position: relative;
-	z-index: 2;
-	background: #34c9b6 !important;
-}
 /*# sourceMappingURL=style.css.map */

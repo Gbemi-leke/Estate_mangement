@@ -1,10 +1,11 @@
 from django.shortcuts import render
-
+from frontend.models import Biography
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'frontend/index.html')
+    profile = Biography.objects.all()
+    return render(request, 'frontend/index.html', {'bio':profile})
 
 def buy(request):
     return render(request, 'frontend/buy.html')
