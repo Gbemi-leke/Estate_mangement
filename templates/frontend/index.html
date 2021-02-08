@@ -19,67 +19,90 @@ Home
 							<h2>We are Offering the Best Real Estate Deals</h2>
 							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 						</div>
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-							<div class="fh5co-property">
-								<figure>
-									<img src="{% static 'frontend/images/ng-2.jpg' %}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">For Sale</a>
-								</figure>
-								<div class="fh5co-property-innter">
-									<h3><a href="#">Mansion in Ikoyi, Ikoyi Lagos</a></h3>
-									<div class="price-status">
-									<span class="price">&#8358;50,000000 </span>
+						{% if spon %}
+							{% for s in spon %}
+								<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+									<div class="fh5co-property">
+										<figure>
+											<img src="{{ s.spon_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+											<a href="#" class="tag">For Sale</a>
+										</figure>
+										<div class="fh5co-property-innter">
+											<h3><a href="#">{{ s.spon_title }}</a></h3>
+											<div class="price-status">
+											<span class="price">&#8358;{{ s.spon_price }}</span>
+											</div>
+											<p>{{ s.spon_desription }}</p>
+										</div>
+											<p class="fh5co-property-specification">
+											{{ s.spon_date }}
+											</p>
+									</div>
 								</div>
-								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-							</div>
-								<p class="fh5co-property-specification">
-								<span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-								</p>
-						</div>
-
-							
+							{% endfor %}
+						{% endif %}
+								
 					</div>
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-
-							<div class="fh5co-property">
-								<figure>
-									<img src="{% static 'frontend/images/ng-4.jpg' %}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">For Rent</a>
-								</figure>
-								<div class="fh5co-property-innter">
-									<h3><a href="#">Duplex in Ajah, Lagos</a></h3>
-									<div class="price-status">
-									<span class="price">&#8358;200,000000<span class="per">/month</span> </span>
-							</div>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-							</div>
-							<p class="fh5co-property-specification">
-								<span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-							</p>
-							</div>
-							
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+							<h1>Latest Properties</h1>
 						</div>
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-
-							<div class="fh5co-property">
-								<figure>
-									<img src="{% static 'frontend/images/ng-8.jpg' %}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">For Sale</a>
-								</figure>
-								<div class="fh5co-property-innter">
-									<h3><a href="#">307 Ikorodu Road,Lagos</a></h3>
-									<div class="price-status">
-									<span class="price">&#8358;1,540,000</span>
-							</div>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque dicta magni amet atque doloremque velit unde adipisci omnis hic quaerat.</p>
-							</div>
-							<p class="fh5co-property-specification">
-								<span><strong>3500</strong> Sq Ft</span>  <span><strong>3</strong> Beds</span>  <span><strong>3.5</strong> Baths</span>  <span><strong>2</strong> Garages</span>
-							</p>
-							</div>
+						{% if lat %}
+							{% for l in lat %}
+							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+								<div class="fh5co-property">
+										<figure>
+											<img src="{{ l.lat_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+											<a href="#" class="tag">For Sale</a>
+										</figure>
+										<div class="fh5co-property-innter">
+											<h3><a href="#">{{ l.lat_title }}</a></h3>
+											<div class="price-status">
+												<span class="price">&#8358;{{ l.lat_price }}</span>
+											</div>
+											<p>{{ l.lat_desription}}</p>
+										</div>
+										<p class="fh5co-property-specification">
+											{{ l.lat_date }}
+										</p>
+									</div>
+				
+									
+								</div>
+							{% endfor %}
+						{% endif %}
+						
+					</div>
+				</div>
+				<div class="container">
+					<div class="row">
+						<div class='col-md-8 col-md-offset-2 text-center fh5co-heading animate-box'>
+							<strong><h1>Featured Properties</h1></strong>
 						</div>
-
-
+						{% if fat %}
+							{% for f in fat %}
+								<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">		
+									<div class="fh5co-property">
+										<figure>
+											<img src="{{ f.fat_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+											<a href="#" class="tag">For Sale</a>
+										</figure>
+										<div class="fh5co-property-innter">
+											<h3><a href="#">{{ f.fat_title }}</a></h3>
+											<div class="price-status">
+												<span class="price">&#8358;{{ f.fat_price }} </span>
+											</div>
+											<p>{{ f.fat_desription }}</p>
+										</div>
+										<p class="fh5co-property-specification">
+											{{ f.fat_date }}
+										</p>
+									</div>
+								</div>
+							{% endfor %}
+						{% endif %}
 					</div>
 				</div>
 			</div>

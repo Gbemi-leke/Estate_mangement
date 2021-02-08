@@ -1,10 +1,14 @@
 from django.shortcuts import render
-
+from frontend.models import *
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'frontend/index.html')
+    profile =Sponsored.objects.all()
+    profile2 =Latest.objects.all()
+    profile3 =Featured.objects.all()
+    images = {'spon':profile, 'lat':profile2, 'fat':profile3}
+    return render(request, 'frontend/index.html', images)
 
 def buy(request):
     return render(request, 'frontend/buy.html')
