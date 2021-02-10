@@ -1,45 +1,65 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-class Sponsored(models.Model):
-    spon_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/')
-    spon_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    spon_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
-    spon_desription = models.TextField(verbose_name='Description')
-    spon_date = models.DateTimeField(auto_now_add=True)
+class Property(models.Model):
+    pro_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
+    pro_title = models.CharField(max_length=100, verbose_name='Profile Title')
+    pro_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
+    pro_desription = models.TextField(verbose_name='Description')
+    pro_date = models.DateTimeField(auto_now_add=True)
+    featured = models.BooleanField()
+    sponsored = models.BooleanField()
 
     class Meta():
-        verbose_name_plural = 'Sponsored'
+        verbose_name_plural = 'Property'
+
+    def post_img(self):
+        if self.pro_img:
+            return self.pro_img.url
+
+    def __str__(self):
+        return self.pro_title
+
+
+class Agents(models.Model):
+    agent_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
+    agent_title = models.CharField(max_length=100, verbose_name='Profile Title')
+    agent_desription = models.TextField(verbose_name='Description')
+
+    class Meta():
+        verbose_name_plural = 'Agents'
 
 
     def __str__(self):
-        return self.spon_title
+        return self.agent_title
 
 
-class Latest(models.Model):
-    lat_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/')
-    lat_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    lat_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
-    lat_desription = models.TextField(verbose_name='Description')
-    lat_date = models.DateTimeField(auto_now_add=True)
+
+class Buy(models.Model):
+    buy_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
+    buy_title = models.CharField(max_length=100, verbose_name='Profile Title')
+    buy_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
+    buy_desription = models.TextField(verbose_name='Description')
+    buy_date = models.DateTimeField(auto_now_add=True)
 
     class Meta():
-        verbose_name_plural = 'Latest'
+        verbose_name_plural = 'Buy'
 
 
     def __str__(self):
-        return self.lat_title
+        return self.buy_title
 
-class Featured(models.Model):
-    fat_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/')
-    fat_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    fat_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
-    fat_desription = models.TextField(verbose_name='Description')
-    fat_date = models.DateTimeField(auto_now_add=True)
+class Rent(models.Model):
+    rent_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
+    rent_title = models.CharField(max_length=100, verbose_name='Profile Title')
+    rent_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
+    rent_desription = models.TextField(verbose_name='Description')
+    rent_date = models.DateTimeField(auto_now_add=True)
 
     class Meta():
-        verbose_name_plural = 'Featured'
+        verbose_name_plural = 'Rent'
 
 
     def __str__(self):
-        return self.fat_title
+        return self.rent_title
