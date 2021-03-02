@@ -31,15 +31,17 @@ Home
 							<div class="fh5co-property">
 								<figure>
 									<img src="{{ r.rent_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">For Rent</a>
+									<a href="{% url 'frontend:detail_rent' r.id %}" class="tag">For Rent</a>
 								</figure>
 								<div class="fh5co-property-innter">
 									<h3><a href="#">{{ r.rent_title }}</a></h3>
 									<div class="price-status">
 									<span class="price">&#8358;{{ r.rent_price }} <span class="per">/Month</span></span>
-							</div>
-								<p>{{ r.rent_desription }}</p>
 								</div>
+									<p>{{ r.rent_desription }}</p>
+									<p>Contact Us:&nbsp; {{ r.rent_contact }}</p>
+								</div>
+								
 								<p class="fh5co-property-specification">
 									<span>{{ r.rent_date }}</span>
 								</p>

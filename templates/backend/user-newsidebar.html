@@ -1,0 +1,90 @@
+{% load static %}
+
+<section class="col-md-2" class="bg-dark">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div>
+        <ul>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+            <a class="nav-link" href="{% url 'backend:dashboard' %}">
+                <h4 class="text-success">
+                    <span style=" font-weight: 800; margin-left: 30px; font-size: 25px; text-transform: capitalize;
+                    color:rgb(0, 17, 255); font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{ request.user.get_username }}</span>
+                    </h4>
+                    <hr>
+                <i class="fa fa-fw fa-dashboard"></i>
+                <strong><span class="nav-link-text">Dashboard</span></strong>
+            </a>
+            </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Listings">
+            <a class="nav-link" href="#">
+                <i class="fa fa-fw fa-envelope-open"></i>
+                <span class="nav-link-text">My Listings</span>
+            </a>
+        </li>
+            
+            </li>
+           
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+            <a class="nav-link" href="#">
+                <i class="fa fa-fw fa-plus-circle"></i>
+                <span class="nav-link-text">Add listing</span>
+            </a>
+            </li>
+            
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My Profile">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-envelope-open"></i>
+                    <span class="nav-link-text">My Profile</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Edit My Profile">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-envelope-open"></i>
+                    <span class="nav-link-text">Edit My Profile</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Change Password">
+                <a class="nav-link" href="{%url 'backend:pass_form' %}">
+                    <i class="fa fa-fw fa-envelope-open"></i>
+                    <span class="nav-link-text">Change Password</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Chart">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-envelope-open"></i>
+                    <span class="nav-link-text">Charts</span>
+                </a>
+            </li>
+            
+
+            
+            <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#Components">
+                <i class="fa fa-fw fa-gear"></i>
+                <span class="nav-link-text">Components</span>
+            </a>
+            <ul class="sidenav-second-level collapse" id="collapseComponents">
+                <li>
+                <a href="">Charts</a>
+                </li>
+                
+            </ul>
+            </li> -->
+        </ul>
+
+        <ul class="navbar-nav sidenav-toggler">
+            <li class="nav-item">
+            <a class="nav-link text-center" id="sidenavToggler">
+                <i class="fa fa-fw fa-angle-left"></i>
+            </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          
+    </nav>
+</section>

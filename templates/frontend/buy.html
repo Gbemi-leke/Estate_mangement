@@ -20,7 +20,7 @@ Home
 	<div id="best-deal">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+				<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
 					<h2>We are Offering the Best Real Estate Deals</h2>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 				</div>
@@ -30,15 +30,16 @@ Home
 							<div class="fh5co-property">
 								<figure>
 									<img src="{{ b.buy_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">For Sale</a>
+									<a href="{% url 'frontend:detail_buy' b.id %}" class="tag">For Sale</a>
 								</figure>
 								<div class="fh5co-property-innter">
-									<h3><a href="#">{{ b.buy_title }}</a></h3>
+									<h3>{{ b.buy_title }}</h3>
 									<div class="price-status">
 										<span class="price">&#8358;{{ b.buy_price }}</span>
 									</div>
-									<p>{{ b.buy_desription }}</p>
-								</div>
+										<p>{{ b.buy_desription|truncatewords:40}}</p>
+										<p>Contact Us:&nbsp; {{ b.buy_contact }}</p>
+									</div>
 									<p class="fh5co-property-specification">
 									{{ b.buy_date }}
 									</p>
@@ -46,10 +47,8 @@ Home
 						</div>
 					{% endfor %}
 				{% endif %}
-				
 
 				
-
 			</div>
 			<div class="row">
 				<div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">

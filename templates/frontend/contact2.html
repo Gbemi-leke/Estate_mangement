@@ -1,0 +1,70 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!Doctype html>
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+	<div class="fh5co-page-title" style="background-image: url(images/slide_6.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 animate-box">
+					<h1><span class="colored">Contact</span> Agent</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<div class="fh5co-contact animate-box">
+		<div class="container">
+			<div class="row">
+				{% if con %}
+					<div class="col-md-3">
+						<h3>Contact Info.</h3>
+						<h1>{{ con.agent_title }}</h1>
+							<ul class="contact-info">
+								<li><i class="icon-map"></i>{{ con.agent_address }}</li>
+								<li><i class="icon-phone"></i>{{ con.agent_contact }}</li>
+								<li><i class="icon-envelope"></i><a href="#">{{ con.agent_email }}</a></li>
+							</ul>
+					</div>
+					<form class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0" method='POST'>
+						{% if messages %}
+							{% for mes in messages %}
+								<div class="alert {{ mes.tags }}">{{ mes }}</div>
+							{% endfor %}
+						{% endif %}
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" name="name" id="labelName" required placeholder="Name" type="text">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input class="form-control" name="email" id="labelEmail" required placeholder="Email" type="email">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message"></textarea>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input value="Send Message" class="btn btn-primary" type="submit">
+								</div>
+							</div>
+							
+						</div>
+					{% csrf_token %}
+					</form>
+				{% endif %}
+			</div>
+		</div>	
+	</div>
+{% endblock %}

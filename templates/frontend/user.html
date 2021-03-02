@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'frontend/css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'frontend/css/icomoon.css' %}">
+	<link rel="stylesheet" href="{% static 'frontend/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'frontend/css/flexslider.css' %}">
+    <script src="{% static 'frontend/js/modernizr-2.6.2.min.js' %}"></script>
+
+    <title>
+      {% block title %}
+
+      {% endblock %}
+      
+    </title>
+  </head>
+  <body>
+
+    <div class="container" data-animate-effect="fadeIn">
+        <img src="{% static 'frontend/images/th1.jpg' %}" class="img-responsive">
+    </div>
+
+
+
+    <script src="{% static 'frontend/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'frontend/js/popper.min.js' %}"></script>
+    <script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'frontend/js/main.js' %}"></script>
+  </body>
+</html>

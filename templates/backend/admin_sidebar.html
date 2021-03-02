@@ -1,0 +1,125 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+    <a class="navbar-brand" href="{%url 'backend:dashboard' %}" style="height: 36px; width: 150px;">GALAXY</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="text-warning">
+      <span class="float-right name" style="text-transform: capitalize;">Welcome as Admin, {{ request.user.get_full_name }}</span>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <h4 class="text-success">
+          <span style=" font-weight: 800; margin-left: 30px; font-size: 25px; text-transform: capitalize;
+          color:red; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{ request.user.get_username }}</span>
+          </h4>
+          <hr>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="{%url 'backend:dashboard' %}">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+        </li>
+		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+          <a class="nav-link" href="{%url 'backend:messages' %}">
+            <i class="fa fa-fw fa-envelope-open"></i>
+            <span class="nav-link-text">Comments</span>
+          </a>
+        </li> -->
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-envelope-open"></i>
+            <span class="nav-link-text">Add Blog</span>
+          </a>
+        </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-envelope-open"></i>
+            <span class="nav-link-text">View Blogs</span>
+          </a>
+        </li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
+            <i class="fa fa-fw fa-list"></i>
+            <span class="nav-link-text">My listings</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseMylistings">
+            
+			<li>
+              <a href="#">Active <span class="badge badge-pill badge-success"></span></a>
+            </li>
+		
+          </ul>
+        </li>
+		
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="#">
+            <i class="fa fa-fw fa-plus-circle"></i>
+            <span class="nav-link-text">Add listing</span>
+          </a>
+        </li>
+
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMyProfile" data-parent="#mylistings">
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">My Profile</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseMyProfile">
+            <li>
+              <a href="{%url 'backend:user_profile' %}">View My Profile </a>
+            </li>
+			      <li>
+              <a href="#">Edit My Profile </a>
+            </li>
+			      <li>
+              <a href="#">Change Password</a>
+            </li>
+          </ul>
+        </li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#Components">
+            <i class="fa fa-fw fa-gear"></i>
+            <span class="nav-link-text">Components</span>
+          </a>
+          <ul class="sidenav-second-level collapse" id="collapseComponents">
+            <li>
+              <a href="#">Charts</a>
+            </li>
+			
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'frontend:buy' %}">Buy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'frontend:rent' %}">Rent</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'frontend:contact' %}">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'backend:dashboard' %}">My Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
+        
+      </ul> 
+      
+    </div>
+  </nav>

@@ -5,8 +5,10 @@ from django.contrib.auth.models import User
 class Property(models.Model):
     pro_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
     pro_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    pro_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
+    pro_sale = models.CharField(max_length=20, verbose_name='Sales or Rent')
+    pro_price = models.CharField(max_length=20, verbose_name='Price')
     pro_desription = models.TextField(verbose_name='Description')
+    pro_contact = models.CharField(max_length=20, verbose_name='Contact')
     pro_date = models.DateTimeField(auto_now_add=True)
     featured = models.BooleanField()
     sponsored = models.BooleanField()
@@ -26,6 +28,9 @@ class Agents(models.Model):
     agent_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
     agent_title = models.CharField(max_length=100, verbose_name='Profile Title')
     agent_desription = models.TextField(verbose_name='Description')
+    agent_contact = models.CharField(max_length=20, verbose_name='Contact')
+    agent_address = models.CharField(max_length=100, verbose_name='Address')
+    agent_email = models.EmailField(max_length=50, verbose_name='Email')
 
     class Meta():
         verbose_name_plural = 'Agents'
@@ -39,8 +44,9 @@ class Agents(models.Model):
 class Buy(models.Model):
     buy_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
     buy_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    buy_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
+    buy_price = models.CharField(max_length=20, verbose_name='Price')
     buy_desription = models.TextField(verbose_name='Description')
+    buy_contact = models.CharField(max_length=100, verbose_name='Contact')
     buy_date = models.DateTimeField(auto_now_add=True)
 
     class Meta():
@@ -53,8 +59,9 @@ class Buy(models.Model):
 class Rent(models.Model):
     rent_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
     rent_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    rent_price = models.DecimalField(max_digits=10, verbose_name= 'Price', decimal_places=2)
+    rent_price = models.CharField(max_length=20, verbose_name='Price')
     rent_desription = models.TextField(verbose_name='Description')
+    rent_contact = models.CharField(max_length=100, verbose_name='Contact')
     rent_date = models.DateTimeField(auto_now_add=True)
 
     class Meta():

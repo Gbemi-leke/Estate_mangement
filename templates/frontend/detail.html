@@ -1,0 +1,70 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!Doctype html>
+{% block title %}
+Detail
+{% endblock %}
+
+{% block content %}
+  <section id="best-deal">  
+    <div class='container'>
+        <div class="row">
+          <div class="col-sm-12 text-center" id="detailContent">
+            {% if det %}
+              <div class="item-block animate-box" data-animate-effect="fadeIn">
+                <div class="fh5co-property">
+                  <figure>
+                    <img src="{{ det.buy_img.url }}" class="img-responsive">
+                    <!-- <a href="#" class="tag">For Sale</a> -->
+                  </figure>
+                  <div class="fh5co-property-innter">
+                    <h3><a href="#">{{ det.buy_title }}</a></h3>
+                    <div class="price-status">
+                      <span class="price">&#8358;{{ det.buy_price }}</span>
+                    </div>
+                    <p>{{ det.buy_desription }}</p>
+                     <p>Contact Us:&nbsp; {{ det.buy_contact }}</p>
+                  </div>
+                    <p class="fh5co-property-specification">
+                    {{ det.buy_date }}
+                    </p>
+                </div>
+              </div>
+            {% endif %}
+            
+          </div>
+            <form class="col-md-8 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0" method='POST'>
+              {% if messages %}
+                {% for mes in messages %}
+                  <div class="alert {{ mes.tags }}">{{ mes }}</div>
+                {% endfor %}
+              {% endif %}
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" name="name" id="labelName" required placeholder="Name" type="text">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input class="form-control" name="email" id="labelEmail" required placeholder="Email" type="email">
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message"></textarea>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input value="Send Message" class="btn btn-primary" type="submit">
+                  </div>
+                </div>
+                
+              </div>
+            {% csrf_token %}
+            </form>
+        </div>
+    </div>
+  </section>
+{% endblock %}
