@@ -6,12 +6,60 @@ Home
 {% endblock %}
 
 {% block content %}
+
+<div class="site-section site-section-sm pb-0 flexslider js-fullheight" style="background-image: url({% static 'frontend/images/bg-5.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+	<div class="container">
+	  <div class="row">
+		  <div class="col">
+			<form class="form-search col-md-12" style="margin-top: -100px; padding-top: 360px;">
+				<div class="row  align-items-end col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
+					<div class="col-md-3">
+						<label for="list-types">TYPE</label>
+						<div class="select-wrap">
+						<span class="icon icon-arrow_drop_down"></span>
+						<select name="list-types" id="list-types" class="form-control d-block rounded-0">
+							<option value="">Duplex</option>
+							<option value="">Bungalow</option>
+							<option value="">Flat</option>
+							<option value="">Mansion</option>
+							<option value="">Commercial</option>
+						</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<label for="offer-types">OFFER TYPE(SALE OR RENT)</label>
+						<div class="select-wrap">
+						<span class="icon icon-arrow_drop_down"></span>
+						<select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
+							<option value="">Sale</option>
+							<option value="">Rent</option>
 			
-			
-<aside id="fh5co-hero" class="js-fullheight">
-	<div class="flexslider js-fullheight pt-5" style="background-image: url({% static 'frontend/images/bg-5.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+						</select>
+						</div>
+					</div>
+					<div class="col-md-3">
+						<label for="select-city">MAX.PRICE</label>
+						<div class="select-wrap">
+						<input type="number" id="offer-types" class="form-control d-block rounded-0">
+						</div>
+					</div>
+					<div class="col-md-3">
+						<label for="list-types">LOCATION</label>
+						<div class="select-wrap">
+							<input name="location"  id="offer-types" class="form-control d-block rounded-0">
+						</div>
+					</div>
+					<div class="col-md-3 offset-2" style="margin-left: 400px; border-radius: 20px; padding-top:20px;">
+						<input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
+					</div>
+				</div>
+			</form>	
+		  </div>
+		
+	  </div>  
+	 
 	</div>
-</aside>
+  </div>
 <div id="best-deal">
 	<div class="container">
 		<div class="row">

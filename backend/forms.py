@@ -20,6 +20,9 @@ class RegisterForm(UserCreationForm):
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
     password2 = forms.CharField(label='Confirm Password*', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
+
+    # pst_image = forms.FileField(required=False)
+        
     botfield = forms.CharField(required=False, widget=forms.HiddenInput(),
                                validators=[validators.MaxLengthValidator(0)])
 
@@ -39,6 +42,7 @@ class RegisterForm(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         user.username = self.cleaned_data['username']
         user.email = self.cleaned_data['email']
+        # user.pst_image = self.cleaned_data['pst_image']
 
         if commit:
             user.save()
@@ -57,6 +61,8 @@ class EditUserForm(forms.ModelForm):
     
     email = forms.EmailField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
+
+    pst_image = forms.FileField(required=False)
     
 
     # botfield = forms.CharField(required=False, widget=forms.HiddenInput(),
@@ -64,7 +70,7 @@ class EditUserForm(forms.ModelForm):
 
     class Meta():
         model = User
-        fields = ['username',  'first_name', 'last_name', 'email']
+        fields = ['username',  'first_name', 'last_name', 'email', 'pst_image']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -72,13 +78,19 @@ class EditUserForm(forms.ModelForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
+        user.pst_image = self.cleaned_data['pst_image']
 
         # user.description = self.cleaned_data['description']
-        user.pst_image = self.cleaned_data['pst_image']
+    
         if commit:
             user.save()
             return user
 
+# class PictureForm(forms.ModelForm):
+
+#     class Meta:
+#         model = Profile
+#         fields =('image',)
 
 class PasswordChangeForm(PasswordChangeForm):
 
@@ -97,3 +109,9 @@ class PasswordChangeForm(PasswordChangeForm):
         if commit:
             user.save()
             return user
+
+
+class ListingForm(forms.ModelForm):
+    class Meta():
+        model = AddProperty
+        exclude = ['date', 'user']

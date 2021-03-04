@@ -110,3 +110,4 @@ def signup(request):
 
 def user(request):
     return render(request, 'frontend/user.html')
+

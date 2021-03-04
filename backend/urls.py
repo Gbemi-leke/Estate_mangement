@@ -18,5 +18,8 @@ urlpatterns = [
     path('success-message/', views.success_message, name='success_message'),
     path('register-page/', views.register_form, name='register_form'),
     path('logout/', views.logout_view, name='logout_view'),
+    path('<int:pk>/update/', views.UpdateProfileView.as_view(), name='profile-update'),
+    path('add-newlisting-page/', views.add_newlisting, name='add_newlisting'),
+    path('listings-page/', views.new_listings, name='new_listings'),
    
 ]

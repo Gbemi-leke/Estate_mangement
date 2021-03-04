@@ -21,24 +21,6 @@
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
-		<!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-          <a class="nav-link" href="{%url 'backend:messages' %}">
-            <i class="fa fa-fw fa-envelope-open"></i>
-            <span class="nav-link-text">Comments</span>
-          </a>
-        </li> -->
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-envelope-open"></i>
-            <span class="nav-link-text">Add Blog</span>
-          </a>
-        </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
-          <a class="nav-link" href="#">
-            <i class="fa fa-fw fa-envelope-open"></i>
-            <span class="nav-link-text">View Blogs</span>
-          </a>
-        </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
             <i class="fa fa-fw fa-list"></i>
@@ -60,23 +42,24 @@
           </a>
         </li>
 
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMyProfile" data-parent="#mylistings">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
+          <a class="nav-link" href="{% url 'backend:user_profile' %}">
             <i class="fa fa-fw fa-user"></i>
             <span class="nav-link-text">My Profile</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseMyProfile">
-            <li>
-              <a href="{%url 'backend:user_profile' %}">View My Profile </a>
-            </li>
-			      <li>
-              <a href="#">Edit My Profile </a>
-            </li>
-			      <li>
-              <a href="#">Change Password</a>
-            </li>
-          </ul>
-        </li>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Edit profile">
+      <a class="nav-link" href="{%url 'backend:edit_newform' %}">
+        <i class="fa fa-fw fa-user"></i>
+      <span href="#">Edit Profile </span>
+      </a>
+    </li>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Change Password">
+      <a class="nav-link" href="{%url 'backend:pass_form' %}">
+        <i class="fa fa-fw fa fa-lock"></i>
+        <span class="nav-link-text">Change Password</span>
+      </a>
+    </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#Components">
             <i class="fa fa-fw fa-gear"></i>

@@ -17,7 +17,7 @@ Home
         <div class="row">
 
             {% if request.user.is_staff %}
-  			    {% include 'backend/admin_newsidebar.html' %}
+  			    {% include 'backend/admin_sidebar.html' %}
 		    {% else %}
 				{% include 'backend/user_sidebar.html' %}
 		    {% endif %}

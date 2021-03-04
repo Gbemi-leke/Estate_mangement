@@ -6,4 +6,5 @@ admin.site.register(Property)
 admin.site.register(Agents)
 admin.site.register(Buy)
 admin.site.register(Rent)
+admin.site.register(AddProperty)
 admin.site.site_header = 'Real Estate'

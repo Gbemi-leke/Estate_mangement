@@ -16,10 +16,6 @@ class Property(models.Model):
     class Meta():
         verbose_name_plural = 'Property'
 
-    def post_img(self):
-        if self.pro_img:
-            return self.pro_img.url
-
     def __str__(self):
         return self.pro_title
 
@@ -56,6 +52,10 @@ class Buy(models.Model):
     def __str__(self):
         return self.buy_title
 
+    def post_img(self):
+        if self.buy_image:
+          return self.buy_image.url
+
 class Rent(models.Model):
     rent_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
     rent_title = models.CharField(max_length=100, verbose_name='Profile Title')
@@ -70,3 +70,31 @@ class Rent(models.Model):
 
     def __str__(self):
         return self.rent_title
+
+
+class Profile(models.Model):
+    image = models.FileField()
+
+
+class AddProperty(models.Model):
+    pro_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/', default='')
+    pro_title = models.CharField(max_length=100, verbose_name='Profile Title')
+    pro_sale = models.CharField(max_length=20, verbose_name='Sales or Rent')
+    pro_price = models.CharField(max_length=20, verbose_name='Price')
+    pro_desription = models.TextField(verbose_name='Description')
+    pro_contact = models.CharField(max_length=20, verbose_name='Contact')
+    pro_date = models.DateTimeField(auto_now_add=True)
+    buy = models.BooleanField()
+    rent = models.BooleanField()
+
+    class Meta():
+        verbose_name_plural = 'AddProperty'
+
+
+    def __str__(self):
+        return self.pro_title
+
+
+
+
+    

@@ -17,33 +17,16 @@
           <span class="nav-link-text">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
+      <li class="nav-item" data-placement="right" title="My listings">
+        <a class="nav-link" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
           <i class="fa fa-fw fa-list"></i>
-          <span class="nav-link-text">My listings</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseMylistings">
-          <li>
-            <a href="listings.html">Pending <span class="badge badge-pill badge-primary">6</span></a>
-      </li>
-      <li>
-            <a href="listings.html">Active <span class="badge badge-pill badge-success">6</span></a>
-      </li>
-      <li>
-            <a href="listings.html">Expired <span class="badge badge-pill badge-danger">6</span></a>
-      </li>
-    </ul>
-      </li>
-  <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Reviews">
-        <a class="nav-link" href="reviews.html">
-          <i class="fa fa-fw fa-star"></i>
-          <span class="nav-link-text">Reviews</span>
+          <span class="nav-link-text">View Properties</span>
         </a>
       </li>
   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-        <a class="nav-link" href="add-listing.html">
+        <a class="nav-link" href="{%url 'backend:add_newlisting' %}">
           <i class="fa fa-fw fa-plus-circle"></i>
-          <span class="nav-link-text">Add listing</span>
+          <span class="nav-link-text">Add Property</span>
         </a>
       </li>
   <li class="nav-item" data-toggle="tooltip" data-placement="right" title="My profile">
@@ -73,7 +56,7 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown">
+      <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fa fa-fw fa-envelope"></i>
           <span class="d-lg-none">Messages
@@ -161,11 +144,20 @@
             </span>
           </div>
         </form>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-      </li>
+      </li> -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item" style="margin-right: 30px; font-size: 22px; ">
+          Welcome {{ request.user.get_username }} !!!
+        </li>
+        <li class="nav-item" style="margin-right: 30px;">
+          <img src="{{ user.pst_image }}" class="img-circle">
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
+        
+      </ul> 
     </ul>
   </div>
 </nav>

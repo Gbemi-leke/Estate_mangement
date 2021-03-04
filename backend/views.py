@@ -6,7 +6,9 @@ from django.utils.html import strip_tags
 from django.core import mail
 
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic.edit import UpdateView 
 
 from django.contrib import messages
 
@@ -60,8 +62,36 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
+class UpdateProfileView(UpdateView):
+    model =Profile
+    fields = ['image']
+    template_name_suffix = '_update_form'
+    success_url = ''
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 def success_message(request):
-    return render(request, 'backend/messages.html')
+    return render(request, 'backend/success.html')
+
+def add_newlisting(request):
+    if request.method == 'POST':
+        list_form = ListingForm(request.POST, request.FILES)
+        if list_form.is_valid():
+            listf = list_form.save(commit=False)
+            listf.user = request.user
+            listf.save()
+            # messages.success(request, 'Hotel Posted')
+            
+    else:
+        list_form = ListingForm()
+    return render(request, 'backend/add-newlisting.html', {'listf': list_form})
+
+def new_listings(request):
+    # hotel_list = Hotel.objects.order_by('-date')
+    hotel_list = Hotel.objects.filter(user=request.user)
+    return render(request, 'backend/newlistings.html', {'hlist':hotel_list})
 
 def register_form(request):
     if request.method == 'POST':
