@@ -28,7 +28,7 @@ Change Password
                 {% endfor %}
             {% endif %}
             
-            <form method="post" style="margin-left: 300px; margin-top: 80px;">
+            <form method="post" style="margin-left: 300px; margin-top: 80px; max-height: 300px;">
                 {% csrf_token %}
                 {{ pass_key.as_p }}
                     <input type="submit" value="Change Password" class="btn btn-success">

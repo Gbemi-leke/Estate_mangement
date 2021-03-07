@@ -110,8 +110,15 @@ class PasswordChangeForm(PasswordChangeForm):
             user.save()
             return user
 
+        
 
 class ListingForm(forms.ModelForm):
     class Meta():
         model = AddProperty
+        exclude = ['date', 'user']
+
+
+class AdminListingForm(forms.ModelForm):
+    class Meta():
+        model =Property
         exclude = ['date', 'user']

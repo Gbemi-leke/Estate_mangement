@@ -27,26 +27,28 @@ Home
 				</div>
 				{% if rent %}
 					{% for r in rent %}
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-							<div class="fh5co-property">
-								<figure>
-									<img src="{{ r.rent_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="{% url 'frontend:detail_rent' r.id %}" class="tag">For Rent</a>
-								</figure>
-								<div class="fh5co-property-innter">
-									<h3><a href="#">{{ r.rent_title }}</a></h3>
-									<div class="price-status">
-									<span class="price">&#8358;{{ r.rent_price }} <span class="per">/Month</span></span>
+						{% if r.property_type == 'R' %}
+							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+								<div class="fh5co-property">
+									<figure>
+										<img src="{{ r.add_img.url }}" alt="Free Website Templates FreeHTML5.co " class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
+										<a href="{% url 'frontend:detail_rent' r.id %}" class="tag">For Rent</a>
+									</figure>
+									<div class="fh5co-property-innter">
+										<h3><a href="#">{{ r.add_title }}</a></h3>
+										<div class="price-status">
+										<span class="price">&#8358;{{ r.add_price }} <span class="per">/Month</span></span>
+									</div>
+										<p>{{ r.add_desription|truncatewords:50 }}</p>
+										<p>Contact Us:&nbsp; {{ r.add_contact }}</p>
+									</div>
+									
+									<p class="fh5co-property-specification">
+										<span>{{ r.add_date }}</span>
+									</p>
 								</div>
-									<p>{{ r.rent_desription }}</p>
-									<p>Contact Us:&nbsp; {{ r.rent_contact }}</p>
-								</div>
-								
-								<p class="fh5co-property-specification">
-									<span>{{ r.rent_date }}</span>
-								</p>
 							</div>
-						</div>
+						{% endif %}
 					{% endfor %}
 				{% endif %}
 			</div>

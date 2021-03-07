@@ -22,9 +22,9 @@
           </a>
         </li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
+          <a class="nav-link  collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
             <i class="fa fa-fw fa-list"></i>
-            <span class="nav-link-text">My listings</span>
+            <span class="nav-link-text">View Property</span>
           </a>
           <ul class="sidenav-second-level collapse" id="collapseMylistings">
             
@@ -36,9 +36,9 @@
         </li>
 		
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{%url 'backend:admin_newlisting' %}">
             <i class="fa fa-fw fa-plus-circle"></i>
-            <span class="nav-link-text">Add listing</span>
+            <span class="nav-link-text">Add Property</span>
           </a>
         </li>
 
@@ -60,18 +60,6 @@
         <span class="nav-link-text">Change Password</span>
       </a>
     </li>
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#Components">
-            <i class="fa fa-fw fa-gear"></i>
-            <span class="nav-link-text">Components</span>
-          </a>
-          <ul class="sidenav-second-level collapse" id="collapseComponents">
-            <li>
-              <a href="#">Charts</a>
-            </li>
-			
-          </ul>
-        </li>
       </ul>
 
       <ul class="navbar-nav sidenav-toggler">

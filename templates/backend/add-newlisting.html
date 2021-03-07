@@ -10,10 +10,10 @@ Home
 
 <body class="sticky-footer" > 
     {% block content %}
-        {% if request.user.is_staff %}
-            {% include 'backend/admin-newsidebar.html' %}
+        {% if request.user.is_staff %} 
+            {% include 'backend/admin_sidebar.html' %}
         {% else %}
-            {% include 'backend/user-newsidebar.html' %}
+            {% include 'backend/user_sidebar.html' %}
         {% endif %}
             
     

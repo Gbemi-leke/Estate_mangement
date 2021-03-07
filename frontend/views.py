@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from frontend.models import *
-
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
 # for sending mail import
 from django.conf import settings
@@ -13,19 +15,29 @@ from django.contrib import messages
 
 
 def index(request):
-    profile =Property.objects.all()[:4]
-    featured=Property.objects.all().filter(featured=True)[:4]
-    sponsored=Property.objects.all().filter(sponsored=True)[:4]
+    profile =Property.objects.all()
+    featured=Property.objects.all()
+    sponsored=Property.objects.all()
     profile2 =Agents.objects.all()
-    photos = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2 }
-    return render(request, 'frontend/index.html', photos)
+    files = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2 }
+    return render(request, 'frontend/index.html', files)
+
+def detail_index(request, index_id):
+    detail =Property.objects.get(id=index_id)
+    return render(request, 'frontend/detail1.html', {'detail1':detail})
+
 
 def buy(request):
-    sale = Buy.objects.all()[:6]
+    sale = AddProperty.objects.all()
+    if request.method == 'POST':
+        email = request.POST["email"]
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
     return render(request, 'frontend/buy.html', {'buy':sale})
 
 def detail_buy(request, buy_id):
-    detail =Buy.objects.get(id=buy_id)
+    detail =AddProperty.objects.get(id=buy_id)
     if request.method =='POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -83,11 +95,16 @@ def contact2(request, agent_id):
     return render(request, 'frontend/contact2.html', {'con':contact})
 
 def rent(request):
-    hire = Rent.objects.all()[:6]
+    hire = AddProperty.objects.all()
+    if request.method == 'POST':
+        email = request.POST["email"]
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
     return render(request, 'frontend/rent.html', {'rent':hire})
 
 def detail_rent(request, rent_id):
-    detail2 =Rent.objects.get(id=rent_id)
+    detail2 =AddProperty.objects.get(id=rent_id)
     if request.method =='POST':
         name = request.POST.get('name')
         email = request.POST.get('email')

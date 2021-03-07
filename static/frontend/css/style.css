@@ -23,7 +23,6 @@ body {
 }
 
 .form-search {
-  background: #364e68;
   position: relative;
   z-index: 1;
   padding: 3rem 2rem;
@@ -38,7 +37,7 @@ body {
     border: none; }
   .form-search .btn[type="submit"] {
     height: 47px; }
-
+  
 
 .site-section {
   padding: 3em 0; }

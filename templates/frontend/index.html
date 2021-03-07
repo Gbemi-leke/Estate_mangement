@@ -11,7 +11,7 @@ Home
 	<div class="container">
 	  <div class="row">
 		  <div class="col">
-			<form class="form-search col-md-12" style="margin-top: -100px; padding-top: 360px;">
+			<form class="col-md-12" style="margin-top: -100px; padding-top: 360px; margin-left:15px;">
 				<div class="row  align-items-end col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
 					<div class="col-md-3">
 						<label for="list-types">TYPE</label>
@@ -69,25 +69,27 @@ Home
 			</div>
 			{% if sponsored %}
 				{% for p in sponsored %}
-					<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-property">
-							<figure>
-								<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">{{p.pro_sale }}</a>
-							</figure>
-							<div class="fh5co-property-innter">
-								<h3><a href="#">{{p.pro_title }}</a></h3>
-								<div class="price-status">
-								<span class="price">&#8358;{{p.pro_price }}</span>
+					{% if p.property_type == 'S' %}
+						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
+							<div class="fh5co-property">
+								<figure>
+									<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
+								</figure>
+								<div class="fh5co-property-innter">
+									<h3><a href="#">{{p.pro_title }}</a></h3>
+									<div class="price-status">
+									<span class="price">&#8358;{{p.pro_price }}</span>
+									</div>
+									<p>{{p.pro_desription|truncatewords:40 }}</p>
+									<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
 								</div>
-								<p>{{p.pro_desription }}</p>
-								<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
-							</div>
-								<p class="fh5co-property-specification">
-								{{p.pro_date }}
-								</p>
-						</div> 	
-					</div>
+									<p class="fh5co-property-specification">
+									{{p.pro_date }}
+									</p>
+							</div> 	
+						</div>
+					{% endif %}
 				{% endfor %}
 			{% endif %}
 					
@@ -100,25 +102,26 @@ Home
 			</div>
 			{% if pro %}
 				{% for p in pro %}
-				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn" style="width:auto; height: 20%;">
-					<div class="fh5co-property">
-						<figure>
-							<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-								<a href="#" class="tag">{{p.pro_sale }}</a>
-						</figure>
-						<div class="fh5co-property-innter">
-							<h3><a href="#">{{p.pro_title }}</a></h3>
-							<div class="price-status">
-							<span class="price">&#8358;{{p.pro_price }}</span>
+				
+					<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn" style="width:auto; height: 20%;">
+						<div class="fh5co-property">
+							<figure>
+								<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+									<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
+							</figure>
+							<div class="fh5co-property-innter">
+								<h3><a href="#">{{p.pro_title }}</a></h3>
+								<div class="price-status">
+								<span class="price">&#8358;{{p.pro_price }}</span>
+								</div>
+								<p>{{p.pro_desription|truncatewords:40 }}</p>
+								<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
 							</div>
-							<p>{{p.pro_desription }}</p>
-							<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
-						</div>
-							<p class="fh5co-property-specification">
-							{{p.pro_date }}
-							</p>
-					</div> 	
-				</div>
+								<p class="fh5co-property-specification">
+								{{p.pro_date }}
+								</p>
+						</div> 	
+					</div>
 				{% endfor %}
 			{% endif %}
 			
@@ -131,25 +134,27 @@ Home
 			</div>
 			{% if featured %}
 				{% for p in featured %}
-				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-property">
-						<figure>
-							<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-								<a href="#" class="tag">{{p.pro_sale }}</a>
-						</figure>
-						<div class="fh5co-property-innter">
-							<h3><a href="#">{{p.pro_title }}</a></h3>
-							<div class="price-status">
-							<span class="price">&#8358;{{p.pro_price }}</span>
-							</div>
-							<p>{{p.pro_desription }}</p>
-							<p>Contact Us:&nbsp; {{ p.pro_contact }}</p>
+					{% if p.property_type == 'F' %}
+						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
+							<div class="fh5co-property" style="min-height: 200px;">
+								<figure>
+									<img src="{{ p.post_img }}" alt="Card image cap" class="img-responsive">
+										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
+								</figure>
+								<div class="fh5co-property-innter">
+									<h3><a href="#">{{p.pro_title }}</a></h3>
+									<div class="price-status">
+									<span class="price">&#8358;{{p.pro_price }}</span>
+									</div>
+									<p>{{p.pro_desription|truncatewords:40 }}</p>
+									<p>Contact Us:&nbsp; {{ p.pro_contact }}</p>
+								</div>
+									<p class="fh5co-property-specification">
+									{{p.pro_date }}
+									</p>
+							</div> 	
 						</div>
-							<p class="fh5co-property-specification">
-							{{p.pro_date }}
-							</p>
-					</div> 	
-				</div>
+					{% endif %}
 				{% endfor %}
 			{% endif %}
 		</div>

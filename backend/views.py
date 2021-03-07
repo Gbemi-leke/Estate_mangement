@@ -62,16 +62,6 @@ def logout_view(request):
     logout(request)
     return redirect('index')
 
-class UpdateProfileView(UpdateView):
-    model =Profile
-    fields = ['image']
-    template_name_suffix = '_update_form'
-    success_url = ''
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
-
 def success_message(request):
     return render(request, 'backend/success.html')
 
@@ -88,10 +78,17 @@ def add_newlisting(request):
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
 
+def view_listing(request):
+    property_list = AddProperty.objects.filter(user=request.user)
+    return render(request, 'backend/listings.html', {'hlist':property_list})
+
 def new_listings(request):
-    # hotel_list = Hotel.objects.order_by('-date')
     hotel_list = Hotel.objects.filter(user=request.user)
     return render(request, 'backend/newlistings.html', {'hlist':hotel_list})
+
+def listings(request):
+    hotel_list = AddProperty.objects.filter(user=request.user)
+    return render(request, 'backend/listings2.html', {'hlist':hotel_list})
 
 def register_form(request):
     if request.method == 'POST':
@@ -103,7 +100,30 @@ def register_form(request):
     else:
         register_form = RegisterForm() 
     return render(request, 'frontend/signup.html', {'reg': register_form})
+def admin_newlisting(request):
+    if request.method == 'POST':
+        list_form = AdminListingForm(request.POST, request.FILES)
+        if list_form.is_valid():
+            lista = list_form.save(commit=False)
+            lista.user = request.user
+            lista.save()
+            # messages.success(request, 'Hotel Posted')
+    else:
+        list_form = AdminListingForm()
+    return render(request, 'backend/add-newlisting2.html', {'lista': list_form})
 
+
+def add_newlisting(request):
+    if request.method == 'POST':
+        list_form = ListingForm(request.POST, request.FILES)
+        if list_form.is_valid():
+            listf = list_form.save(commit=False)
+            listf.user = request.user
+            listf.save()
+            # messages.success(request, 'Hotel Posted')
+    else:
+        list_form = ListingForm()
+    return render(request, 'backend/add-newlisting.html', {'listf': list_form})
 @login_required(login_url='/dashboard/')
 def messages(request):
     return render(request, 'backend/messages.html')

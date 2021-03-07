@@ -18,8 +18,10 @@ urlpatterns = [
     path('success-message/', views.success_message, name='success_message'),
     path('register-page/', views.register_form, name='register_form'),
     path('logout/', views.logout_view, name='logout_view'),
-    path('<int:pk>/update/', views.UpdateProfileView.as_view(), name='profile-update'),
+    path('listings2-page/', views.listings, name='listings'),
+    path('listings-page/', views.view_listing, name='view_listing'),
     path('add-newlisting-page/', views.add_newlisting, name='add_newlisting'),
+    path('admin-newlisting-page/', views.admin_newlisting, name='admin_newlisting'),
     path('listings-page/', views.new_listings, name='new_listings'),
    
 ]
