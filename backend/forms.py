@@ -117,8 +117,3 @@ class ListingForm(forms.ModelForm):
         model = AddProperty
         exclude = ['date', 'user']
 
-
-class AdminListingForm(forms.ModelForm):
-    class Meta():
-        model =Property
-        exclude = ['date', 'user']

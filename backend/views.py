@@ -4,7 +4,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core import mail
+from django.views.generic import ListView
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -83,12 +85,21 @@ def view_listing(request):
     return render(request, 'backend/listings.html', {'hlist':property_list})
 
 def new_listings(request):
-    hotel_list = Hotel.objects.filter(user=request.user)
+    hotel_list = AddProperty.objects.filter(user=request.user)
     return render(request, 'backend/newlistings.html', {'hlist':hotel_list})
 
-def listings(request):
-    hotel_list = AddProperty.objects.filter(user=request.user)
-    return render(request, 'backend/listings2.html', {'hlist':hotel_list})
+def view_newlistingdetails(request, pk):
+    post = get_object_or_404(AddProperty, pk=pk)
+    return render(request, 'backend/view-newlisting.html', {'pst':post})
+
+def delete_newproperty(request, listf_id):
+    post_record = get_object_or_404(AddProperty, id=listf_id)
+    post_record.delete()
+    return redirect('backend:new_listings')
+
+def view_newlistingdetails(request, pk):
+    post = get_object_or_404(AddProperty, pk=pk)
+    return render(request, 'backend/view-newlisting.html', {'pst':post})
 
 def register_form(request):
     if request.method == 'POST':
@@ -100,17 +111,6 @@ def register_form(request):
     else:
         register_form = RegisterForm() 
     return render(request, 'frontend/signup.html', {'reg': register_form})
-def admin_newlisting(request):
-    if request.method == 'POST':
-        list_form = AdminListingForm(request.POST, request.FILES)
-        if list_form.is_valid():
-            lista = list_form.save(commit=False)
-            lista.user = request.user
-            lista.save()
-            # messages.success(request, 'Hotel Posted')
-    else:
-        list_form = AdminListingForm()
-    return render(request, 'backend/add-newlisting2.html', {'lista': list_form})
 
 
 def add_newlisting(request):

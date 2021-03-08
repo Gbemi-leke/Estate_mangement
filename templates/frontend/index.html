@@ -73,19 +73,19 @@ Home
 						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
 							<div class="fh5co-property">
 								<figure>
-									<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
 										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
 								</figure>
 								<div class="fh5co-property-innter">
-									<h3><a href="#">{{p.pro_title }}</a></h3>
+									<h3><a href="#">{{p.add_title }}</a></h3>
 									<div class="price-status">
-									<span class="price">&#8358;{{p.pro_price }}</span>
+									<span class="price">&#8358;{{p.add_price }}</span>
 									</div>
-									<p>{{p.pro_desription|truncatewords:40 }}</p>
-									<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
+									<p>{{p.add_desription|truncatewords:40 }}</p>
+									<p>Contact Us:&nbsp; {{p.add_contact }}</p>
 								</div>
 									<p class="fh5co-property-specification">
-									{{p.pro_date }}
+									{{p.add_date }}
 									</p>
 							</div> 	
 						</div>
@@ -106,19 +106,19 @@ Home
 					<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn" style="width:auto; height: 20%;">
 						<div class="fh5co-property">
 							<figure>
-								<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
 									<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
 							</figure>
 							<div class="fh5co-property-innter">
-								<h3><a href="#">{{p.pro_title }}</a></h3>
+								<h3><a href="#">{{p.add_title }}</a></h3>
 								<div class="price-status">
-								<span class="price">&#8358;{{p.pro_price }}</span>
+								<span class="price">&#8358;{{p.add_price }}</span>
 								</div>
-								<p>{{p.pro_desription|truncatewords:40 }}</p>
-								<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
+								<p>{{p.add_desription|truncatewords:40 }}</p>
+								<p>Contact Us:&nbsp; {{p.add_contact }}</p>
 							</div>
 								<p class="fh5co-property-specification">
-								{{p.pro_date }}
+								{{p.add_date }}
 								</p>
 						</div> 	
 					</div>
@@ -138,21 +138,21 @@ Home
 						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
 							<div class="fh5co-property" style="min-height: 200px;">
 								<figure>
-									<img src="{{ p.post_img }}" alt="Card image cap" class="img-responsive">
+									<img src="{{ p.add_img.url }}" alt="Card image cap" class="img-responsive">
 										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
 								</figure>
 								<div class="fh5co-property-innter">
-									<h3><a href="#">{{p.pro_title }}</a></h3>
+									<h3><a href="#">{{p.add_title }}</a></h3>
 									<div class="price-status">
-									<span class="price">&#8358;{{p.pro_price }}</span>
+									<span class="price">&#8358;{{p.add_price }}</span>
 									</div>
-									<p>{{p.pro_desription|truncatewords:40 }}</p>
-									<p>Contact Us:&nbsp; {{ p.pro_contact }}</p>
+									<p>{{p.add_desription|truncatewords:40 }}</p>
+									<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
 								</div>
 									<p class="fh5co-property-specification">
-									{{p.pro_date }}
+									{{p.add_date }}
 									</p>
-							</div> 	
+							</div> 
 						</div>
 					{% endif %}
 				{% endfor %}

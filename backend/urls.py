@@ -18,10 +18,10 @@ urlpatterns = [
     path('success-message/', views.success_message, name='success_message'),
     path('register-page/', views.register_form, name='register_form'),
     path('logout/', views.logout_view, name='logout_view'),
-    path('listings2-page/', views.listings, name='listings'),
-    path('listings-page/', views.view_listing, name='view_listing'),
+    path('listings-page/', views.new_listings, name='new_listings'),
+    path('view-newlisting/<int:pk>', views.view_newlistingdetails, name='view_newlistingdetails'),
+    path('delete-hotel/<int:listf_id>', views.delete_newproperty, name='delete_newproperty'),
     path('add-newlisting-page/', views.add_newlisting, name='add_newlisting'),
-    path('admin-newlisting-page/', views.admin_newlisting, name='admin_newlisting'),
     path('listings-page/', views.new_listings, name='new_listings'),
    
 ]

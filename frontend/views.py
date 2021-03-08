@@ -15,15 +15,15 @@ from django.contrib import messages
 
 
 def index(request):
-    profile =Property.objects.all()
-    featured=Property.objects.all()
-    sponsored=Property.objects.all()
+    profile =AddProperty.objects.all()
+    featured=AddProperty.objects.all()
+    sponsored=AddProperty.objects.all()
     profile2 =Agents.objects.all()
     files = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2 }
     return render(request, 'frontend/index.html', files)
 
 def detail_index(request, index_id):
-    detail =Property.objects.get(id=index_id)
+    detail =AddProperty.objects.get(id=index_id)
     return render(request, 'frontend/detail1.html', {'detail1':detail})
 
 
