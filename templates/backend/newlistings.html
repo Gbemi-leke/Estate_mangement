@@ -10,16 +10,15 @@ Home
 
 {% block content %}
 <body class="fixed-nav sticky-footer" id="page-top">
+    {% if request.user.is_staff %}
+        {% include 'backend/admin_sidebar.html' %}
+    {% else %}
+        {% include 'backend/user_sidebar.html' %}
+    {% endif %}
     <div class="container-fluid">
         <div class="row">
-
-            {% if request.user.is_staff %}
-  			    {% include 'backend/admin_sidebar.html' %}
-		    {% else %}
-				{% include 'backend/user_sidebar.html' %}
-		    {% endif %}
             
-            <section class="col-md-10">
+            <section class="col-md-12">
                 <div class="content-wrapper">
                     <div class="container-fluid">
                       <!-- Breadcrumbs-->
@@ -27,16 +26,16 @@ Home
                         <li class="breadcrumb-item">
                           <a href="{%url 'index' %}">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">Listings</li>
+                        <li class="breadcrumb-item active">View Property</li>
                       </ol>
                         <div class="box_general">
                             <div class="header_box">
-                                <h2 class="d-inline-block">Listings</h2>
+                                <h2 class="d-inline-block" style="color: #1ec5cb !important;">View Properties</h2>
                                 <div class="filter">
                                     <select name="orderby" class="selectbox">
                                         <option value="Any time">Any time</option>
                                         <option value="Latest">Latest</option>
-                                        <option value="Oldest">Oldest</option>
+                                        <option value="Oldest">Oldest</option>     
                                     </select>
                                 </div>
                             </div>
@@ -45,39 +44,26 @@ Home
                                     <li>
                                         {% if hlist %}
                                             {% for h in hlist %}
-                                                <div data-animate-effect="fadeIn">
-                                                    <div>
-                                                        <figure>
-                                                        <img src="{{ h.add_img.url }}" alt="Card image cap" class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
-                                                        </figure>
-                                                        <small>Properties</small>
-                                                        <h3>{{ h.add_title }}</h3>
-                                                        <div class="price-status">
-                                                        <span class="price">&#8358;{{ h.add_price }}</span>
-                                                        </div>
-                                                        <p>{{ h.add_desription|truncatewords:50 }}</p>
-                                                        </div>
-                                                    
-                                                        <div class="row">
-                                                            <div class="col">
-                                                                <p class=" col-4"><a href="{% url 'backend:view_newlistingdetails' h.id %}" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View item</a></p>
-                                                                <p class=" col-4"><a href="#"  class="btn_1 gray"><i class="fa fa-fw fa-pe"></i> Edit</a></p>
-                                                                <p class=" col-4">
-                                                                    <a href="{% url 'backend:delete_newproperty' h.id %}"  class="btn_1 gray delete wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Delete</a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                       
-                                                    </div>
-                                                </div>
+                                                <figure><img src="{{ h.add_img.url }}" alt="" ></figure>
+                                                <small>Property</small>
+                                                <h4>{{ h.add_title }}</h4>
+                                                <p>{{ h.add_desription|truncatewords:50 }}</p>
+                                                <div class="row">
+                                                    <p class=" col-md-4"><a href="{% url 'backend:view_newlistingdetails' h.id %}" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View item</a></p>
+                                                    <p class=" col-md-4"><a href="{{ h.id }}"  class="btn_1 gray btn-success"><i class="fa fa-fw fa-pencil"></i> Edit</a></p>
+                                                    <p class=" col-md-4"><a href="{% url 'backend:delete_newproperty' h.id %}"  class="btn_1 gray delete wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Delete</a></p>     
+                                                </div>  
                                             {% endfor %}
                                         {% endif %}
                                     </li>
-                                </ul>
+                                </ul>       
                             </div>
                         </div>
-                </section>
+                    </div>
+                </div>
+            </section>
                 <!-- /.container-wrapper-->
+                
         </div>
     </div>
 

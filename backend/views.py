@@ -80,6 +80,20 @@ def add_newlisting(request):
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
 
+def edit_newlisting(request, post_id):
+    single_post = get_object_or_404(AddProperty, id=post_id)
+    if request.method == 'POST':
+        post_form = ListingForm(request.POST, request.FILES, instance=single_post)
+        if post_form.is_valid():
+            listf = post_form.save(commit=False)
+            listf.user = request.user
+            listf.save()
+            # messages.success(request, 'Hotel Posted')
+            
+    else:
+        post_form = ListingForm(instance=single_post)
+    return render(request, 'backend/edit_post.html', {'editf': post_form})
+
 def view_listing(request):
     property_list = AddProperty.objects.filter(user=request.user)
     return render(request, 'backend/listings.html', {'hlist':property_list})
@@ -96,10 +110,6 @@ def delete_newproperty(request, listf_id):
     post_record = get_object_or_404(AddProperty, id=listf_id)
     post_record.delete()
     return redirect('backend:new_listings')
-
-def view_newlistingdetails(request, pk):
-    post = get_object_or_404(AddProperty, pk=pk)
-    return render(request, 'backend/view-newlisting.html', {'pst':post})
 
 def register_form(request):
     if request.method == 'POST':
@@ -151,6 +161,16 @@ def edit_newform(request):
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit_newuser_profile.html', {'edit_key':edit_form})
 
+# def edit_userpost(request):
+#     if request.method == 'POST':
+#         list_form = EditPost(request.POST, instance=request.user)
+#         if list_form.is_valid():
+#             list_form.save()
+#             # messages.success(request, 'User edited successfully.')
+#     else:
+#         list_form = EditPost(instance=request.user)
+#     return render(request, 'backend/add-newlisting.html', {'listf':list_form})
+
 def reset(request):
     if request.method == 'POST':
         pass_form = PasswordChangeForm(data=request.POST,
@@ -176,5 +196,8 @@ def pass_form(request):
     return render(request, 'backend/pass_form.html', {'pass_key':pass_form})
 
 
+def list_users(request):
+    show_user = User.objects.all().order_by('last_name')
+    return render(request, 'backend/view-users.html', {'users':show_user})  
 
 

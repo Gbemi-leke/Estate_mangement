@@ -1,4 +1,4 @@
-{% extends 'frontend/base2.html' %}
+{% extends 'backend/base.html' %}
 {% load static %}
 <!DOCTYPE html>
 
@@ -11,49 +11,51 @@ Listing
 <body class="fixed-nav sticky-footer" id="page-top">
   
     {% block content %}
+
     <div class="container-fluid">
         <div class="row">
 
-            {% if request.user.is_staff %}
+        {% if request.user.is_staff %}
   			    {% include 'backend/admin_sidebar.html' %}
 		    {% else %}
-				{% include 'backend/user_sidebar.html' %}
+				    {% include 'backend/user_sidebar.html' %}
 		    {% endif %}
             
-            <section class="col-md-10">
+            <section class="col-md-12">
                 <div class="content-wrapper">
                     <div class="container-fluid">
                       <!-- Breadcrumbs-->
                       <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                          <a href="{%url 'frontend:homepage' %}">Dashboard</a>
+                          <a href="{%url 'index' %}">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">Listings</li>
+                        <li class="breadcrumb-item active">View User</li>
                       </ol>
-                        <div class="box_general">
-                            <div class="header_box">
-                                <h2 class="d-inline-block">Listings</h2>
-                                <div class="filter">
-                                    <select name="orderby" class="selectbox">
-                                        <option value="Any time">Any time</option>
-                                        <option value="Latest">Latest</option>
-                                        <option value="Oldest">Oldest</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="container margin_60_35">
-                                <div class="row">
-                                    <div class="col-lg-8">
-                                        <section id="description">
-                                            <p><img alt="" class="img-fluid" src="{{ pst.post_img }}" style="width: 500px; height: 500px;"></p>
-                                            <h1>{{ pst.pst_title }}</h1>
-                                            <h2>Description</h2>
-                                            <p>{{pst.content}}</p>
-                                        </section>
-                                    </div>
-                                </div>
-                            </div>
-                
+                        <div class="box_general" style="padding-bottom: 20px;">
+                          <h2 style="color: #1ec5cb !important;">View Users</h2>
+                          <table class="table table-bordered">
+                            <tr>
+                              <th>Username</th>
+                              <th>Email</th>
+                              <th>Firstname</th>
+                              <th>Lastname</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% if users %}
+                              {% for u in users %}
+                              <tr>
+                                <td>{{ u.username }}</td>
+                                <td>{{ u.email }}</td>
+                                <td>{{ u.first_name }}</td>
+                                <td>{{ u.last_name}}</td>
+                                <td>
+                                  <a href="#">Delete</a>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            {% endif %}
+                            
+                          </table>
                         </div>
                        
                       </div>
@@ -94,4 +96,5 @@ Listing
 
   <script src="{% static 'backend/vendor/chart.js/Chart.js' %}"></script>
   <script src="{% static 'backend/js/admin-charts.js' %}"></script>
+
 

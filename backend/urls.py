@@ -22,6 +22,9 @@ urlpatterns = [
     path('view-newlisting/<int:pk>', views.view_newlistingdetails, name='view_newlistingdetails'),
     path('delete-hotel/<int:listf_id>', views.delete_newproperty, name='delete_newproperty'),
     path('add-newlisting-page/', views.add_newlisting, name='add_newlisting'),
+    # path('edit_userpost-page/', views.edit_userpost, name='edit_userpost'),
     path('listings-page/', views.new_listings, name='new_listings'),
+    path('listings-page/<int:post_id>', views. edit_newlisting, name=' edit_newlisting'),
+    path('list-users/', views.list_users, name='list_users'),
    
 ]

@@ -117,3 +117,21 @@ class ListingForm(forms.ModelForm):
         model = AddProperty
         exclude = ['date', 'user']
 
+
+# class EditPost(forms.ModelForm):
+#     class Meta():
+#         model = Edit
+#         exclude = ['date', 'user']
+    
+#     def save(self, commit=True):
+#         user = super().save(commit=False)
+#         user.add_img = self.cleaned_data['add_img']
+#         user.add_title = self.cleaned_data['add_title']
+#         user.add_price = self.cleaned_data['add_price']
+#         user.add_description = self.cleaned_data['add_description']
+#         user.add_contact = self.cleaned_data['add_contact']
+#         user.add_date = self.cleaned_data['add_date']
+    
+#         if commit:
+#             user.save()
+#             return user

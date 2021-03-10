@@ -15,13 +15,13 @@ Listing
     <div class="container-fluid">
         <div class="row">
 
-            {% if request.user.is_staff %}
+        {% if request.user.is_staff %}
   			    {% include 'backend/admin_sidebar.html' %}
 		    {% else %}
-				{% include 'backend/user_sidebar.html' %}
+				    {% include 'backend/user_sidebar.html' %}
 		    {% endif %}
             
-            <section class="col-md-10">
+            <section class="col-md-12">
                 <div class="content-wrapper">
                     <div class="container-fluid">
                       <!-- Breadcrumbs-->
@@ -47,20 +47,20 @@ Listing
                                     <div class="col-lg-8">
                                         <section id="description">
                                             <div class="item-block animate-box" data-animate-effect="fadeIn">
-                                                <div class="fh5co-property">
+                                                <div class="">
                                                   <figure>
-                                                    <img src="{{ pst.add_img.url }}" class="img-responsive">
-                                                    <!-- <a href="#" class="tag">For Sale</a> -->
+                                                    <img src="{{ pst.add_img.url }}" class="img-responsive" style="padding-bottom: 10px;">
+                                                    <a href="#" class="tag btn btn-primary">For Sale</a>
                                                   </figure>
                                                   <div class="fh5co-property-innter">
                                                     <h3><a href="#">{{ pst.add_title }}</a></h3>
                                                     <div class="price-status">
-                                                      <span class="price">&#8358;{{ pst.add_price }}</span>
+                                                      <span class="price" style="font-size: 30px; color: #4cb548;">&#8358;{{ pst.add_price }}</span>
                                                     </div>
                                                     <p>{{ pst.add_desription }}</p>
                                                      <p>Contact Us:&nbsp; {{ pst.add_contact }}</p>
                                                   </div>
-                                                    <p class="fh5co-property-specification">
+                                                    <p class="fh5co-property-specification" style="padding-top: 30px;">
                                                     {{ pst.add_date }}
                                                     </p>
                                                 </div>
@@ -68,8 +68,9 @@ Listing
                                         </section>
                                     </div>
                                 </div>
+                  
                             </div>
-                
+                            <p class=" col-4" style="padding-bottom: 40px;"><a href="{%url 'backend:new_listings'%}"  class="btn_1 gray"><i class="fa fa-fw fa-arrow-circle-left"></i> Back</a></p>
                         </div>
                        
                       </div>

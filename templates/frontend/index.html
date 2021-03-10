@@ -11,8 +11,8 @@ Home
 	<div class="container">
 	  <div class="row">
 		  <div class="col">
-			<form class="col-md-12" style="margin-top: -100px; padding-top: 360px; margin-left:15px;">
-				<div class="row  align-items-end col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
+			<form class="col-md-12" style="margin-top: -100px; padding-top: 200px; margin-left:15px;">
+				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
 					<div class="col-md-3">
 						<label for="list-types">TYPE</label>
 						<div class="select-wrap">
@@ -49,7 +49,7 @@ Home
 							<input name="location"  id="offer-types" class="form-control d-block rounded-0">
 						</div>
 					</div>
-					<div class="col-md-3 offset-2" style="margin-left: 400px; border-radius: 20px; padding-top:20px;">
+					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:20px;">
 						<input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
 					</div>
 				</div>
@@ -103,8 +103,8 @@ Home
 			{% if pro %}
 				{% for p in pro %}
 				
-					<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn" style="width:auto; height: 20%;">
-						<div class="fh5co-property">
+				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
+					<div class="fh5co-property card h-100" style="min-height: 200px;">
 							<figure>
 								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
 									<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
