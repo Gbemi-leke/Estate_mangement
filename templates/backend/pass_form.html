@@ -6,6 +6,8 @@
 Change Password
 {% endblock %}
 
+
+<body class="fixed-nav sticky-footer" id="page-top">
 {% block content %}
   <!-- /Navigation-->
     <div class="content-wrapper">
@@ -17,22 +19,26 @@ Change Password
                 </li>
                 <li class="breadcrumb-item active">Change Password</li>
             </ol>
+            <div class="box_general padding_bottom">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+                
+                <form method="post" >
+                    {% csrf_token %}
+                    {{ pass_key.as_p }}
+                        <input type="submit" value="Change Password" class="btn btn-success">
+                </form>
+            </div>
+            
+
         </div>
     </div>
     		
-
-		<div class="col-md-6" style=" margin-bottom: -500px;"></div>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-success">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
             
-            <form method="post" style="margin-left: 300px; margin-top: 80px; max-height: 300px;">
-                {% csrf_token %}
-                {{ pass_key.as_p }}
-                    <input type="submit" value="Change Password" class="btn btn-success">
-            </form>
         
        
 {% endblock %}
+</body>

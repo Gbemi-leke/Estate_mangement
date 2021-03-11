@@ -6,7 +6,7 @@ Home
 {% endblock %}
 
 {% block content %}
-  <body>
+  <body style="padding-bottom: 40px;">
       <div class="container-fluid js-fullheight" style="background-image: url({% static 'frontend/images/bg-6.jpg' %}); background-repeat: no-repeat; background-size: cover;" >
         <div class="row">
           <div class="col-sm-4 col-sm-offset-4 pb-5" style="margin-top:130px;">
@@ -28,7 +28,7 @@ Home
                 <input type="submit" name="login" value="Login" class="btn btn-success btn-block">
                 <div class="row">
                   <div class="col-sm-4 mt-5">
-                    <h5><a href="#" class="login-links" style="color: black;">Reset Password</a></h5>
+                    <h5><a href="{%url 'backend:password_reset_request' %}" class="login-links" style="color: black;">Reset Password</a></h5>
                   </div>
                   <div class="col-sm-4 text-center mt-5">
                     <h5><a href="{% url 'index' %}" class="login-links icon-home" style="color: black;">&nbsp;Home</a></h5>

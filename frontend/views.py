@@ -10,14 +10,26 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
+ # Password Reset
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+
+ #  end
+
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
 def index(request):
-    profile =AddProperty.objects.all()
-    featured=AddProperty.objects.all()
-    sponsored=AddProperty.objects.all()
+    profile =AddProperty.objects.all()[:4]
+    featured=AddProperty.objects.order_by('-add_date')
+    sponsored=AddProperty.objects.order_by('-add_date')[:4]
     profile2 =Agents.objects.all()
     files = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2 }
     return render(request, 'frontend/index.html', files)
@@ -29,12 +41,23 @@ def detail_index(request, index_id):
 
 def buy(request):
     sale = AddProperty.objects.all()
+    most_recent = AddProperty.objects.order_by('-add_date')
+    add_post = AddProperty.objects.order_by('-add_date')
+    paginated_filter = Paginator(add_post,6)
+    page_number = request.GET.get('page')
+    person_page_obj = paginated_filter.get_page(page_number)
+    context = {
+        'person_page_obj': add_post, 
+        'most_recent': most_recent,
+        'buy':sale
+    }
+    context['person_page_obj'] = person_page_obj
     if request.method == 'POST':
         email = request.POST["email"]
         new_signup = Signup()
         new_signup.email = email
         new_signup.save()
-    return render(request, 'frontend/buy.html', {'buy':sale})
+    return render(request, 'frontend/buy.html', context)
 
 def detail_buy(request, buy_id):
     detail =AddProperty.objects.get(id=buy_id)
@@ -95,13 +118,24 @@ def contact2(request, agent_id):
     return render(request, 'frontend/contact2.html', {'con':contact})
 
 def rent(request):
-    hire = AddProperty.objects.all()
+    hire = AddProperty.objects.all()[:6]
+    most_recent = AddProperty.objects.order_by('-add_date')
+    add_post = AddProperty.objects.order_by('-add_date')
+    paginated_filter = Paginator(add_post,6)
+    page_number = request.GET.get('page')
+    person_page_obj = paginated_filter.get_page(page_number)
+    context = {
+        'person_page_obj': add_post, 
+        'most_recent': most_recent,
+        'rent':hire
+    }
+    context['person_page_obj'] = person_page_obj
     if request.method == 'POST':
         email = request.POST["email"]
         new_signup = Signup()
         new_signup.email = email
         new_signup.save()
-    return render(request, 'frontend/rent.html', {'rent':hire})
+    return render(request, 'frontend/rent.html', context)
 
 def detail_rent(request, rent_id):
     detail2 =AddProperty.objects.get(id=rent_id)

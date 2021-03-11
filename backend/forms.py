@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordResetForm
 
 
 class RegisterForm(UserCreationForm):
@@ -99,7 +100,7 @@ class PasswordChangeForm(PasswordChangeForm):
 
     class Meta():
         model = User
-        fields = ['password1', 'password2']
+        fields = ['password1' 'password2']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -110,28 +111,9 @@ class PasswordChangeForm(PasswordChangeForm):
             user.save()
             return user
 
-        
 
 class ListingForm(forms.ModelForm):
     class Meta():
         model = AddProperty
         exclude = ['date', 'user']
 
-
-# class EditPost(forms.ModelForm):
-#     class Meta():
-#         model = Edit
-#         exclude = ['date', 'user']
-    
-#     def save(self, commit=True):
-#         user = super().save(commit=False)
-#         user.add_img = self.cleaned_data['add_img']
-#         user.add_title = self.cleaned_data['add_title']
-#         user.add_price = self.cleaned_data['add_price']
-#         user.add_description = self.cleaned_data['add_description']
-#         user.add_contact = self.cleaned_data['add_contact']
-#         user.add_date = self.cleaned_data['add_date']
-    
-#         if commit:
-#             user.save()
-#             return user

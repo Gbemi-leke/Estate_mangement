@@ -33,25 +33,25 @@ Listing
                       </ol>
                         <div class="box_general" style="padding-bottom: 20px;">
                           <h2 style="color: #1ec5cb !important;">View Users</h2>
-                          <table class="table table-bordered">
+                          <table class="table table-bordered col-sm-12">
                             <tr>
                               <th>Username</th>
                               <th>Email</th>
                               <th>Firstname</th>
                               <th>Lastname</th>
-                              <th colspan="2">Action</th>
+                              <!-- <th colspan="2">Action</th> -->
                             </tr>
                             {% if users %}
                               {% for u in users %}
-                              <tr>
-                                <td>{{ u.username }}</td>
-                                <td>{{ u.email }}</td>
-                                <td>{{ u.first_name }}</td>
-                                <td>{{ u.last_name}}</td>
-                                <td>
-                                  <a href="#">Delete</a>
-                                </td>
-                              </tr>
+                                <tr>
+                                  <td>{{ u.username }}</td>
+                                  <td>{{ u.email }}</td>
+                                  <td>{{ u.first_name }}</td>
+                                  <td>{{ u.last_name}}</td>
+                                  <!-- <td>
+                                    <a href="#" class="fa fa-fw fa-times-circle-o">&nbsp;Delete</a>
+                                  </td> -->
+                                </tr>
                               {% endfor %}
                             {% endif %}
                             

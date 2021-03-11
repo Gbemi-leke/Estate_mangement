@@ -71,7 +71,7 @@ Home
 				{% for p in sponsored %}
 					{% if p.property_type == 'S' %}
 						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
-							<div class="fh5co-property">
+							<div class="fh5co-property" style="min-height: 200px;">
 								<figure>
 									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
 										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
@@ -102,12 +102,11 @@ Home
 			</div>
 			{% if pro %}
 				{% for p in pro %}
-				
 				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
 					<div class="fh5co-property card h-100" style="min-height: 200px;">
 							<figure>
-								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
+								<img src="{{ p.add_img.url }}"  alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+									<a class="tag">{{p.pro_sale }}</a>
 							</figure>
 							<div class="fh5co-property-innter">
 								<h3><a href="#">{{p.add_title }}</a></h3>

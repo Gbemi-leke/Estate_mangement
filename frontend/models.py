@@ -55,16 +55,4 @@ class AddProperty(models.Model):
     def __str__(self):
         return self.add_title
 
-# class Edit (models.Model):
-    
-#     add_date = models.DateTimeField(auto_now_add=True)
-#     # editor = models.ForeignKey(User, on_delete=models.CASCADE)
-#     post = models.ForeignKey(AddProperty, on_delete=models.CASCADE)
-
-#     class Meta():
-#         verbose_name_plural = 'Edit'
-
-
-#     def __unicode__(self):
-#         return "%s edited by %s" % (self.add_title, self.editor.first_name)
 

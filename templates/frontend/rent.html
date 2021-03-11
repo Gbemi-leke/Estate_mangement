@@ -29,7 +29,7 @@ Home
 					{% for r in rent %}
 						{% if r.property_type == 'R' %}
 							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-								<div class="fh5co-property">
+								<div class="fh5co-property card h-100" style="min-height: 200px;">
 									<figure>
 										<img src="{{ r.add_img.url }}" alt="Free Website Templates FreeHTML5.co " class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
 										<a href="{% url 'frontend:detail_rent' r.id %}" class="tag">For Rent</a>
@@ -57,20 +57,25 @@ Home
 					<nav>
 					  <ul class="pagination">
 					    <li class="disabled">
-					      <a href="#" aria-label="Previous">
+					      <a href="?page=1" aria-label="Previous">
 					        <span aria-hidden="true">&laquo;</span>
 					      </a>
 					    </li>
-					    <li class="active"><a href="#">1</a></li>
-					    <li><a href="#">2</a></li>
-					    <li><a href="#">3</a></li>
-					    <li><a href="#">4</a></li>
-					    <li><a href="#">5</a></li>
-					    <li>
-					      <a href="#" aria-label="Next">
-					        <span aria-hidden="true">&raquo;</span>
-					      </a>
-					    </li>
+						{% if person_page_obj.has_previous %}
+					    	<li class="active"><a href="?page=1">1</a></li>
+						{% endif %}
+
+						{% if person_page_obj.has_next %}
+							<li><a href="?page={{ person_page_obj.next_page_number }}">2</a></li>
+							<li><a href="?page={{ person_page_obj.next_page_number }}">3</a></li>
+							<li><a href="?page={{ person_page_obj.next_page_number }}">4</a></li>
+							<li><a href="?page={{ person_page_obj.next_page_number }}">5</a></li>
+							<li>
+							<a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+							</li>
+						{% endif %}
 					  </ul>
 					</nav>
 				</div>

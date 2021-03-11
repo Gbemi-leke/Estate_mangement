@@ -64,7 +64,7 @@
                                     <li {% if request.path == Buy %} class="active" {% endif %}><a href="{% url 'frontend:buy' %}">Buy</a></li>
                                     <li {% if request.path == Rent %} class="active" {% endif %}><a href="{% url 'frontend:rent' %}">Rent</a></li>
                                     <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact us</a></li>
-                                    <li {% if request.path == Dash %} class="active" {% endif %}><a href="{% url 'backend:dashboard' %}" class="icon-user" style="margin-left: 90px;">&nbsp;Dashboard</a></li>
+                                    <li {% if request.path == Dash %} class="active" {% endif %}><a href="{% url 'backend:dashboard' %}" class="icon-user" style="margin-left: 90px;">&nbsp;My Account</a></li>
                                     <!-- <li {% if request.path == logout%} class="active " {% endif %}><a href="{% url 'backend:logout_view' %}"class="">&nbsp;Logout</li> -->
                                 </ul>
                             </nav>
