@@ -6,37 +6,38 @@ Home
 {% endblock %}
 
 {% block content %}
-  <body>
-      <div class="container" >
+  <body style="padding-bottom: 40px;">
+      <div class="container-fluid js-fullheight" style="background-image: url({% static 'frontend/images/bg-6.jpg' %}); background-repeat: no-repeat; background-size: cover;" >
         <div class="row">
-          <div class="col-sm-4 col-sm-offset-4 pb-5" style="margin-top:100px;">
-            <div class="row login-logo">
-              <img src="{% static 'frontend/images/loc.png' %}">
-              <!-- <h1>Real Estate</h1> -->
-            </div>
-            <div class="login-form bg-primary " style="border-radius:10px; padding: 20px; margin-top: 15px; border-radius: 10px;">
-              <div class="page-title text-center">
-                <h1>Login</h1>
+          <div class="col-sm-4 col-sm-offset-4 pb-5" style="margin-top:130px;">
+            <div class="login-form bg-primary" style="border-radius:10px; padding: 20px; margin-top: 15px; border-radius: 10px;">
+              <div class="page-title text-center" >
+                <h1 style="font-family: monospace">Login</h1>
               </div>
               <form method='post' action="" class="form">
+                {% if messages %}
+                  <div class="alert {{ messages.tags }}">{{ messages }}</div>
+                {% endif %}
                 <div class="form-group">
                   <label>Username</label>
-                  <input type="text" name="username" placeholder="Username" class="form-control" style="border-radius:10px; background-color: blanchedalmond;">
+                  <input type="text" name="username" placeholder="Username" class="form-control" style="border-radius:10px; background-color: rgb(255, 255, 255);">
+                  <!-- <i class="ti-user"></i> -->
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <input type="password" name="password" placeholder="Password" class="form-control" style="border-radius:10px; background-color: blanchedalmond;">
+                  <input type="password" name="password" placeholder="Password" class="form-control" style="border-radius:10px; background-color: rgb(255, 255, 254);">
+                  <!-- <i class="icon-lock-alt"></i> -->
                 </div>
                 <input type="submit" name="login" value="Login" class="btn btn-success btn-block">
                 <div class="row">
                   <div class="col-sm-4 mt-5">
-                    <h5><a href="#" class="login-links" style="color: black;">Reset Password</a></h5>
+                    <h5><a href="{%url 'backend:password_reset_request' %}" class="login-links" style="color: black;">Reset Password</a></h5>
                   </div>
                   <div class="col-sm-4 text-center mt-5">
                     <h5><a href="{% url 'index' %}" class="login-links icon-home" style="color: black;">&nbsp;Home</a></h5>
                   </div>
                   <div class="col-sm-4 mt-5">
-                    <h5><a href="{% url 'frontend:signup' %}" class="login-links pull-right icon-user" style="color: black;">&nbsp;Sign Up</a></h5>
+                    <h5><a href="{%url 'backend:register_form' %}" class="login-links pull-right icon-user" style="color: black;">&nbsp;Sign Up</a></h5>
                   </div>
                 </div>
                 {% csrf_token %}

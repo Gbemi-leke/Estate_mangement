@@ -1,6 +1,6 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
     <a class="navbar-brand" href="{%url 'index' %}" style="height: 36px; width: 150px;">REAL ESTATE</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -38,6 +38,12 @@
           <a class="nav-link" href="{%url 'backend:list_users' %}">
             <i class="fa fa-fw fa-user-circle"></i>
             <span class="nav-link-text">View Users</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="{%url 'backend:list_all_post' %}">
+            <i class="fa fa-fw fa-list"></i>
+            <span class="nav-link-text">View All Post</span>
           </a>
         </li>
 

@@ -1,0 +1,64 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+{% block title %}
+Post List
+{% endblock %}
+
+{% block content %}
+
+    <div class="fh5co-page-title" style="background-image: url({%  static 'frontend/images/slide_6.jpg' %});">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 animate-box">
+                    <h1><span class="colored">Filter</span> Result</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 animate-box" style="padding-bottom:100px;">
+                <h1 style="padding-top: 20px; color: #38dadf; font-size:30px; font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">Result for Filter Search</h1>
+                {% if q %}
+                    {% for p in q %}
+                        <div class="row">
+                            <div class="col-sm-9" id="mainContent">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4">
+                                        <div class="thumbnail">
+                                            <a href="{% url 'frontend:detail_buy' p.id %}">
+                                                <img src="{{ p.add_img.url }}">
+                                                <h1 style="text-align: center; font-size: 40px; text-decoration: none !important; padding-top: 10px; color: cadetblue; 
+                                                font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">{{ p.add_title }}</h1>
+                                            </a>
+                                            
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-8 col-sm-8">
+                                        <div class="blog-content">
+                                            <p>
+                                            Time:{{ p.add_date|date:'H:i a' }}, 
+
+                                            
+                                            Posted By: <a href="#">{{ p.user.username }}</a>.
+                                            
+                                            </p>
+                                            <h1 style="color: #64e050;">{{ p.add_price }}</h1>
+                                            <p>
+                                            {{ p.add_desription|truncatewords:20 }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- END OF BLOG ROW 1 --> 
+                            </div>
+                            <!-- END OF ASIDE CONTENT -->
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

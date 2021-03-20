@@ -25,14 +25,14 @@ Home
 					<h2>We are Offering the Best Real Estate Deals</h2>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 				</div>
-				{% if rent %}
-					{% for r in rent %}
+				{% if person_page_obj %}
+					{% for r in person_page_obj %}
 						{% if r.property_type == 'R' %}
 							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 								<div class="fh5co-property card h-100" style="min-height: 200px;">
 									<figure>
 										<img src="{{ r.add_img.url }}" alt="Free Website Templates FreeHTML5.co " class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
-										<a href="{% url 'frontend:detail_rent' r.id %}" class="tag">For Rent</a>
+										<a href="{% url 'frontend:detail_buy' r.id %}" class="tag">For Rent</a>
 									</figure>
 									<div class="fh5co-property-innter">
 										<h3><a href="#">{{ r.add_title }}</a></h3>

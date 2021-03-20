@@ -29,6 +29,7 @@ from backend.forms import *
 
 # Create your views here.
 
+
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
@@ -58,7 +59,7 @@ def password_reset_request(request):
 	return render(request=request, template_name="backend/password_reset.html", context={"password_reset_form":password_reset_form})
 
 
-@login_required(login_url='/dashboard_page/')
+@login_required(login_url='/backend/login/')
 def dashboard(request):
     if request.user.is_staff:
         return render(request, 'backend/index.html')
@@ -70,33 +71,15 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-
-        # if request.user.is_staff:
-        #     return render(request, 'backend/admin.html')
-        # else: 
-        #     return render(request, 'backend/index.html')
+        user = authenticate(request, username=username, password=password, fail_silently=True)
 
         if user is not None:
             login(request, user)
             return redirect('index')
         else:
-            messages.error(request, 'Username and Password do not match')
-        
-    return render(request, 'frontend/login2.html')
+            messages.error(request, 'Username and Password do not match')    
+    return render(request, 'frontend/login.html')
 
-def login_userview(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('backend:dashboard')
-        else:
-            messages.error(request, 'Username and Password do not match')
-    return render(request, 'frontend/userlogin.html')
 
 def logout_view(request):
     logout(request)
@@ -105,23 +88,25 @@ def logout_view(request):
 def success_message(request):
     return render(request, 'backend/success.html')
 
+@login_required(login_url='/backend/login/')
 def add_newlisting(request):
     if request.method == 'POST':
-        list_form = ListingForm(request.POST, request.FILES)
+        list_form = ListingForm(request.POST, request.FILES, fail_silently=True)
         if list_form.is_valid():
             listf = list_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            # messages.success(request, 'Hotel Posted')
+            # messages.success(request, 'Property Posted')
             
     else:
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
 
+@login_required(login_url='/backend/login/')
 def edit_newlisting(request, post_id):
     single_post = get_object_or_404(AddProperty, id=post_id)
     if request.method == 'POST':
-        post_form = ListingForm(request.POST, request.FILES, instance=single_post)
+        post_form = EditListing(request.POST, request.FILES, instance=single_post)
         if post_form.is_valid():
             listf = post_form.save(commit=False)
             listf.user = request.user
@@ -132,19 +117,22 @@ def edit_newlisting(request, post_id):
         post_form = ListingForm(instance=single_post)
     return render(request, 'backend/edit_post.html', {'editf': post_form})
 
+@login_required(login_url='/backend/login/')
 def view_listing(request):
     property_list = AddProperty.objects.filter(user=request.user)
     return render(request, 'backend/listings.html', {'hlist':property_list})
 
+@login_required(login_url='/backend/login/')
 def new_listings(request):
     hotel_list = AddProperty.objects.filter(user=request.user)
     return render(request, 'backend/newlistings.html', {'hlist':hotel_list})
     
-
+@login_required(login_url='/backend/login/')
 def view_newlistingdetails(request, pk):
     post = get_object_or_404(AddProperty, pk=pk)
     return render(request, 'backend/view-newlisting.html', {'pst':post})
 
+@login_required(login_url='/backend/login/')
 def delete_newproperty(request, listf_id):
     post_record = get_object_or_404(AddProperty, id=listf_id)
     post_record.delete()
@@ -162,6 +150,7 @@ def register_form(request):
     return render(request, 'frontend/signup.html', {'reg': register_form})
 
 
+@login_required(login_url='/backend/login/')
 def add_newlisting(request):
     if request.method == 'POST':
         list_form = ListingForm(request.POST, request.FILES)
@@ -173,13 +162,17 @@ def add_newlisting(request):
     else:
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
-@login_required(login_url='/dashboard/')
+
+@login_required(login_url='/backend/login/')
 def messages(request):
     return render(request, 'backend/messages.html')
 
+@login_required(login_url='/backend/login/')
 def user_profile(request):
-    return render(request, 'backend/user_profile.html')
+    users =Agents.objects.filter(user=request.user)[:1]
+    return render(request, 'backend/user_profile.html', {'users': users})
 
+@login_required(login_url='/backend/login/')
 def edit_form(request):
     if request.method == 'POST':
         edit_form = EditUserForm(request.POST, instance=request.user)
@@ -190,6 +183,7 @@ def edit_form(request):
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit_user_profile.html', {'edit_key':edit_form})
 
+@login_required(login_url='/backend/login/')
 def edit_newform(request):
     if request.method == 'POST':
         edit_form = EditUserForm(request.POST, instance=request.user)
@@ -200,16 +194,7 @@ def edit_newform(request):
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit_newuser_profile.html', {'edit_key':edit_form})
 
-# def edit_userpost(request):
-#     if request.method == 'POST':
-#         list_form = EditPost(request.POST, instance=request.user)
-#         if list_form.is_valid():
-#             list_form.save()
-#             # messages.success(request, 'User edited successfully.')
-#     else:
-#         list_form = EditPost(instance=request.user)
-#     return render(request, 'backend/add-newlisting.html', {'listf':list_form})
-
+@login_required(login_url='/backend/login/')
 def reset(request):
     if request.method == 'POST':
         pass_form = PasswordChangeForm(data=request.POST,
@@ -222,6 +207,7 @@ def reset(request):
         pass_form = PasswordChangeForm(user=request.user)
     return render(request, 'backend/reset.html', {'pass_key':pass_form})
 
+@login_required(login_url='/backend/login/')
 def pass_form(request):
     if request.method == 'POST':
         pass_form = PasswordChangeForm(data=request.POST,
@@ -235,8 +221,18 @@ def pass_form(request):
     return render(request, 'backend/pass_form.html', {'pass_key':pass_form})
 
 
+@login_required(login_url='/backend/login/')
 def list_users(request):
     show_user = User.objects.all().order_by('last_name')
     return render(request, 'backend/view-users.html', {'users':show_user})  
 
+@login_required(login_url='/backend/login/')
+def list_all_post(request):
+    show_post = AddProperty.objects.all().order_by('-add_date')
+    return render(request, 'backend/view-all-post.html', {'post':show_post})  
 
+@login_required(login_url='/backend/login/')
+def delete_upload(request, listf_id):
+    single_delete= get_object_or_404(AddProperty, pk= listf_id)
+    single_delete.delete()
+    return redirect('backend:view-all-post')

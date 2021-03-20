@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html class="no-js">
+<html>
 	<head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,11 +23,11 @@
 <body  style="background-image: url({% static 'frontend/images/th1.jpg' %});">
 
 
-    <div class="container">
+    <div class="container" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
         <div class="row">
             <div class="col" style="padding-top: 250px;">
                 <h1 class="text-center fh5co-heading animate-box" data-animate-effect="fadeIn">Welcome</h1>
-                <span style="margin-left: 450px;">Kindly<a class="btn btn-primary" href="{% url 'backend:login_view' %}">Click</a> to Log in</span>
+                <span style="margin-left: 450px;">Kindly<a class="btn btn-primary" href="{% url 'backend:login_view' %}" style="margin-left: 20px;">Click</a> to Log in</span>
             </div>
         </div>
     </div>

@@ -7,25 +7,12 @@ Home
 
 {% block content %}
 
-<div class="site-section site-section-sm pb-0 flexslider js-fullheight" style="background-image: url({% static 'frontend/images/bg-5.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+<div class="site-section site-section-sm pb-0 flexslider js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
 	<div class="container">
 	  <div class="row">
 		  <div class="col">
-			<form class="col-md-12" style="margin-top: -100px; padding-top: 200px; margin-left:15px;">
+			<!-- <form class="col-md-12" style="margin-top: -100px; padding-top: 200px; margin-left:15px;">
 				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
-					<div class="col-md-3">
-						<label for="list-types">TYPE</label>
-						<div class="select-wrap">
-						<span class="icon icon-arrow_drop_down"></span>
-						<select name="list-types" id="list-types" class="form-control d-block rounded-0">
-							<option value="">Duplex</option>
-							<option value="">Bungalow</option>
-							<option value="">Flat</option>
-							<option value="">Mansion</option>
-							<option value="">Commercial</option>
-						</select>
-						</div>
-					</div>
 					<div class="col-md-3">
 						<label for="offer-types">OFFER TYPE(SALE OR RENT)</label>
 						<div class="select-wrap">
@@ -38,9 +25,16 @@ Home
 						</div>
 					</div>
 					<div class="col-md-3">
+						<label for="list-types">MIN.PRICE</label>
+						<div class="select-wrap">
+							<input name="price"  id="offer-types" class="form-control d-block rounded-0">
+						</div>
+				
+					</div>
+					<div class="col-md-3">
 						<label for="select-city">MAX.PRICE</label>
 						<div class="select-wrap">
-						<input type="number" id="offer-types" class="form-control d-block rounded-0">
+						<input type="price" id="offer-types" class="form-control d-block rounded-0">
 						</div>
 					</div>
 					<div class="col-md-3">
@@ -53,8 +47,25 @@ Home
 						<input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
 					</div>
 				</div>
-			</form>	
-		  </div>
+		 	</form> -->
+			<form method="GET" class="form-inline" style="margin-top: -100px; padding-top: 200px; margin-left:40px" action="{% url 'frontend:filter_data'%}" >
+				<div class="row col-sm-8" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
+					<div class="form-group" style="margin-left: 15px;" 	>
+						{{ qf.add_title }}
+					</div>
+					<div class="form-group" style="margin-left: 15px;">
+						{{ qf.add_price }}
+					</div>
+					<!-- <div class="form-group">
+						{{ qf.property_type }}
+					</div>  -->
+					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:10px;">
+						<input type="submit" class="btn btn-primary" value="Filter">
+					</div>
+				</div>
+				
+			</form>
+		</div>
 		
 	  </div>  
 	 
@@ -70,14 +81,14 @@ Home
 			{% if sponsored %}
 				{% for p in sponsored %}
 					{% if p.property_type == 'S' %}
-						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
+						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 							<div class="fh5co-property" style="min-height: 200px;">
 								<figure>
 									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
+										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 								</figure>
 								<div class="fh5co-property-innter">
-									<h3><a href="#">{{p.add_title }}</a></h3>
+									<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
 									<div class="price-status">
 									<span class="price">&#8358;{{p.add_price }}</span>
 									</div>
@@ -102,14 +113,13 @@ Home
 			</div>
 			{% if pro %}
 				{% for p in pro %}
-				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
+				<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 					<div class="fh5co-property card h-100" style="min-height: 200px;">
 							<figure>
-								<img src="{{ p.add_img.url }}"  alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a class="tag">{{p.pro_sale }}</a>
+								<img src="{{ p.add_img.url }}"  alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
 							</figure>
 							<div class="fh5co-property-innter">
-								<h3><a href="#">{{p.add_title }}</a></h3>
+								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
 								<div class="price-status">
 								<span class="price">&#8358;{{p.add_price }}</span>
 								</div>
@@ -134,11 +144,11 @@ Home
 			{% if featured %}
 				{% for p in featured %}
 					{% if p.property_type == 'F' %}
-						<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
-							<div class="fh5co-property" style="min-height: 200px;">
+						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+							<div class="fh5co-property card h-100" style="min-height: 200px;">
 								<figure>
-									<img src="{{ p.add_img.url }}" alt="Card image cap" class="img-responsive">
-										<a href="{% url 'detail_index' p.id %}" class="tag">{{p.pro_sale }}</a>
+									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 								</figure>
 								<div class="fh5co-property-innter">
 									<h3><a href="#">{{p.add_title }}</a></h3>
@@ -216,4 +226,21 @@ Home
 	</div>
 </div>
 {% endblock %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+		<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		</div>
+		<div class="modal-body">{{ request.user.get_full_name }}Select "Logout" below if you are ready to end your current session.</div>
+		<div class="modal-footer">
+		<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+		<a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+		</div>
+	</div>
+	</div>
+</div>
 

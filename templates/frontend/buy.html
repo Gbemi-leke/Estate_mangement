@@ -24,8 +24,8 @@ Home
 					<h2>We are Offering the Best Real Estate Deals</h2>
 					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 				</div>
-				{% if buy %}
-					{% for b in buy %}
+				{% if person_page_obj %}
+					{% for b in person_page_obj %}
 						{% if b.property_type == 'B' %}
 							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 								<div class="fh5co-property card h-100" style="min-height: 200px;">
@@ -96,3 +96,20 @@ Home
 
 
 {% endblock%}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+		<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		</div>
+		<div class="modal-body">{{ request.user.get_full_name }}Select "Logout" below if you are ready to end your current session.</div>
+		<div class="modal-footer">
+		<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+		<a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+		</div>
+	</div>
+	</div>
+</div>

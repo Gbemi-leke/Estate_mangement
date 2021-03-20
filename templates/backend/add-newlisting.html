@@ -30,12 +30,15 @@ Home
                         <div class="header_box version_2">
                             <h2><i class="fa fa-file"></i>Basic info</h2>
                         </div>
-                        <div class="row">
-                            <form method="post" enctype="multipart/form-data">
-                                {{ listf.as_p }}
-                                {% csrf_token %}
-                                <button type="submit" class="btn btn-danger">Save</button>
-                            </form>
+                        <div class="row" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+                            <div class="form-group col-lg-6">
+                                <form method="post" enctype="multipart/form-data">
+                                    {{ listf.as_p }}
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Save</button>
+                                </form>
+                            </div>
+                            
     
                         
                     </div>
@@ -55,7 +58,7 @@ Home
         <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -64,7 +67,7 @@ Home
                 <span aria-hidden="true">×</span>
             </button>
             </div>
-            <div class="modal-body">{{ request.user.get_full_name }}Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">{{ request.user.get_full_name }} Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>

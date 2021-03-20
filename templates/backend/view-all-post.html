@@ -29,28 +29,34 @@ Listing
                         <li class="breadcrumb-item">
                           <a href="{%url 'index' %}">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">View User</li>
+                        <li class="breadcrumb-item active">View All Post</li>
                       </ol>
                         <div class="box_general" style="padding-bottom: 20px;">
-                          <h2 style="color: #1ec5cb !important;">View Users</h2>
+                          <h2 style="color: #1ec5cb !important;">View All Post</h2>
                           <table class="table table-bordered col-sm-12">
                             <tr>
-                              <th>Username</th>
-                              <th>Email</th>
-                              <th>Firstname</th>
-                              <th>Lastname</th>
-                              <!-- <th colspan="2">Action</th> -->
+                              <th>S/N</th>
+                              <th>Post Title</th>
+                              <th>Post Content</th>
+                              <th>Price</th>
+                              <th>Date</th>
+                              <th>Post Image</th>
+                              <th>Posted By</th>
+                              <th colspan="2">Action</th>
                             </tr>
-                            {% if users %}
-                              {% for u in users %}
+                            {% if post %}
+                              {% for u in post %}
                                 <tr>
-                                  <td>{{ u.username }}</td>
-                                  <td>{{ u.email }}</td>
-                                  <td>{{ u.first_name }}</td>
-                                  <td>{{ u.last_name}}</td>
-                                  <!-- <td>
-                                    <a href="#" class="fa fa-fw fa-times-circle-o">&nbsp;Delete</a>
-                                  </td> -->
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>{{ u.add_title }}</td>
+                                  <td>{{ u.add_desription|truncatewords:15  }}</td>
+                                  <td>{{ u.add_price}}</td>
+                                  <td>{{ u.add_date  }}</td>
+                                  <td><img src="{{ u.add_img.url }}" width="30" height="30" alt=""></td>
+                                  <td>{{ u.user.username }}</td>
+                                  <td>
+                                    <a href="{%url 'backend:delete_upload' u.id %}" class="fa fa-fw fa-times-circle-o" style="color: red !important;">&nbsp;Delete</a>
+                                  </td>
                                 </tr>
                               {% endfor %}
                             {% endif %}

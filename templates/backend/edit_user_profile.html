@@ -18,7 +18,7 @@ Edit Profile
 
 
 
-<div class="col-md-8 add_top_30">
+<div class="col-md-8 add_top_30" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
     <div class="row">
         {% if messages %}
             {% for message in messages %}
@@ -26,7 +26,7 @@ Edit Profile
             {% endfor %}
         {% endif %}
         <div class="col-md-6">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ edit_key.as_p }}
                 <input type="submit" value="Edit" class="btn btn-success">
