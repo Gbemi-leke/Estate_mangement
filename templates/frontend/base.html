@@ -31,8 +31,8 @@
                         <div class="header-inner">
                             
                             <h1>
-                                <!-- <img src="{% static 'frontend/images/two.jpeg' %}" style="width: 40px; height: 35px; padding-bottom: 4px;"> -->
-                                <a href="{% url 'index' %}">Real Estate<span>.</span></a>
+                                <!-- <img src="{% static 'frontend/images/real.png' %}" style="width: 40px; height: 35px; padding-bottom: 4px; "> -->
+                                <a href="{% url 'index' %}" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique; color:#57d2ea ;">Real Estate<span style="color:#5bf498 ;">.</span></a>
                             </h1>
                             <nav role="navigation">
                                 {% url 'index' as Home %}
@@ -60,7 +60,7 @@
                 <div class="container pb-5">
                     <div class="row">
                         <div class="header-inner">
-                            <h1><a href="{% url 'index' %}">Real Estate<span>.</span></a></h1>
+                            <h1><a href="{% url 'index' %}" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique; color:#57d2ea ;">Real Estate<span style="color:#5bf498 ;">.</span></a></h1>
                             <nav role="navigation">
                                 {% url 'index' as Home %}
                                 {% url 'frontend:buy' as Buy %}

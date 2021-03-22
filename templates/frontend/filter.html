@@ -11,12 +11,12 @@ Post List
         <div class="container">
             <div class="row">
                 <div class="col-md-12 animate-box">
-                    <h1><span class="colored">Filter</span> Result</h1>
+                    <h1 style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;"><span class="colored">Filter</span> Result</h1>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
         <div class="row">
             <div class="col-md-12 animate-box" style="padding-bottom:100px;">
                 <h1 style="padding-top: 20px; color: #38dadf; font-size:30px; font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">Result for Filter Search</h1>
@@ -39,10 +39,7 @@ Post List
                                         <div class="blog-content">
                                             <p>
                                             Time:{{ p.add_date|date:'H:i a' }}, 
-
-                                            
-                                            Posted By: <a href="#">{{ p.user.username }}</a>.
-                                            
+                                            Posted By: <span style="color: blue !important;">{{ p.user.username }}</span>.
                                             </p>
                                             <h1 style="color:#5de8df;">{{ p.listing_type }}</h1>
                                             <h1 style="color: #64e050;">{{ p.add_price }}</h1>
