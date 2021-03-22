@@ -6,7 +6,7 @@ Detail
 {% endblock %}
 
 {% block content %}
-  <section id="best-deal">  
+  <section id="best-deal" style="padding-top: 100px;">  
     <div class='container'>
         <div class="row">
           <div class="col-sm-12 text-center" id="detailContent">
@@ -14,19 +14,20 @@ Detail
               <div class="item-block animate-box" data-animate-effect="fadeIn">
                 <div class="fh5co-property">
                   <figure>
-                    <img src="{{ det.buy_img.url }}" class="img-responsive">
+                    <img src="{{ det.add_img.url }}" class="img-responsive" style="width: 700px; height: 450px;">
                     <!-- <a href="#" class="tag">For Sale</a> -->
                   </figure>
                   <div class="fh5co-property-innter">
-                    <h3><a href="#">{{ det.buy_title }}</a></h3>
+                    <h3><a href="#">{{ det.add_title }}</a></h3>
                     <div class="price-status">
-                      <span class="price">&#8358;{{ det.buy_price }}</span>
+                      <span class="price">&#8358;{{ det.add_price }}</span>
                     </div>
-                    <p>{{ det.buy_desription }}</p>
-                     <p>Contact Us:&nbsp; {{ det.buy_contact }}</p>
+                    <p>{{ det.add_desription }}</p>
+                     <p>Contact Us:&nbsp; {{ det.add_contact }}</p>
                   </div>
+                  <!-- <p class=" col-4" style="padding-top: 40px;"><a href="{%url 'frontend:buy'%}"  class="btn btn-primary"><i class="icon-arrow-circle-left"></i> Back</a></p> -->
                     <p class="fh5co-property-specification">
-                    {{ det.buy_date }}
+                    {{ det.add_date }}
                     </p>
                 </div>
               </div>

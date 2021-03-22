@@ -8,35 +8,17 @@ Home
 
 
 
+{% block content %}
 <body class="fixed-nav sticky-footer" id="page-top">
-    <!-- Navigation-->
-    <!-- {% if request.user.is_staff %}
-        {% include 'backend/admin-sidebar.html' %}
+    {% if request.user.is_staff %}
+        {% include 'backend/admin_sidebar.html' %}
     {% else %}
-        {% include 'backend/user-sidebar.html' %}
-    {% endif %} -->
-  
-    {% block content %}
-
-    <section class="hero_single version_2">
-        <div class="wrapper">
-            <div class="container">
-                <h3>Book unique experiences</h3>
-                <p>Explore top rated hotels and experiences in Lagos</p>
-            </div>
-        </div>
-    </section>
-
+        {% include 'backend/user_sidebar.html' %}
+    {% endif %}
     <div class="container-fluid">
         <div class="row">
-
-            {% if request.user.is_staff %}
-  			    {% include 'backend/admin-newsidebar.html' %}
-		    {% else %}
-				{% include 'backend/user-newsidebar.html' %}
-		    {% endif %}
             
-            <section class="col-md-10">
+            <section class="col-md-12">
                 <div class="content-wrapper">
                     <div class="container-fluid">
                       <!-- Breadcrumbs-->
@@ -44,46 +26,46 @@ Home
                         <li class="breadcrumb-item">
                           <a href="{%url 'index' %}">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">Listings</li>
+                        <li class="breadcrumb-item active">View Property</li>
                       </ol>
                         <div class="box_general">
                             <div class="header_box">
-                                <h2 class="d-inline-block">Listings</h2>
+                                <h2 class="d-inline-block" style="color: #1ec5cb !important;">View Properties</h2>
                                 <div class="filter">
                                     <select name="orderby" class="selectbox">
                                         <option value="Any time">Any time</option>
                                         <option value="Latest">Latest</option>
-                                        <option value="Oldest">Oldest</option>
+                                        <option value="Oldest">Oldest</option>     
                                     </select>
                                 </div>
                             </div>
-                            <div class="list_general">
+                            <div class="list_general" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
                                 <ul>
                                     <li>
                                         {% if hlist %}
                                             {% for h in hlist %}
-                                                <figure><img src="{{ h.post_img }}" alt="" class="img-fluid col-lg-6"></figure>
-                                                <small>Estates</small>
-                                                <h4>{{ h.pst_title }}</h4>
-                                                <p>{{ h.content|truncatewords:30 }}</p>
-                                                <p><a href="#" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View item</a></p>
-                                                <p>
-                                                    <a href="#"  class="btn_1 gray delete wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Delete</a>
-                                                </p>
+                                                <figure><img src="{{ h.add_img.url }}" alt="" ></figure>
+                                                <small>Property</small>
+                                                <h4>{{ h.add_title }}</h4>
+                                                <p>{{ h.add_desription|truncatewords:50 }}</p>
+                                                <div class="row">
+                                                    <p class=" col-md-4"><a href="{% url 'backend:view_newlistingdetails' h.id %}" class="btn_1 gray"><i class="fa fa-fw fa-eye"></i> View item</a></p>
+                                                    <p class=" col-md-4"><a href="{{ h.id }}"  class="btn_1 gray btn-success"><i class="fa fa-fw fa-pencil"></i> Edit</a></p>
+                                                    <p class=" col-md-4"><a href="{% url 'backend:delete_newproperty' h.id %}"  class="btn_1 gray delete wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Delete</a></p>     
+                                                </div>  
                                             {% endfor %}
                                         {% endif %}
-                                    
                                     </li>
-                                
-                                </ul>
+                                </ul>       
                             </div>
                         </div>
-                </section>
+                    </div>
+                </div>
+            </section>
                 <!-- /.container-wrapper-->
+                
         </div>
     </div>
-    
-    {% endblock %}
 
 
 
@@ -92,7 +74,7 @@ Home
         <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -113,4 +95,5 @@ Home
 
   <script src="{% static 'backend/vendor/chart.js/Chart.js' %}"></script>
   <script src="{% static 'backend/js/admin-charts.js' %}"></script>
-
+</body>
+{% endblock %}

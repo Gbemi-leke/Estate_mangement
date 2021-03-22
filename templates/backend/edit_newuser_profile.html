@@ -22,7 +22,7 @@ Home
 				{% include 'backend/user_sidebar.html' %}
 		    {% endif %}
             
-            <section class="col-md-10">
+            <section class="col-md-10" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
                 <div class="content-wrapper">
                     <div class="container-fluid">
                       <!-- Breadcrumbs-->
@@ -42,7 +42,7 @@ Home
                                 <div class="alert alert-success">{{ message }}</div>
                             {% endfor %}
                         {% endif %}
-                        <div class="col-md-6">
+                        <div class="col-md-6 form-group col-lg-6">
                             <form method="post">
                                 {% csrf_token %}
                                 {{ edit_key.as_p }}

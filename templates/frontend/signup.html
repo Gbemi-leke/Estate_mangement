@@ -45,8 +45,11 @@
                 {% endif %}
                 {{ reg }}
                 <div id="pass-info" class="clearfix"></div>
-                <input type="submit" class="btn btn-danger" class="btn_1 rounded full-width add_top_30 text-center" value="Register" 
-                style="margin-left: 100px; padding-top: 40px; padding: 10px; font-size: 20px; border-radius:20px; width: 150px;">
+                <div style="padding-top: 20px;">
+                  <input type="submit" class="btn btn-danger" class="btn_1 rounded full-width add_top_30 text-center" value="Register" 
+                  style="margin-left: 100px; padding-top: 40px; padding: 10px; font-size: 20px; border-radius:20px; width: 150px;">
+                </div>
+                
                 {% csrf_token %}
               </form>
             </div>

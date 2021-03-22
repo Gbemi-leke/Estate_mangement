@@ -7,25 +7,12 @@ Home
 
 {% block content %}
 
-<div class="site-section site-section-sm pb-0 flexslider js-fullheight" style="background-image: url({% static 'frontend/images/bg-5.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+<div class="site-section site-section-sm pb-0 flexslider js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
 	<div class="container">
 	  <div class="row">
 		  <div class="col">
-			<form class="form-search col-md-12" style="margin-top: -100px; padding-top: 360px;">
-				<div class="row  align-items-end col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
-					<div class="col-md-3">
-						<label for="list-types">TYPE</label>
-						<div class="select-wrap">
-						<span class="icon icon-arrow_drop_down"></span>
-						<select name="list-types" id="list-types" class="form-control d-block rounded-0">
-							<option value="">Duplex</option>
-							<option value="">Bungalow</option>
-							<option value="">Flat</option>
-							<option value="">Mansion</option>
-							<option value="">Commercial</option>
-						</select>
-						</div>
-					</div>
+			<!-- <form class="col-md-12" style="margin-top: -100px; padding-top: 200px; margin-left:15px;">
+				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
 					<div class="col-md-3">
 						<label for="offer-types">OFFER TYPE(SALE OR RENT)</label>
 						<div class="select-wrap">
@@ -38,9 +25,16 @@ Home
 						</div>
 					</div>
 					<div class="col-md-3">
+						<label for="list-types">MIN.PRICE</label>
+						<div class="select-wrap">
+							<input name="price"  id="offer-types" class="form-control d-block rounded-0">
+						</div>
+				
+					</div>
+					<div class="col-md-3">
 						<label for="select-city">MAX.PRICE</label>
 						<div class="select-wrap">
-						<input type="number" id="offer-types" class="form-control d-block rounded-0">
+						<input type="price" id="offer-types" class="form-control d-block rounded-0">
 						</div>
 					</div>
 					<div class="col-md-3">
@@ -49,12 +43,32 @@ Home
 							<input name="location"  id="offer-types" class="form-control d-block rounded-0">
 						</div>
 					</div>
-					<div class="col-md-3 offset-2" style="margin-left: 400px; border-radius: 20px; padding-top:20px;">
+					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:20px;">
 						<input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
 					</div>
 				</div>
-			</form>	
-		  </div>
+		 	</form> -->
+			<form method="GET" class="form-inline" style="margin-top: -100px; padding-top: 200px; margin-left:40px" action="{% url 'frontend:filter_data'%}" >
+				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
+					<div class="form-group" style="margin-left: 15px;">
+						{{ qf.listing_type }}
+					</div>
+					<div class="form-group" style="margin-left: 15px;" 	>
+						{{ qf.add_title }}
+					</div>
+					<div class="form-group" style="margin-left: 15px;">
+						{{ qf.add_price }}
+					</div>
+					<!-- <div class="form-group">
+						{{ qf.property_type }}
+					</div>  -->
+					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:10px;">
+						<input type="submit" class="btn btn-primary" value="Filter">
+					</div>
+				</div>
+				
+			</form>
+		</div>
 		
 	  </div>  
 	 
@@ -69,25 +83,27 @@ Home
 			</div>
 			{% if sponsored %}
 				{% for p in sponsored %}
-					<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-property">
-							<figure>
-								<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-									<a href="#" class="tag">{{p.pro_sale }}</a>
-							</figure>
-							<div class="fh5co-property-innter">
-								<h3><a href="#">{{p.pro_title }}</a></h3>
-								<div class="price-status">
-								<span class="price">&#8358;{{p.pro_price }}</span>
+					{% if p.property_type == 'S' %}
+						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+							<div class="fh5co-property" style="min-height: 200px;">
+								<figure>
+									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
+								</figure>
+								<div class="fh5co-property-innter">
+									<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
+									<div class="price-status">
+									<span class="price">&#8358;{{p.add_price }}</span>
+									</div>
+									<p>{{p.add_desription|truncatewords:40 }}</p>
+									<p>Contact Us:&nbsp; {{p.add_contact }}</p>
 								</div>
-								<p>{{p.pro_desription }}</p>
-								<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
-							</div>
-								<p class="fh5co-property-specification">
-								{{p.pro_date }}
-								</p>
-						</div> 	
-					</div>
+									<p class="fh5co-property-specification">
+									{{p.add_date }}
+									</p>
+							</div> 	
+						</div>
+					{% endif %}
 				{% endfor %}
 			{% endif %}
 					
@@ -100,25 +116,24 @@ Home
 			</div>
 			{% if pro %}
 				{% for p in pro %}
-				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn" style="width:auto; height: 20%;">
-					<div class="fh5co-property">
-						<figure>
-							<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-								<a href="#" class="tag">{{p.pro_sale }}</a>
-						</figure>
-						<div class="fh5co-property-innter">
-							<h3><a href="#">{{p.pro_title }}</a></h3>
-							<div class="price-status">
-							<span class="price">&#8358;{{p.pro_price }}</span>
+				<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+					<div class="fh5co-property card h-100" style="min-height: 200px;">
+							<figure>
+								<img src="{{ p.add_img.url }}"  alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+							</figure>
+							<div class="fh5co-property-innter">
+								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
+								<div class="price-status">
+								<span class="price">&#8358;{{p.add_price }}</span>
+								</div>
+								<p>{{p.add_desription|truncatewords:40 }}</p>
+								<p>Contact Us:&nbsp; {{p.add_contact }}</p>
 							</div>
-							<p>{{p.pro_desription }}</p>
-							<p>Contact Us:&nbsp; {{p.pro_contact }}</p>
-						</div>
-							<p class="fh5co-property-specification">
-							{{p.pro_date }}
-							</p>
-					</div> 	
-				</div>
+								<p class="fh5co-property-specification">
+								{{p.add_date }}
+								</p>
+						</div> 	
+					</div>
 				{% endfor %}
 			{% endif %}
 			
@@ -131,25 +146,27 @@ Home
 			</div>
 			{% if featured %}
 				{% for p in featured %}
-				<div class="col-md-3 item-block animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-property">
-						<figure>
-							<img src="{{ p.post_img }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
-								<a href="#" class="tag">{{p.pro_sale }}</a>
-						</figure>
-						<div class="fh5co-property-innter">
-							<h3><a href="#">{{p.pro_title }}</a></h3>
-							<div class="price-status">
-							<span class="price">&#8358;{{p.pro_price }}</span>
-							</div>
-							<p>{{p.pro_desription }}</p>
-							<p>Contact Us:&nbsp; {{ p.pro_contact }}</p>
+					{% if p.property_type == 'F' %}
+						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+							<div class="fh5co-property card h-100" style="min-height: 200px;">
+								<figure>
+									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
+								</figure>
+								<div class="fh5co-property-innter">
+									<h3><a href="#">{{p.add_title }}</a></h3>
+									<div class="price-status">
+									<span class="price">&#8358;{{p.add_price }}</span>
+									</div>
+									<p>{{p.add_desription|truncatewords:40 }}</p>
+									<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+								</div>
+									<p class="fh5co-property-specification">
+									{{p.add_date }}
+									</p>
+							</div> 
 						</div>
-							<p class="fh5co-property-specification">
-							{{p.pro_date }}
-							</p>
-					</div> 	
-				</div>
+					{% endif %}
 				{% endfor %}
 			{% endif %}
 		</div>
@@ -212,4 +229,21 @@ Home
 	</div>
 </div>
 {% endblock %}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+		<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">×</span>
+		</button>
+		</div>
+		<div class="modal-body">{{ request.user.get_full_name }}Select "Logout" below if you are ready to end your current session.</div>
+		<div class="modal-footer">
+		<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+		<a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+		</div>
+	</div>
+	</div>
+</div>
 

@@ -2,9 +2,8 @@ from django.contrib import admin
 from frontend.models import *
 
 # Register your models here.
-admin.site.register(Property)
 admin.site.register(Agents)
-admin.site.register(Buy)
-admin.site.register(Rent)
 admin.site.register(AddProperty)
+admin.site.register(Location)
+admin.site.register(UserProfile)
 admin.site.site_header = 'Real Estate'

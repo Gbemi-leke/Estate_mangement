@@ -1,18 +1,18 @@
 {% load static %}
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
-    <a class="navbar-brand" href="{%url 'backend:dashboard' %}" style="height: 36px; width: 150px;">GALAXY</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+    <a class="navbar-brand" href="{%url 'index' %}" style="height: 36px; width: 150px;">REAL ESTATE</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="text-warning">
+    <!-- <a class="text-warning">
       <span class="float-right name" style="text-transform: capitalize;">Welcome as Admin, {{ request.user.get_full_name }}</span>
-    </a>
+    </a> -->
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
         <h4 class="text-success">
           <span style=" font-weight: 800; margin-left: 30px; font-size: 25px; text-transform: capitalize;
-          color:red; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{ request.user.get_username }}</span>
+          color:red; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><a href="{% url 'backend:dashboard' %}">{{ request.user.get_username }}</a></span>
           </h4>
           <hr>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
@@ -21,24 +21,29 @@
             <span class="nav-link-text">Dashboard</span>
           </a>
         </li>
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="My listings">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMylistings" data-parent="#mylistings">
+        <li class="nav-item"  data-toggle="tooltip" data-placement="right" title="View Properties">
+          <a class="nav-link"  href="{%url 'backend:new_listings'%}" >
             <i class="fa fa-fw fa-list"></i>
-            <span class="nav-link-text">My listings</span>
+            <span class="nav-link-text">View Property</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseMylistings">
-            
-			<li>
-              <a href="#">Active <span class="badge badge-pill badge-success"></span></a>
-            </li>
-		
-          </ul>
         </li>
 		
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{%url 'backend:add_newlisting' %}">
             <i class="fa fa-fw fa-plus-circle"></i>
-            <span class="nav-link-text">Add listing</span>
+            <span class="nav-link-text">Add Property</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="{%url 'backend:list_users' %}">
+            <i class="fa fa-fw fa-user-circle"></i>
+            <span class="nav-link-text">View Users</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="{%url 'backend:list_all_post' %}">
+            <i class="fa fa-fw fa-list"></i>
+            <span class="nav-link-text">View All Post</span>
           </a>
         </li>
 
@@ -60,18 +65,6 @@
         <span class="nav-link-text">Change Password</span>
       </a>
     </li>
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-          <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#Components">
-            <i class="fa fa-fw fa-gear"></i>
-            <span class="nav-link-text">Components</span>
-          </a>
-          <ul class="sidenav-second-level collapse" id="collapseComponents">
-            <li>
-              <a href="#">Charts</a>
-            </li>
-			
-          </ul>
-        </li>
       </ul>
 
       <ul class="navbar-nav sidenav-toggler">
@@ -93,9 +86,6 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{%url 'frontend:contact' %}">Contact Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'backend:dashboard' %}">My Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

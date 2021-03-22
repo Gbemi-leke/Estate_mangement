@@ -19,8 +19,10 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [STATIC_DIR,]
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
@@ -60,6 +62,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'captcha',
+    'crispy_forms',
     'frontend',
     'backend'
 ]
@@ -75,6 +79,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'estate_project.urls'
+
+
+RECAPTCHA_PUBLIC_KEY = '76wtgdfsjhsydt7r5FFGFhgsdfytd656sad75fgh' # fake - for the purpose of this post.
+RECAPTCHA_PRIVATE_KEY = '98dfg6df7g56df6gdfgdfg65JHJH656565GFGFGs' # fake - for the purpose of this post.
+NOCAPTCHA = True
+
 
 TEMPLATES = [
     {
@@ -143,3 +153,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+

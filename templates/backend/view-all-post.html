@@ -1,0 +1,108 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Listing
+{% endblock %}
+
+
+
+<body class="fixed-nav sticky-footer" id="page-top">
+  
+    {% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+        {% if request.user.is_staff %}
+  			    {% include 'backend/admin_sidebar.html' %}
+		    {% else %}
+				    {% include 'backend/user_sidebar.html' %}
+		    {% endif %}
+            
+            <section class="col-md-12" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+                <div class="content-wrapper">
+                    <div class="container-fluid">
+                      <!-- Breadcrumbs-->
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                          <a href="{%url 'index' %}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active">View All Post</li>
+                      </ol>
+                        <div class="box_general" style="padding-bottom: 20px;">
+                          <h2 style="color: #1ec5cb !important;">View All Post</h2>
+                          <table class="table table-bordered col-sm-12">
+                            <tr>
+                              <th>S/N</th>
+                              <th>Locations</th>
+                              <th>Post Content</th>
+                              <th>Property Type</th>
+                              <th>Price</th>
+                              <th>Date</th>
+                              <th>Post Image</th>
+                              <th>Posted By</th>
+                              <th colspan="2">Action</th>
+                            </tr>
+                            {% if post %}
+                              {% for u in post %}
+                                <tr>
+                                  <td>{{ forloop.counter }}</td>
+                                  <td>{{ u.add_title }}</td>
+                                  <td>{{ u.add_desription|truncatewords:15  }}</td>
+                                  <td>{{ u.listing_type }}</td>
+                                  <td>{{ u.add_price}}</td>
+                                  <td>{{ u.add_date  }}</td>
+                                  <td><img src="{{ u.add_img.url }}" width="30" height="30" alt=""></td>
+                                  <td>{{ u.user.username }}</td>
+                                  <td>
+                                    <a href="{%url 'backend:delete_upload' u.id %}" class="fa fa-fw fa-times-circle-o" style="color: red !important;">&nbsp;Delete</a>
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                            {% endif %}
+                            
+                          </table>
+                        </div>
+                       
+                      </div>
+                      <!-- /container-fluid-->
+                       </div>
+            </section>
+                <!-- /.container-wrapper-->
+        </div>
+    </div>
+    
+    {% endblock %}
+
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+  <script src="{% static 'backend/vendor/chart.js/Chart.js' %}"></script>
+  <script src="{% static 'backend/js/admin-charts.js' %}"></script>
+
+

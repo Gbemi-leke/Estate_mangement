@@ -760,13 +760,11 @@ label.fix_spacing {
   overflow: hidden;
   position: absolute;
   left: 30px;
-  top: 30px;
 }
 @media (max-width: 767px) {
   .list_general > ul > li figure {
     /* For less than 767px */
     position: relative;
-    top: 0;
     left: 0;
   }
 }

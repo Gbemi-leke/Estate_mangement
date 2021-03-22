@@ -1,6 +1,10 @@
 from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from frontend.models import *
-
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from backend.forms import *
 
 # for sending mail import
 from django.conf import settings
@@ -8,24 +12,91 @@ from django.core import mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 
+ # Password Reset
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.models import User
+from django.db.models.query_utils import Q
+from django.utils.http import urlsafe_base64_encode
+from django.contrib.auth.tokens import default_token_generator
+from django.utils.encoding import force_bytes
+
+ #  end
+
 from django.contrib import messages
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
 def index(request):
-    profile =Property.objects.all()[:4]
-    featured=Property.objects.all().filter(featured=True)[:4]
-    sponsored=Property.objects.all().filter(sponsored=True)[:4]
+    profile =AddProperty.objects.order_by('-add_date')[:3]
+    featured=AddProperty.objects.order_by('-add_date')
+    sponsored =AddProperty.objects.order_by('-add_date')
     profile2 =Agents.objects.all()
-    photos = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2 }
-    return render(request, 'frontend/index.html', photos)
+    if request.method == 'GET':
+        query_form = FilterForm(request.GET)
+        if query_form.is_valid(): 
+            add_price = query_form.cleaned_data.get('add_price')
+            add_title = query_form.cleaned_data.get('add_title')
+            property_type = query_form.cleaned_data.get('property_type')
+            post = AddProperty.objects.all()
+            query = AddProperty.objects.filter(add_title=add_title, add_price=add_price, property_type=property_type)
+            return render(request, 'frontend/filter.html', {'q': query})
+    else:
+        query_form = FilterForm()
+    
+    files = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2, 'qf':query_form }
+    return render(request, 'frontend/index.html', files)
+
+def detail_index(request, index_id):
+    detail =AddProperty.objects.get(id=index_id)
+    return render(request, 'frontend/detail.html', {'detail1':detail})
+
+
+def filter_data(request):
+    if request.method == 'GET':
+        query_form = FilterForm(request.GET)
+        if query_form.is_valid():
+            # listing_type = query_form.cleaned_data.get('listing_type')
+            add_price = query_form.cleaned_data.get('add_price')
+            add_title = query_form.cleaned_data.get('add_title')
+            post = AddProperty.objects.all()
+            # query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
+            query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
+            return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
+        else:
+            listing_type = query_form.cleaned_data.get('listing_type')
+            add_price = query_form.cleaned_data.get('add_price')
+            add_title = query_form.cleaned_data.get('add_title')
+            post = AddProperty.objects.all()
+            query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
+            return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
+    else:
+        query_form = FilterForm()
+    return render(request, 'frontend/filter.html', {'qf':query_form}) 
 
 def buy(request):
-    sale = Buy.objects.all()[:6]
-    return render(request, 'frontend/buy.html', {'buy':sale})
+    # sale = AddProperty.objects.all()
+    most_recent = AddProperty.objects.order_by('-add_date')
+    add_post = AddProperty.objects.order_by('-add_date')
+    paginated_filter = Paginator(add_post,6)
+    page_number = request.GET.get('page')
+    person_page_obj = paginated_filter.get_page(page_number)
+    context = {
+        'person_page_obj': add_post, 
+        'most_recent': most_recent
+        # 'buy':sale
+    }
+    context['person_page_obj'] = person_page_obj
+    if request.method == 'POST':
+        email = request.POST["email"]
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
+    return render(request, 'frontend/buy.html', context)
 
 def detail_buy(request, buy_id):
-    detail =Buy.objects.get(id=buy_id)
+    detail =AddProperty.objects.get(id=buy_id)
     if request.method =='POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -83,11 +154,27 @@ def contact2(request, agent_id):
     return render(request, 'frontend/contact2.html', {'con':contact})
 
 def rent(request):
-    hire = Rent.objects.all()[:6]
-    return render(request, 'frontend/rent.html', {'rent':hire})
+    # hire = AddProperty.objects.all()
+    most_recent = AddProperty.objects.order_by('-add_date')
+    add_post = AddProperty.objects.order_by('-add_date')
+    paginated_filter = Paginator(add_post,6)
+    page_number = request.GET.get('page')
+    person_page_obj = paginated_filter.get_page(page_number)
+    context = {
+        'person_page_obj': add_post, 
+        'most_recent': most_recent
+        # 'rent':hire
+    }
+    context['person_page_obj'] = person_page_obj
+    if request.method == 'POST':
+        email = request.POST["email"]
+        new_signup = Signup()
+        new_signup.email = email
+        new_signup.save()
+    return render(request, 'frontend/rent.html', context)
 
 def detail_rent(request, rent_id):
-    detail2 =Rent.objects.get(id=rent_id)
+    detail2 =AddProperty.objects.get(id=rent_id)
     if request.method =='POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -103,7 +190,7 @@ def detail_rent(request, rent_id):
             messages.success(request, 'Email sent sucessfully')
         else:
             messages.error(request, 'Mail not sent')
-    return render(request, 'frontend/details.html', {'detail':detail2})
+    return render(request, 'frontend/detail.html', {'detail':detail2})
 
 def signup(request):
     return render(request, 'frontend/signup.html')

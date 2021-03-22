@@ -1,0 +1,116 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Listing
+{% endblock %}
+
+
+
+<body class="fixed-nav sticky-footer" id="page-top">
+  
+    {% block content %}
+
+    <div class="container-fluid">
+        <div class="row">
+
+        {% if request.user.is_staff %}
+  			    {% include 'backend/admin_sidebar.html' %}
+		    {% else %}
+				    {% include 'backend/user_sidebar.html' %}
+		    {% endif %}
+            
+            <section class="col-md-12">
+                <div class="content-wrapper">
+                    <div class="container-fluid">
+                      <!-- Breadcrumbs-->
+                      <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                          <a href="{%url 'index' %}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item active">Listings</li>
+                      </ol>
+                        <div class="box_general" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+                            <div class="header_box">
+                                <h2 class="d-inline-block">Listings</h2>
+                                <div class="filter">
+                                    <select name="orderby" class="selectbox">
+                                        <option value="Any time">Any time</option>
+                                        <option value="Latest">Latest</option>
+                                        <option value="Oldest">Oldest</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="container margin_60_35">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <section id="description">
+                                            <div class="item-block animate-box" data-animate-effect="fadeIn">
+                                                <div class="">
+                                                  <figure>
+                                                    <img src="{{ pst.add_img.url }}" class="img-responsive" style="padding-bottom: 10px; width: 600px; height: 400px; font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+                                                    
+                                                  </figure>
+                                                  <a href="#" class="tag btn btn-primary">For Sale</a>
+                                                  <h2 style="padding-top: 10px; color: blue !important;">{{ pst.listing_type }}</h2>
+                                                  <div class="fh5co-property-innter">
+                                                    <h2><a href="#">{{ pst.add_title }}</a></h2>
+                                                    <div class="price-status">
+                                                      <span class="price" style="font-size: 30px; color: #4cb548;">&#8358;{{ pst.add_price }}</span>
+                                                    </div>
+                                                    <p>{{ pst.add_desription }}</p>
+                                                     <p>Contact Us:&nbsp; {{ pst.add_contact }}</p>
+                                                  </div>
+                                                    <p class="fh5co-property-specification" style="padding-top: 30px;">
+                                                    {{ pst.add_date }}
+                                                    </p>
+                                                </div>
+                                              </div>
+                                        </section>
+                                    </div>
+                                </div>
+                  
+                            </div>
+                            <p class=" col-4" style="padding-bottom: 40px;"><a href="{%url 'backend:new_listings'%}"  class="btn_1 gray"><i class="fa fa-fw fa-arrow-circle-left"></i> Back</a></p>
+                        </div>
+                       
+                      </div>
+                      <!-- /container-fluid-->
+                       </div>
+            </section>
+                <!-- /.container-wrapper-->
+        </div>
+    </div>
+    
+    {% endblock %}
+
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+  <script src="{% static 'backend/vendor/chart.js/Chart.js' %}"></script>
+  <script src="{% static 'backend/js/admin-charts.js' %}"></script>
+
