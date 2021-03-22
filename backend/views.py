@@ -169,8 +169,7 @@ def messages(request):
 
 @login_required(login_url='/backend/login/')
 def user_profile(request):
-    users =Agents.objects.filter(user=request.user)[:1]
-    return render(request, 'backend/user_profile.html', {'users': users})
+    return render(request, 'backend/user_profile.html')
 
 @login_required(login_url='/backend/login/')
 def edit_form(request):

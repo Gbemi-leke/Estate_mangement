@@ -67,7 +67,6 @@ class EditUserForm(forms.ModelForm):
     email = forms.EmailField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
 
-    agent_img = forms.FileField(required=False)
 
     
     
@@ -93,8 +92,6 @@ class EditUserForm(forms.ModelForm):
             'email':forms.TextInput(attrs={'class':'form-control'}),
 
             'phone': forms.NumberInput(attrs={'class':'form-control'}),
-
-            'agent_img': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
     def save(self, commit=True):
