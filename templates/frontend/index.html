@@ -49,7 +49,10 @@ Home
 				</div>
 		 	</form> -->
 			<form method="GET" class="form-inline" style="margin-top: -100px; padding-top: 200px; margin-left:40px" action="{% url 'frontend:filter_data'%}" >
-				<div class="row col-sm-8" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
+				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
+					<div class="form-group" style="margin-left: 15px;">
+						{{ qf.listing_type }}
+					</div>
 					<div class="form-group" style="margin-left: 15px;" 	>
 						{{ qf.add_title }}
 					</div>

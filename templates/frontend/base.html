@@ -31,7 +31,7 @@
                         <div class="header-inner">
                             
                             <h1>
-                                <img src="{% static 'frontend/images/pro.jpg' %}" style="width: 40px; height: 35px; padding-bottom: 4px;">
+                                <!-- <img src="{% static 'frontend/images/two.jpeg' %}" style="width: 40px; height: 35px; padding-bottom: 4px;"> -->
                                 <a href="{% url 'index' %}">Real Estate<span>.</span></a>
                             </h1>
                             <nav role="navigation">
@@ -45,7 +45,7 @@
                                     <li {% if request.path == Buy %} class="active" {% endif %}><a href="{% url 'frontend:buy' %}">Buy</a></li>
                                     <li {% if request.path == Rent %} class="active" {% endif %}><a href="{% url 'frontend:rent' %}">Rent</a></li>
                                     <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact us</a></li>
-                                    <li><a data-toggle="modal" data-target="#exampleModal"><i class="icon-sign-out"></i>&nbsp;Logout</li>
+                                    <li><a href="{% url 'backend:login_view' %}"><i class="icon-sign-out"></i>&nbsp;Logout</li>
                                     <li {% if request.path == Dash %} class="active" {% endif %}><a href="{% url 'backend:dashboard' %}" class="icon-user" style="margin-left:px;">&nbsp;My Account</a></li>
                                     
 

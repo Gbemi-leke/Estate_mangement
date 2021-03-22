@@ -44,11 +44,13 @@ class AddProperty(models.Model):
     add_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/' )
     add_title = models.CharField(max_length=100, verbose_name='Profile Title')
     add_price = models.IntegerField(verbose_name='Price')
+    listing_type = models.CharField(max_length=40, verbose_name='Listing Type')
     add_desription = models.TextField(verbose_name='Description')
     add_contact = models.CharField(max_length=20, verbose_name='Contact')
     add_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     property_type = models.CharField(max_length=15, choices=PROPERTY_TYPE, default=CHOOSE)
+    
 
     class Meta():
         verbose_name_plural = 'AddProperty'

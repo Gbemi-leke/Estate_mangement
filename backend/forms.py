@@ -115,12 +115,13 @@ class ListingForm(forms.ModelForm):
 
     class Meta():
         model = AddProperty
-        fields = ['add_title', 'add_img', 'add_price','add_contact','add_desription', 'property_type',]
-        exclude = ['date', 'user', 'location_id']
+        fields = ['add_title', 'add_img', 'add_price','add_contact','add_desription','listing_type', 'property_type',]
+        exclude = ['date', 'user']
         widgets = { 
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.TextInput(attrs={'class': 'form-control'}),
+            'listing_type': forms.TextInput(attrs={'class': 'form-control'}),
             'add_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'add_contact': forms.TextInput(attrs={'class': 'form-control'}),
             'property_type' : forms.Select(attrs={'class': 'form-control'}),
@@ -139,8 +140,9 @@ class EditListing(forms.ModelForm):
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.TextInput(attrs={'class': 'form-control'}),
+            'listing_type': forms.TextInput(attrs={'class': 'form-control'}),
             'add_desription': forms.Textarea(attrs={'class': 'form-control'}),
-            'add_contact': forms.NumberInput(attrs={'class': 'form-control'}),
+            'add_contact': forms.TextInput(attrs={'class': 'form-control'}),
             'property_type' : forms.Select(attrs={'class': 'form-control'}),
             
             
@@ -177,6 +179,9 @@ class FilterForm(forms.ModelForm):
 
     add_price = forms.CharField(required=False, label='Price*', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Price'}))
+
+    listing_type = forms.CharField(required=False, label='Listing Type*', widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Listing Type'}))
 
     # property_type =forms.ModelChoiceField(required=False, 
     #     queryset=AddProperty.objects.order_by('property_type'), empty_label='Please Choose', 

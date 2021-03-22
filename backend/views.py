@@ -51,7 +51,7 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'leke.olamide123@gmail.com' , [user.email], fail_silently=False)
+						send_mail(subject, email, 'leke.olamide123@gmail.com' , [user.email], fail_silently=True)
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")
@@ -235,4 +235,4 @@ def list_all_post(request):
 def delete_upload(request, listf_id):
     single_delete= get_object_or_404(AddProperty, pk= listf_id)
     single_delete.delete()
-    return redirect('backend:view-all-post')
+    return render(request, 'backend/view-all-post.html')

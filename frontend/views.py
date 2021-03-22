@@ -57,19 +57,19 @@ def filter_data(request):
     if request.method == 'GET':
         query_form = FilterForm(request.GET)
         if query_form.is_valid():
-            # property_type = query_form.cleaned_data.get('property_type')
+            # listing_type = query_form.cleaned_data.get('listing_type')
             add_price = query_form.cleaned_data.get('add_price')
             add_title = query_form.cleaned_data.get('add_title')
             post = AddProperty.objects.all()
-            # query = AddProperty.objects.filter(property_type=property_type, add_title=add_title, add_price=add_price)
-            query = AddProperty.objects.filter( add_title=add_title, add_price=add_price)
+            # query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
+            query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
             return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
         else:
-            property_type = query_form.cleaned_data.get('property_type')
+            listing_type = query_form.cleaned_data.get('listing_type')
             add_price = query_form.cleaned_data.get('add_price')
             add_title = query_form.cleaned_data.get('add_title')
             post = AddProperty.objects.all()
-            query = AddProperty.objects.filter(add_title=add_title, add_price=add_price)
+            query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
             return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
     else:
         query_form = FilterForm()

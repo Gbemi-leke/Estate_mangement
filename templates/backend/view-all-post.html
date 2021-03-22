@@ -36,8 +36,9 @@ Listing
                           <table class="table table-bordered col-sm-12">
                             <tr>
                               <th>S/N</th>
-                              <th>Post Title</th>
+                              <th>Locations</th>
                               <th>Post Content</th>
+                              <th>Property Type</th>
                               <th>Price</th>
                               <th>Date</th>
                               <th>Post Image</th>
@@ -50,6 +51,7 @@ Listing
                                   <td>{{ forloop.counter }}</td>
                                   <td>{{ u.add_title }}</td>
                                   <td>{{ u.add_desription|truncatewords:15  }}</td>
+                                  <td>{{ u.listing_type }}</td>
                                   <td>{{ u.add_price}}</td>
                                   <td>{{ u.add_date  }}</td>
                                   <td><img src="{{ u.add_img.url }}" width="30" height="30" alt=""></td>
