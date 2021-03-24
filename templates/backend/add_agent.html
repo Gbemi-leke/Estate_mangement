@@ -1,0 +1,82 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Home 
+{% endblock %}
+
+
+
+<body class="sticky-footer" > 
+    {% block content %}
+        {% if request.user.is_staff %} 
+            {% include 'backend/admin_sidebar.html' %}
+        {% else %}
+            {% include 'backend/user_sidebar.html' %}
+        {% endif %}
+            
+    
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                    <a href="{%url 'index' %}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">Add Agent</li>
+                </ol>
+                    <div class="box_general padding_bottom">
+                        <div class="header_box version_2">
+                            <h2><i class="fa fa-file"></i>Basic info</h2>
+                        </div>
+                        <div class="row" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+                            <div class="form-group col-lg-6">
+                                <form method="post" enctype="multipart/form-data">
+                                    {{ agent.as_p }}
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Save</button>
+                                </form>
+                            </div>
+                            
+    
+                        
+                    </div>
+                    <!-- /box_general-->
+                    
+            </div>
+            <!-- /.container-fluid-->
+        </div>
+        <!-- /.container-wrapper-->
+    
+    {% endblock %}
+
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">{{ request.user.get_full_name }} Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+  <script src="{% static 'backend/vendor/chart.js/Chart.js' %}"></script>
+  <script src="{% static 'backend/js/admin-charts.js' %}"></script>
+

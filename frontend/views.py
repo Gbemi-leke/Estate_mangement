@@ -32,7 +32,7 @@ def index(request):
     profile =AddProperty.objects.order_by('-add_date')[:3]
     featured=AddProperty.objects.order_by('-add_date')
     sponsored =AddProperty.objects.order_by('-add_date')
-    profile2 =Agents.objects.all()
+    profile2 =Agents.objects.all()[:3]
     if request.method == 'GET':
         query_form = FilterForm(request.GET)
         if query_form.is_valid(): 
@@ -57,7 +57,7 @@ def filter_data(request):
     if request.method == 'GET':
         query_form = FilterForm(request.GET)
         if query_form.is_valid():
-            # listing_type = query_form.cleaned_data.get('listing_type')
+            listing_type = query_form.cleaned_data.get('listing_type')
             add_price = query_form.cleaned_data.get('add_price')
             add_title = query_form.cleaned_data.get('add_title')
             post = AddProperty.objects.all()

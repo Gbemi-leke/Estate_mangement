@@ -11,6 +11,10 @@ urlpatterns = [
     path('dashboard-page/', views.dashboard, name='dashboard'),
     path('user_profile-page/', views.user_profile, name='user_profile'),
     path('edit_form-page/', views.edit_form, name='edit_form'),
+    path('add_agent-page/', views.add_agent, name='add_agent'),
+    path('agent-page/', views.agent, name='agent'),
+    path('view_agent-page/<int:agent>', views.view_agent, name='view_agent'),
+    path('delete_agent-page/<int:liste_id>', views.delete_agent, name='delete_agent'),
     path('edit_newform-page/', views.edit_newform, name='edit_newform'),
     path('pass_form-page/', views.pass_form, name='pass_form'),
     path('reset/', views.reset, name='reset'),
@@ -25,6 +29,6 @@ urlpatterns = [
     path('listings-page/<int:post_id>', views. edit_newlisting, name=' edit_newlisting'),
     path('list-users/', views.list_users, name='list_users'),
     path('list-all-post/', views.list_all_post, name='list_all_post'),
-    path('delete_upload/<int:listf_id>', views.delete_upload, name='delete_upload'),
+    path('delete_upload/<int:del_id>', views.delete_upload, name='delete_upload'),
    
 ]

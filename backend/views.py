@@ -89,18 +89,51 @@ def success_message(request):
     return render(request, 'backend/success.html')
 
 @login_required(login_url='/backend/login/')
-def add_newlisting(request):
+# def add_newlisting(request):
+#     if request.method == 'POST':
+#         list_form = ListingForm(request.POST, request.FILES, fail_silently=True)
+#         if list_form.is_valid():
+#             listf = list_form.save(commit=False)
+#             listf.user = request.user
+#             listf.save()
+#             return redirect('backend:add_newlisting')
+            
+#     else:
+#         list_form = ListingForm()
+#     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
+
+@login_required(login_url='/backend/login/')
+def add_agent(request):
     if request.method == 'POST':
-        list_form = ListingForm(request.POST, request.FILES, fail_silently=True)
-        if list_form.is_valid():
-            listf = list_form.save(commit=False)
-            listf.user = request.user
-            listf.save()
-            # messages.success(request, 'Property Posted')
+        view_form = AgentForm(request.POST, request.FILES)
+        if view_form.is_valid():
+            agent = view_form.save(commit=False)
+            agent.user = request.user
+            agent.save()
+            return redirect('backend:add_agent')
             
     else:
-        list_form = ListingForm()
-    return render(request, 'backend/add-newlisting.html', {'listf': list_form})
+        view_form = AgentForm()
+    return render(request, 'backend/add_agent.html', {'agent': view_form})
+
+@login_required(login_url='/backend/login/')
+def agent(request):
+    agent_list = Agents.objects.filter(user=request.user)
+    return render(request, 'backend/agent.html', {'alist':agent_list})
+
+
+@login_required(login_url='/backend/login/')
+def view_agent(request, agent):
+    file = get_object_or_404(Agents, pk=agent)
+    return render(request, 'backend/view_agent.html', {'post':file})
+
+@login_required(login_url='/backend/login/')
+def delete_agent(request, liste_id):
+    agent_record = get_object_or_404(Agents, id=liste_id)
+    agent_record.delete()
+    return redirect('backend:agent')
+
+
 
 @login_required(login_url='/backend/login/')
 def edit_newlisting(request, post_id):
@@ -111,16 +144,12 @@ def edit_newlisting(request, post_id):
             listf = post_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            # messages.success(request, 'Hotel Posted')
+            return redirect('backend:new_listings')
             
     else:
-        post_form = ListingForm(instance=single_post)
+        post_form = EditListing(instance=single_post)
     return render(request, 'backend/edit_post.html', {'editf': post_form})
 
-@login_required(login_url='/backend/login/')
-def view_listing(request):
-    property_list = AddProperty.objects.filter(user=request.user)
-    return render(request, 'backend/listings.html', {'hlist':property_list})
 
 @login_required(login_url='/backend/login/')
 def new_listings(request):
@@ -158,12 +187,12 @@ def add_newlisting(request):
             listf = list_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            # messages.success(request, 'Hotel Posted')
+            return redirect('backend:add_newlisting')
     else:
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
 
-@login_required(login_url='/backend/login/')
+
 def messages(request):
     return render(request, 'backend/messages.html')
 
@@ -231,7 +260,7 @@ def list_all_post(request):
     return render(request, 'backend/view-all-post.html', {'post':show_post})  
 
 @login_required(login_url='/backend/login/')
-def delete_upload(request, listf_id):
-    single_delete= get_object_or_404(AddProperty, pk= listf_id)
-    single_delete.delete()
-    return render(request, 'backend/view-all-post.html')
+def delete_upload(request, del_id):
+    delete = get_object_or_404(AddProperty, pk= del_id)
+    delete.delete()
+    return redirect('backend:list_all_post')
