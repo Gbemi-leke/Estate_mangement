@@ -20,7 +20,7 @@ Home
 						<select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
 							<option value="">Sale</option>
 							<option value="">Rent</option>
-			
+
 						</select>
 						</div>
 					</div>
@@ -29,7 +29,7 @@ Home
 						<div class="select-wrap">
 							<input name="price"  id="offer-types" class="form-control d-block rounded-0">
 						</div>
-				
+
 					</div>
 					<div class="col-md-3">
 						<label for="select-city">MAX.PRICE</label>
@@ -66,12 +66,12 @@ Home
 						<input type="submit" class="btn btn-primary" value="Filter">
 					</div>
 				</div>
-				
+
 			</form>
 		</div>
-		
-	  </div>  
-	 
+
+	  </div>
+
 	</div>
   </div>
 <div id="best-deal">
@@ -101,12 +101,12 @@ Home
 									<p class="fh5co-property-specification">
 									{{p.add_date }}
 									</p>
-							</div> 	
+							</div>
 						</div>
 					{% endif %}
 				{% endfor %}
 			{% endif %}
-					
+
 		</div>
 	</div>
 	<div class="container">
@@ -132,11 +132,11 @@ Home
 								<p class="fh5co-property-specification">
 								{{p.add_date }}
 								</p>
-						</div> 	
+						</div>
 					</div>
 				{% endfor %}
 			{% endif %}
-			
+
 		</div>
 	</div>
 	<div class="container">
@@ -164,7 +164,7 @@ Home
 									<p class="fh5co-property-specification">
 									{{p.add_date }}
 									</p>
-							</div> 
+							</div>
 						</div>
 					{% endif %}
 				{% endfor %}
@@ -193,7 +193,7 @@ Home
 				</blockquote>
 			</div>
 			<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-					
+
 				<blockquote>
 					<p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
 					<p><span class="fh5co-author"><cite>Mit Chell</cite></span><i class="icon facebook-color icon-facebook pull-right"></i></p>
@@ -201,7 +201,7 @@ Home
 			</div>
 		</div>
 	</div>
-</div> 
+</div>
 
 
 <div id="fh5co-agents" style="background-color: #000000;">
@@ -214,14 +214,14 @@ Home
 			{% if agent %}
 				{% for a in agent %}
 					<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-agent">
+						<div class="fh5co-agent" style="min-height: 200px;">
 							<figure>
 								<img src="{{ a.agent_img.url }}">
 							</figure>
 							<h1>{{ a.agent_title }}</h1>
 							<p>{{ a.agent_desription }}</p>
 							<p><a href="{% url 'frontend:contact2' a.id %}" class="btn btn-primary btn-outline">Contact</a></p>
-						</div>								
+						</div>
 					</div>
 				{% endfor %}
 			{% endif %}

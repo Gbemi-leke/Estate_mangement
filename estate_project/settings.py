@@ -15,11 +15,13 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATICFILES_DIRS = [STATIC_DIR,]
+# STATICFILES_DIRS = [STATIC_DIR,]
 CRISPY_TEMPLATE_PACK = 'uni_form'
+os.environ['DJANGO_SETTINGS_MODULE']='estate_project.settings'
+STATIC_ROOT = '/home/Oluwagbemileke/Estate_mangement/static'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -62,7 +64,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'captcha',
     'crispy_forms',
     'frontend',
     'backend'

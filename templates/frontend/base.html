@@ -4,13 +4,13 @@
 	<head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
+
     <title>
         {% block title %}
 
         {% endblock %}
     </title>
-    
+
 	<link rel="stylesheet" href="{% static 'frontend/css/animate.css' %}">
 	<link rel="stylesheet" href="{% static 'frontend/css/icomoon.css' %}">
 	<link rel="stylesheet" href="{% static 'frontend/css/bootstrap.css' %}">
@@ -21,15 +21,15 @@
 	<script src="{% static 'frontend/js/modernizr-2.6.2.min.js' %}"></script>
 	</head>
 	<body>
-	
-	
+
+
 		<div id="fh5co-page">
         {% if request.user.is_authenticated %}
             <header id="fh5co-header" role="banner">
                 <div class="container pb-5">
                     <div class="row">
                         <div class="header-inner">
-                            
+
                             <h1>
                                 <!-- <img src="{% static 'frontend/images/real.png' %}" style="width: 40px; height: 35px; padding-bottom: 4px; "> -->
                                 <a href="{% url 'index' %}" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique; color:#57d2ea ;">Real Estate<span style="color:#5bf498 ;">.</span></a>
@@ -45,9 +45,9 @@
                                     <li {% if request.path == Buy %} class="active" {% endif %}><a href="{% url 'frontend:buy' %}">Buy</a></li>
                                     <li {% if request.path == Rent %} class="active" {% endif %}><a href="{% url 'frontend:rent' %}">Rent</a></li>
                                     <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact us</a></li>
-                                    <li><a href="{% url 'backend:login_view' %}"><i class="icon-sign-out"></i>&nbsp;Logout</li>
+                                    <li><a href="{% url 'backend:logout_view' %}"><i class="icon-sign-out"></i>&nbsp;Logout</li>
                                     <li {% if request.path == Dash %} class="active" {% endif %}><a href="{% url 'backend:dashboard' %}" class="icon-user" style="margin-left:px;">&nbsp;My Account</a></li>
-                                    
+
 
                                 </ul>
                             </nav>
@@ -79,16 +79,16 @@
                     </div>
                 </div>
             </header>
-            
+
         {% endif %}
 
                 {% block content %}
 
                 {% endblock %}
 
-            
+
             <footer id="fh5co-footer" role="contentinfo">
-        
+
                 <div class="container">
                     <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
                         <h3>About Us</h3>
@@ -103,17 +103,17 @@
                         </ul>
                     </div>
 
-                    
-                    
+
+
                     <div class="col-md-12 fh5co-copyright text-center">
-                        <p>&copy; 2021 Olamide Website.</p>	
+                        <p>&copy; 2021 Olamide Website.</p>
                     </div>
-                    
+
                 </div>
             </footer>
         </div>
-            
-            
+
+
             <!-- jQuery -->
             <script src="{% static 'frontend/js/jquery.min.js' %}"></script>
             <!-- jQuery Easing -->
@@ -124,11 +124,10 @@
             <script src="{% static 'frontend/js/jquery.waypoints.min.js' %}"></script>
             <!-- Flexslider -->
             <script src="{% static 'frontend/js/jquery.flexslider-min.js' %}"></script>
-    
+
             <!-- MAIN JS -->
             <script src="{% static 'frontend/js/main.js' %}"></script>
-    
+
         </body>
     </html>
-    
-    
+
