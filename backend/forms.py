@@ -101,16 +101,16 @@ class ListingForm(forms.ModelForm):
 
     class Meta():
         model = AddProperty
-        fields = ['add_title', 'add_img', 'add_price','add_contact','add_desription','listing_type', 'property_type',]
+        fields = ['add_title', 'add_img', 'add_price','add_contact','add_desription','listing_type','sponsored','featured', 'offer_type',]
         exclude = ['date', 'user']
         widgets = { 
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'listing_type': forms.TextInput(attrs={'class': 'form-control'}),
+            'listing_type': forms.Select(attrs={'class': 'form-control'}),
             'add_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'add_contact': forms.TextInput(attrs={'class': 'form-control'}),
-            'property_type' : forms.Select(attrs={'class': 'form-control'}),
+            'offer_type' : forms.Select(attrs={'class': 'form-control'}),
             
             
         }
@@ -126,10 +126,10 @@ class EditListing(forms.ModelForm):
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.NumberInput(attrs={'class': 'form-control'}),
-            'listing_type': forms.TextInput(attrs={'class': 'form-control'}),
+            'listing_type': forms.Select(attrs={'class': 'form-control'}),
             'add_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'add_contact': forms.TextInput(attrs={'class': 'form-control'}),
-            'property_type' : forms.Select(attrs={'class': 'form-control'}),
+            'offer_type' : forms.Select(attrs={'class': 'form-control'}),
             
             
         }
@@ -196,23 +196,111 @@ class EditAgent(forms.ModelForm):
 
 
 class FilterForm(forms.ModelForm):
-    add_title = forms.CharField(required=False, label='Location*', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Location'}))
+    BUY = "B"
+    RENT = "R"
+    CHOOSE = ""
 
-    add_price = forms.CharField(required=False, label='Price*', widget=forms.TextInput(
+    OFFER_TYPE = [
+        (BUY, 'Buy'),
+        (RENT, 'Rent'),
+        (CHOOSE, 'Offer Type')
+
+    ]
+
+
+    BUNGALOW = "Bungalow"
+    DUPLEX = "Duplex"
+    FLAT = "Flat"
+    GLASSHOUSE = "Glasshouse"
+    STORY_BUILDING = "Story Building"
+    CHOOSE = ""
+
+    PROPERTY_TYPE = [
+
+        (BUNGALOW, 'Bungalow'),
+        (DUPLEX, 'Duplex'),
+        (FLAT, 'Flat'),
+        (GLASSHOUSE, 'Glass House'),
+        (STORY_BUILDING, 'Story Building'),
+        (CHOOSE, 'Property Type')
+
+    ]
+
+    ONE = "100,000"
+    TWO = "150,00"
+    THREE = "200,000"
+    FOUR = "250,000"
+    FIVE = "300,000"
+    SIX = "350,000"
+    SEVEN = "400,000"
+    EIGHT = "450,000"
+    NINE = "500,000"
+    TEN = "550,000"
+    ONE1 = "600,000"
+    TWO2 = "650,000"
+    THREE3 = "700,000"
+    FOUR4 = "750,000"
+    FIVE5 = "800,000"
+    SIX6 = "850,000"
+    SEVEN7 = "900,000"
+    EIGHT8 = "950,000"
+    NINE9 = "1 Million"
+    TEN10 = "1.5 Million"
+    ONE11 = "2 Million"
+    TWO22 = "2.5 Million"
+    THREE33 = "3 Million"
+    FOUR44 = "3.5 Million"
+    FIVE55 = "4 Million"
+    SIX66 = "4.5 Million"
+    SEVEN77= "5 Million"    
+    CHOOSE = ""
+
+    PRICE= [
+         (ONE, ' 100,000'),
+         (TWO, ' 150,000'),
+         (THREE, ' 200,000'),
+         (FOUR, ' 250,000'),
+         (FIVE, ' 300,000'),
+         (SIX, ' 350,000'),
+         (SEVEN, ' 400,000'),
+         (EIGHT, ' 450,000'),
+         (NINE, ' 500,000'),
+         (TEN, ' 550,000'),
+         (ONE1, ' 600,000'),
+         (TWO2, ' 650,000'),
+         (THREE3, ' 700,000'),
+         (FOUR4, ' 750,000'),
+         (FIVE5, ' 800,000'),
+         (SIX6, ' 850,000'),
+         (SEVEN7, ' 900,000'),
+         (EIGHT8, ' 950,000'),
+         (NINE9, ' 1 Million'),
+         (TEN10, ' 1.5 Million'),
+         (ONE11, ' 2 Million'),
+         (TWO22, ' 2.5 Million'),
+         (THREE33, ' 3 Million'),
+         (FOUR44, ' 3.5 Million'),
+         (FIVE55, ' 4 Million'),
+         (SIX66, ' 4.5 Million'),
+         (SEVEN77, ' 5 Million'),
+         (CHOOSE, 'Price')
+    ]
+    # add_title = forms.CharField(required=False, label='Location*', widget=forms.TextInput(
+    #     attrs={'class': 'form-control', 'placeholder': 'Location'}))
+
+    add_price = forms.CharField(required=False, label='Price*', widget=forms.Select(choices=PRICE,
         attrs={'class': 'form-control', 'placeholder': 'Price'}))
 
-    listing_type = forms.CharField(required=False, label='Listing Type*', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Listing Type'}))
+    listing_type = forms.CharField(required=False, label='Property Type*', widget=forms.Select(choices=PROPERTY_TYPE,
+        attrs={'class': 'form-control', 'placeholder': 'Property Type'}))
 
-    # property_type =forms.ModelChoiceField(required=False, 
-    #     queryset=AddProperty.objects.order_by('property_type'), empty_label='Please Choose', 
-    #     widget=forms.Select( attrs={'class': 'form-control',}))
+    offer_type = forms.CharField(required=False, label='Offer Type*', widget=forms.Select(choices=OFFER_TYPE,
+        attrs={'class': 'form-control', 'placeholder': 'Offer Type'}))
 
     # user = forms.ModelChoiceField(
     #     queryset=User.objects.all(), empty_label='Please Choose',
     #     widget=forms.Select(attrs={'class': 'form-control'}))
    
     class Meta():
-        exclude = ['add_date','add_desription','add_img','add_contact']
+        fields = ['listing_type', 'offer_type']
         model = AddProperty

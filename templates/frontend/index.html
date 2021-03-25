@@ -11,58 +11,18 @@ Home
 	<div class="container">
 	  <div class="row">
 		  <div class="col">
-			<!-- <form class="col-md-12" style="margin-top: -100px; padding-top: 200px; margin-left:15px;">
-				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
-					<div class="col-md-3">
-						<label for="offer-types">OFFER TYPE(SALE OR RENT)</label>
-						<div class="select-wrap">
-						<span class="icon icon-arrow_drop_down"></span>
-						<select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
-							<option value="">Sale</option>
-							<option value="">Rent</option>
-
-						</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<label for="list-types">MIN.PRICE</label>
-						<div class="select-wrap">
-							<input name="price"  id="offer-types" class="form-control d-block rounded-0">
-						</div>
-
-					</div>
-					<div class="col-md-3">
-						<label for="select-city">MAX.PRICE</label>
-						<div class="select-wrap">
-						<input type="price" id="offer-types" class="form-control d-block rounded-0">
-						</div>
-					</div>
-					<div class="col-md-3">
-						<label for="list-types">LOCATION</label>
-						<div class="select-wrap">
-							<input name="location"  id="offer-types" class="form-control d-block rounded-0">
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:20px;">
-						<input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
-					</div>
-				</div>
-		 	</form> -->
 			<form method="GET" class="form-inline" style="margin-top: -100px; padding-top: 200px; margin-left:40px" action="{% url 'frontend:filter_data'%}" >
 				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
-					<div class="form-group" style="margin-left: 15px;">
+					<div class="form-group" style="margin-left: 15px; width: 230px;">
 						{{ qf.listing_type }}
 					</div>
-					<div class="form-group" style="margin-left: 15px;" 	>
-						{{ qf.add_title }}
+					<div class="form-group" style="margin-left: 15px; width: 230px;" 	>
+						{{ qf.offer_type }}
 					</div>
-					<div class="form-group" style="margin-left: 15px;">
+					<div class="form-group" style="margin-left: 15px; width: 230px;">
 						{{ qf.add_price }}
 					</div>
-					<!-- <div class="form-group">
-						{{ qf.property_type }}
-					</div>  -->
-					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:10px;">
+					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:10px; margin-left: 15px; width: 230px;">
 						<input type="submit" class="btn btn-primary" value="Filter">
 					</div>
 				</div>
@@ -83,8 +43,7 @@ Home
 			</div>
 			{% if sponsored %}
 				{% for p in sponsored %}
-					{% if p.property_type == 'S' %}
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
 							<div class="fh5co-property" style="min-height: 200px;">
 								<figure>
 									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
@@ -103,7 +62,6 @@ Home
 									</p>
 							</div>
 						</div>
-					{% endif %}
 				{% endfor %}
 			{% endif %}
 
@@ -146,27 +104,25 @@ Home
 			</div>
 			{% if featured %}
 				{% for p in featured %}
-					{% if p.property_type == 'F' %}
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-							<div class="fh5co-property card h-100" style="min-height: 200px;">
-								<figure>
-									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
-										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
-								</figure>
-								<div class="fh5co-property-innter">
-									<h3><a href="#">{{p.add_title }}</a></h3>
-									<div class="price-status">
-									<span class="price">&#8358;{{p.add_price }}</span>
-									</div>
-									<p>{{p.add_desription|truncatewords:40 }}</p>
-									<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+						<div class="fh5co-property card h-100" style="min-height: 200px;">
+							<figure>
+								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+									<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
+							</figure>
+							<div class="fh5co-property-innter">
+								<h3><a href="#">{{p.add_title }}</a></h3>
+								<div class="price-status">
+								<span class="price">&#8358;{{p.add_price }}</span>
 								</div>
-									<p class="fh5co-property-specification">
-									{{p.add_date }}
-									</p>
+								<p>{{p.add_desription|truncatewords:40 }}</p>
+								<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
 							</div>
+								<p class="fh5co-property-specification">
+								{{p.add_date }}
+								</p>
 						</div>
-					{% endif %}
+					</div>
 				{% endfor %}
 			{% endif %}
 		</div>
