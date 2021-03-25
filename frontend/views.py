@@ -30,21 +30,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     profile =AddProperty.objects.order_by('-add_date')[:3]
-    featured=AddProperty.objects.order_by('-add_date')
-    sponsored =AddProperty.objects.order_by('-add_date')
+    featured=AddProperty.objects.order_by('-add_date')[:3]
+    sponsored =AddProperty.objects.order_by('-add_date')[:3]
     profile2 =Agents.objects.all()[:3]
-    if request.method == 'GET':
-        query_form = FilterForm(request.GET)
-        if query_form.is_valid(): 
-            add_price = query_form.cleaned_data.get('add_price')
-            add_title = query_form.cleaned_data.get('add_title')
-            property_type = query_form.cleaned_data.get('property_type')
-            post = AddProperty.objects.all()
-            query = AddProperty.objects.filter(add_title=add_title, add_price=add_price, property_type=property_type)
-            return render(request, 'frontend/filter.html', {'q': query})
-    else:
-        query_form = FilterForm()
-    
+    query_form = FilterForm()
     files = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2, 'qf':query_form }
     return render(request, 'frontend/index.html', files)
 
@@ -57,23 +46,18 @@ def filter_data(request):
     if request.method == 'GET':
         query_form = FilterForm(request.GET)
         if query_form.is_valid():
-            listing_type = query_form.cleaned_data.get('listing_type')
             add_price = query_form.cleaned_data.get('add_price')
-            add_title = query_form.cleaned_data.get('add_title')
+            offer_type = query_form.cleaned_data.get('offer_type')
+            listing_type = query_form.cleaned_data.get('listing_type')
             post = AddProperty.objects.all()
-            # query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
-            query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
+            query = AddProperty.objects.filter(offer_type=offer_type,add_price=add_price, listing_type=listing_type)
+
             return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
         else:
-            listing_type = query_form.cleaned_data.get('listing_type')
-            add_price = query_form.cleaned_data.get('add_price')
-            add_title = query_form.cleaned_data.get('add_title')
-            post = AddProperty.objects.all()
-            query = AddProperty.objects.filter(listing_type=listing_type, add_title=add_title, add_price=add_price)
-            return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
+            return render(request, 'frontend/filter2.html',{'qf':query_form})
     else:
         query_form = FilterForm()
-    return render(request, 'frontend/filter.html', {'qf':query_form}) 
+    return render(request, 'frontend/filter.html') 
 
 def buy(request):
     # sale = AddProperty.objects.all()

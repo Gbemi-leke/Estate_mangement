@@ -25,31 +25,106 @@ class Agents(models.Model):
 
 
 class AddProperty(models.Model):
-
-    SPONSORED = "S"
-    FEATURED = "F"
     BUY = "B"
     RENT = "R"
     CHOOSE = ""
 
-    PROPERTY_TYPE = [
-        (SPONSORED, 'Sponsored'),
-        (FEATURED, 'Featured'),
+    OFFER_TYPE = [
         (BUY, 'Buy'),
         (RENT, 'Rent'),
         (CHOOSE, 'Please Choose')
 
     ]
+
     
+    BUNGALOW = "Bungalow"
+    DUPLEX = "Duplex"
+    FLAT = "Flat"
+    GLASSHOUSE = "Glasshouse"
+    STORY_BUILDING = "Story Building"
+    CHOOSE = ""
+
+    PROPERTY_TYPE = [
+
+        (BUNGALOW, 'Bungalow'),
+        (DUPLEX, 'Duplex'),
+        (FLAT, 'Flat'),
+        (GLASSHOUSE, 'Glass House'),
+        (STORY_BUILDING, 'Story Building'),
+        (CHOOSE, 'Please Choose')
+
+    ]
+    ONE = "100,000"
+    TWO = "150,00"
+    THREE = "200,000"
+    FOUR = "250,000"
+    FIVE = "300,000"
+    SIX = "350,000"
+    SEVEN = "400,000"
+    EIGHT = "450,000"
+    NINE = "500,000"
+    TEN = "550,000"
+    ONE1 = "600,000"
+    TWO2 = "650,000"
+    THREE3 = "700,000"
+    FOUR4 = "750,000"
+    FIVE5 = "800,000"
+    SIX6 = "850,000"
+    SEVEN7 = "900,000"
+    EIGHT8 = "950,000"
+    NINE9 = "1 Million"
+    TEN10 = "1.5 Million"
+    ONE11 = "2 Million"
+    TWO22 = "2.5 Million"
+    THREE33 = "3 Million"
+    FOUR44 = "3.5 Million"
+    FIVE55 = "4 Million"
+    SIX66 = "4.5 Million"
+    SEVEN77= "5 Million"
+    
+    CHOOSE = ""
+
+    PRICE= [
+         (ONE, ' 100,000'),
+         (TWO, ' 150,000'),
+         (THREE, ' 200,000'),
+         (FOUR, ' 250,000'),
+         (FIVE, ' 300,000'),
+         (SIX, ' 350,000'),
+         (SEVEN, ' 400,000'),
+         (EIGHT, ' 450,000'),
+         (NINE, ' 500,000'),
+         (TEN, ' 550,000'),
+         (ONE1, ' 600,000'),
+         (TWO2, ' 650,000'),
+         (THREE3, ' 700,000'),
+         (FOUR4, ' 750,000'),
+         (FIVE5, ' 800,000'),
+         (SIX6, ' 850,000'),
+         (SEVEN7, ' 900,000'),
+         (EIGHT8, ' 950,000'),
+         (NINE9, ' 1 Million'),
+         (TEN10, ' 1.5 Million'),
+         (ONE11, ' 2 Million'),
+         (TWO22, ' 2.5 Million'),
+         (THREE33, ' 3 Million'),
+         (FOUR44, ' 3.5 Million'),
+         (FIVE55, ' 4 Million'),
+         (SIX66, ' 4.5 Million'),
+         (SEVEN77, ' 5 Million'),
+         (CHOOSE, 'Please Choose')
+    ]
     add_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/' )
     add_title = models.CharField(max_length=100, verbose_name='Profile Title')
-    add_price = models.IntegerField(verbose_name='Price')
-    listing_type = models.CharField(max_length=40, verbose_name='Listing Type')
+    add_price = models.CharField(max_length=40, choices=PRICE, default=CHOOSE)
+    listing_type = models.CharField(max_length=40, choices=PROPERTY_TYPE, default=CHOOSE)
     add_desription = models.TextField(verbose_name='Description')
     add_contact = models.CharField(max_length=20, verbose_name='Contact')
     add_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    property_type = models.CharField(max_length=15, choices=PROPERTY_TYPE, default=CHOOSE)
+    offer_type = models.CharField(max_length=40, choices=OFFER_TYPE, default=CHOOSE)
+    sponsored = models.BooleanField(default=False, blank=True)
+    featured = models.BooleanField(default=False, blank=True)
     
 
     class Meta():
