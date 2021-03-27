@@ -1,228 +1,202 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
-<!Doctype html>
-{% block title %}
+<!DOCTYPE html>
+
+{% block title%}
 Home
 {% endblock %}
-
-{% block content %}
-
-<div class="site-section site-section-sm pb-0 flexslider js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
-	<div class="container">
-	  <div class="row">
-		  <div class="col">
-			<!-- <form class="col-md-12" style="margin-top: -100px; padding-top: 200px; margin-left:15px;">
-				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
-					<div class="col-md-3">
-						<label for="offer-types">OFFER TYPE(SALE OR RENT)</label>
-						<div class="select-wrap">
-						<span class="icon icon-arrow_drop_down"></span>
-						<select name="offer-types" id="offer-types" class="form-control d-block rounded-0">
-							<option value="">Sale</option>
-							<option value="">Rent</option>
-			
-						</select>
-						</div>
-					</div>
-					<div class="col-md-3">
-						<label for="list-types">MIN.PRICE</label>
-						<div class="select-wrap">
-							<input name="price"  id="offer-types" class="form-control d-block rounded-0">
-						</div>
-				
-					</div>
-					<div class="col-md-3">
-						<label for="select-city">MAX.PRICE</label>
-						<div class="select-wrap">
-						<input type="price" id="offer-types" class="form-control d-block rounded-0">
-						</div>
-					</div>
-					<div class="col-md-3">
-						<label for="list-types">LOCATION</label>
-						<div class="select-wrap">
-							<input name="location"  id="offer-types" class="form-control d-block rounded-0">
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:20px;">
-						<input type="submit" class="btn btn-success text-white btn-block rounded-0" value="Search">
-					</div>
-				</div>
-		 	</form> -->
-			<form method="GET" class="form-inline" style="margin-top: -100px; padding-top: 200px; margin-left:40px" action="{% url 'frontend:filter_data'%}" >
-				<div class="row col-sm-12" style="background-color:#bbbb; opacity:0.1px; padding-top:30px; padding-bottom: 30px;">
-					<div class="form-group" style="margin-left: 15px; width: 230px;">
-						{{ qf.listing_type }}
-					</div>
-					<div class="form-group" style="margin-left: 15px; width: 230px;" 	>
-						{{ qf.offer_type }}
-					</div>
-					<div class="form-group" style="margin-left: 15px; width: 230px;">
-						{{ qf.add_price }}
-					</div>
-					<!-- <div class="form-group">
-						{{ qf.property_type }}
-					</div>  -->
-					<div class="col-md-3 col-sm-12 " style=" border-radius: 20px; padding-top:10px; margin-left: 15px; width: 230px;">
-						<input type="submit" class="btn btn-primary" value="Filter">
-					</div>
-				</div>
-				
-			</form>
-		</div>
+<body>
+	{% block content %}
+	
+	<div id="fh5co-page">
 		
-	  </div>  
-	 
-	</div>
-  </div>
-<div id="best-deal">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-				<h2>We are Offering the Best Real Estate Deals</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-			</div>
-			{% if sponsored %}
-				{% for p in sponsored %}
-						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
-							<div class="fh5co-property" style="min-height: 200px;">
-								<figure>
-									<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive">
+		<aside id="fh5co-hero" clsas="js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+				<div class="container">
+				  <div class="row">
+					  <div class="col">
+						<form method="GET" class="form-inline" style="margin-top: -100px; padding-top: 300px; margin-left:40px" action="{% url 'frontend:filter_data'%}" >
+							<div class="row col-lg-12" style="background-color:#bbbb; opacity:0.1px; padding-top:50px; padding-bottom: 50px;">
+								<div class="form-group col-sm-10 col-lg-3">
+									{{ qf.listing_type }}
+								</div>
+								<div class="form-group col-sm-10 col-lg-3">
+									{{ qf.offer_type }}
+								</div>
+								<div class="form-group col-sm-10 col-lg-3">
+									{{ qf.add_price }}
+								</div>
+								<div class="col-md-3 col-sm-10 col-lg-3 style=" border-radius: 20px; padding-top:10px;">
+									<input type="submit" class="btn btn-primary" value="Filter">
+								</div>
+							</div>
+							
+						</form>
+					</div>
+					
+				  </div>  
+				 
+				</div>
+			
+		</aside>
+
+		<div id="best-deal">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+						<h2>We are Offering the Best Real Estate Deals</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					</div>
+					{% if sponsored %}
+						{% for p in sponsored %}
+							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+								<div class="fh5co-property" style="min-height: 200px;">
+									<figure>
+										<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
 										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
-								</figure>
-								<div class="fh5co-property-innter">
-									<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
-									<div class="price-status">
-									<span class="price">&#8358;{{p.add_price }}</span>
+									</figure>
+									<div class="fh5co-property-innter">
+										<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
+										<div class="price-status">
+										<span class="price">&#8358;{{p.add_price }} </span>
 									</div>
 									<p>{{p.add_desription|truncatewords:40 }}</p>
-									<p>Contact Us:&nbsp; {{p.add_contact }}</p>
-								</div>
+									<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+									</div>
 									<p class="fh5co-property-specification">
-									{{p.add_date }}
+										{{p.add_date }}
 									</p>
-							</div> 	
-						</div>
-				{% endfor %}
-			{% endif %}
-					
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-				<h1>Latest Properties</h1>
+								</div>
+
+								
+							</div>
+						{% endfor%}
+					{% endif %}
+
+				</div>
 			</div>
-			{% if pro %}
-				{% for p in pro %}
-				<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-					<div class="fh5co-property card h-100" style="min-height: 200px;">
+			<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class='text-center'>latest Properties</h1>
+				</div>
+				{% if pro %}
+					{% for p in pro %}
+					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+						<div class="fh5co-property" style="min-height: 200px;">
 							<figure>
-								<img src="{{ p.add_img.url }}"  alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 							</figure>
 							<div class="fh5co-property-innter">
 								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
 								<div class="price-status">
-								<span class="price">&#8358;{{p.add_price }}</span>
-								</div>
-								<p>{{p.add_desription|truncatewords:40 }}</p>
-								<p>Contact Us:&nbsp; {{p.add_contact }}</p>
+								<span class="price">&#8358;{{p.add_price }} </span>
 							</div>
-								<p class="fh5co-property-specification">
+							<p>{{p.add_desription|truncatewords:40 }}</p>
+							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+							</div>
+							<p class="fh5co-property-specification">
 								{{p.add_date }}
-								</p>
-						</div> 	
+							</p>
+						</div>
+
+						
 					</div>
-				{% endfor %}
-			{% endif %}
-			
-		</div>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class='col-md-10 col-md-offset-1 text-center fh5co-heading animate-box'>
-				<strong><h1>Featured Properties</h1></strong>
+					{% endfor%}
+				{% endif %}
 			</div>
-			{% if featured %}
-				{% for p in featured %}
-					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-property card h-100" style="min-height: 200px;">
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class='text-center '>Featured Properties</h1>
+				</div>
+				{% if featured %}
+					{% for p in featured %}
+					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+						<div class="fh5co-property" style="min-height: 200px;">
 							<figure>
 								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
-									<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
+								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 							</figure>
 							<div class="fh5co-property-innter">
-								<h3><a href="#">{{p.add_title }}</a></h3>
+								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
 								<div class="price-status">
-								<span class="price">&#8358;{{p.add_price }}</span>
-								</div>
-								<p>{{p.add_desription|truncatewords:40 }}</p>
-								<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+								<span class="price">&#8358;{{p.add_price }} </span>
 							</div>
-								<p class="fh5co-property-specification">
+							<p>{{p.add_desription|truncatewords:40 }}</p>
+							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+							</div>
+							<p class="fh5co-property-specification">
 								{{p.add_date }}
-								</p>
-						</div> 
+							</p>
+						</div>
+
+						
 					</div>
-				{% endfor %}
-			{% endif %}
-		</div>
-	</div>
-</div>
-<div id="fh5co-testimonial">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-				<h2>Happy Clients</h2>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-			</div>
-			<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-				<blockquote>
-					<p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
-					<p><span class="fh5co-author"><cite>Olamide</cite></span><i class="icon twitter-color icon-twitter pull-right"></i></p>
-
-				</blockquote>
-			</div>
-			<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-				<blockquote>
-					<p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. She had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
-					<p><span class="fh5co-author"><cite>Aduragbemi</cite></span><i class="icon googleplus-color icon-google-plus pull-right"></i></p>
-				</blockquote>
-			</div>
-			<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-					
-				<blockquote>
-					<p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
-					<p><span class="fh5co-author"><cite>Mit Chell</cite></span><i class="icon facebook-color icon-facebook pull-right"></i></p>
-				</blockquote>
+					{% endfor %}
+				{% endif %}
 			</div>
 		</div>
-	</div>
-</div> 
- 
+		</div>
 
-<div id="fh5co-agents" style="background-color: #000000;">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 col-md-offset-1 text-center fh5co-heading white animate-box" data-animate-effect="fadeIn">
-				<strong><h1 style="color: #f8f5f5;">Our Trusted Agents</h1></strong>
-				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-			</div>
-			{% if agent %}
-				{% for a in agent %}
+		<div id="fh5co-testimonial">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+						<h2>Happy Clients</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					</div>
 					<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-						<div class="fh5co-agent" style="min-height: 200px;">
-							<figure>
-								<img src="{{ a.agent_img.url }}">
-							</figure>
-							<h1>{{ a.agent_title }}</h1>
-							<p>{{ a.agent_desription }}</p>
-							<p><a href="{% url 'frontend:contact2' a.id %}" class="btn btn-primary btn-outline">Contact</a></p>
-						</div>								
+						<blockquote>
+							<p>&ldquo; She packed her seven versalia, put her initial into the belt and made herself on the way. When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+							<p><span class="fh5co-author"><cite>Oluwagbemileke</cite></span><i class="fa twitter-color fa-twitter pull-right"></i></p>
+
+						</blockquote>
 					</div>
-				{% endfor %}
-			{% endif %}
+					<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+						<blockquote>
+							<p>&ldquo; Alphabet Village and the subline of her own road, the Line Lane. Pityful a rethoric question ran over her cheek, then she continued her way. She had a last view back on the skyline of her hometown Bookmarksgrove, the headline of. &rdquo;</p>
+							<p><span class="fh5co-author"><cite>Leke Olamide</cite></span><i class="fa googleplus-color fa-google-plus pull-right"></i></p>
+						</blockquote>
+					</div>
+					<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
+							
+						<blockquote>
+							<p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
+							<p><span class="fh5co-author"><cite>Mit Chell</cite></span><i class="fa facebook-color fa-facebook pull-right"></i></p>
+						</blockquote>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="fh5co-agents">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+						<h2>Our Trusted Agents</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					</div>
+					{% if agent %}
+						{% for a in agent %}
+							<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+								<div class="fh5co-agent">
+									<figure>
+										<img src="{{ a.agent_img.url }}">
+									</figure>
+									<h1 style="font-size: 30px;">{{ a.agent_title }}</h1>
+									<p>{{ a.agent_desription }}</p>
+									<p><a href="{% url 'frontend:contact2' a.id %}" class="btn btn-primary btn-outline">Contact</a></p>
+								</div>								
+							</div>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-{% endblock %}
+	{% endblock %}
+</body>
+</html>
 

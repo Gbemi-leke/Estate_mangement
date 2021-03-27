@@ -6,19 +6,19 @@ Detail
 {% endblock %}
 
 {% block content %}
-  <section id="best-deal" style="padding-top: 100px;">  
+  <section id="best-deal">  
     <div class='container'>
         <div class="row">
           <div class="col-sm-12 text-center" id="detailContent">
             {% if det %}
               <div class="item-block animate-box" data-animate-effect="fadeIn">
                 <div class="fh5co-property">
-                  <figure>
-                    <img src="{{ det.add_img.url }}" class="img-responsive" style="width: 700px; height: 450px;">
+                  <figure >
+                    <img src="{{ det.add_img.url }}" class="img-responsive col-lg-12" >
                     <!-- <a href="#" class="tag">For Sale</a> -->
                   </figure>
                   <div class="fh5co-property-innter">
-                    <h3><a href="#">{{ det.add_title }}</a></h3>
+                    <h3 style="font-size: 30px;"><a href="#">{{ det.add_title }}</a></h3>
                     <div class="price-status">
                       <span class="price">&#8358;{{ det.add_price }}</span>
                     </div>
@@ -53,7 +53,7 @@ Detail
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
-                    <textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message"></textarea>
+                    <textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message" style="height:250px;"></textarea>
                   </div>
                 </div>
                 <div class="col-md-3">
