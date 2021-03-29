@@ -7,9 +7,9 @@ Home
 {% endblock %}
 <body>
 	{% block content %}
-
+	
 	<div id="fh5co-page">
-
+		
 		<aside id="fh5co-hero" clsas="js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
 				<div class="container">
 				  <div class="row">
@@ -29,14 +29,14 @@ Home
 									<input type="submit" class="btn btn-primary" value="Filter">
 								</div>
 							</div>
-
+							
 						</form>
 					</div>
-
-				  </div>
-
+					
+				  </div>  
+				 
 				</div>
-
+			
 		</aside>
 
 		<div id="best-deal">
@@ -51,7 +51,7 @@ Home
 							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
 								<div class="fh5co-property" style="min-height: 200px;">
 									<figure>
-										<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+										<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
 										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 									</figure>
 									<div class="fh5co-property-innter">
@@ -66,6 +66,8 @@ Home
 										{{p.add_date }}
 									</p>
 								</div>
+
+								
 							</div>
 						{% endfor%}
 					{% endif %}
@@ -79,25 +81,27 @@ Home
 				</div>
 				{% if pro %}
 					{% for p in pro %}
-    					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
-    						<div class="fh5co-property" style="min-height: 200px;">
-    							<figure>
-    								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
-    								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
-    							</figure>
-    							<div class="fh5co-property-innter">
-    								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
-    								<div class="price-status">
-    								<span class="price">&#8358;{{p.add_price }} </span>
-    							</div>
-    							<p>{{p.add_desription|truncatewords:40 }}</p>
-    							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
-    							</div>
-    							<p class="fh5co-property-specification">
-    								{{p.add_date }}
-    							</p>
-    						</div>
-    					</div>
+					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+						<div class="fh5co-property" style="min-height: 200px;">
+							<figure>
+								<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
+								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
+							</figure>
+							<div class="fh5co-property-innter">
+								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
+								<div class="price-status">
+								<span class="price">&#8358;{{p.add_price }} </span>
+							</div>
+							<p>{{p.add_desription|truncatewords:40 }}</p>
+							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+							</div>
+							<p class="fh5co-property-specification">
+								{{p.add_date }}
+							</p>
+						</div>
+
+						
+					</div>
 					{% endfor%}
 				{% endif %}
 			</div>
@@ -109,25 +113,27 @@ Home
 				</div>
 				{% if featured %}
 					{% for p in featured %}
-    					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
-    						<div class="fh5co-property" style="min-height: 200px;">
-    							<figure>
-    								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
-    								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
-    							</figure>
-    							<div class="fh5co-property-innter">
-    								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
-    								<div class="price-status">
-    								<span class="price">&#8358;{{p.add_price }} </span>
-    							</div>
-    							<p>{{p.add_desription|truncatewords:40 }}</p>
-    							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
-    							</div>
-    							<p class="fh5co-property-specification">
-    								{{p.add_date }}
-    							</p>
-    						</div>
-    					</div>
+					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+						<div class="fh5co-property" style="min-height: 200px;">
+							<figure>
+								<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
+								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
+							</figure>
+							<div class="fh5co-property-innter">
+								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
+								<div class="price-status">
+								<span class="price">&#8358;{{p.add_price }} </span>
+							</div>
+							<p>{{p.add_desription|truncatewords:40 }}</p>
+							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
+							</div>
+							<p class="fh5co-property-specification">
+								{{p.add_date }}
+							</p>
+						</div>
+
+						
+					</div>
 					{% endfor %}
 				{% endif %}
 			</div>
@@ -155,7 +161,7 @@ Home
 						</blockquote>
 					</div>
 					<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-
+							
 						<blockquote>
 							<p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
 							<p><span class="fh5co-author"><cite>Mit Chell</cite></span><i class="fa facebook-color fa-facebook pull-right"></i></p>
@@ -165,11 +171,11 @@ Home
 			</div>
 		</div>
 
-		<div id="fh5co-agents" style="background-color: #000000;">
+		<div id="fh5co-agents" style="background-color: black;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-						<h2>Our Trusted Agents</h2>
+						<h2 style="color:#ffff !important;">Our Trusted Agents</h2>
 						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 					</div>
 					{% if agent %}
@@ -182,7 +188,7 @@ Home
 									<h1 style="font-size: 30px;">{{ a.agent_title }}</h1>
 									<p>{{ a.agent_desription }}</p>
 									<p><a href="{% url 'frontend:contact2' a.id %}" class="btn btn-primary btn-outline">Contact</a></p>
-								</div>
+								</div>								
 							</div>
 						{% endfor %}
 					{% endif %}

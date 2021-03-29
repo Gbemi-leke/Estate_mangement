@@ -34,7 +34,7 @@ Home
 								<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 									<div class="fh5co-property card h-100" style="min-height: 200px;">
 										<figure>
-											<img src="{{ b.add_img.url }}" alt="Card image cap" class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
+											<a  href="{% url 'frontend:detail_buy' b.id %}"><img src="{{ b.add_img.url }}" alt="Card image cap" class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;"></a>
 											<a href="{% url 'frontend:detail_buy' b.id %}" class="tag">For Sale</a>
 										</figure>
 										<div class="fh5co-property-innter">

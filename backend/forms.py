@@ -14,17 +14,17 @@ class RegisterForm(UserCreationForm):
         attrs={'class': 'form-control', 'placeholder': 'Enter Firstname'}))
     last_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Lastname'}))
-    username = forms.CharField(label='Username*', widget=forms.TextInput(
+    username = forms.CharField(label='Username', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
-    email = forms.EmailField(label='Email*', widget=forms.EmailInput
+    email = forms.EmailField(label='Email', widget=forms.EmailInput
         (attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
-    password1 = forms.CharField(label='Enter Password*', widget=forms.PasswordInput(
+    password1 = forms.CharField(label='Enter Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
-    password2 = forms.CharField(label='Confirm Password*', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
 
     # pst_image = forms.FileField(required=False)
-
+        
     botfield = forms.CharField(required=False, widget=forms.HiddenInput(),
                                validators=[validators.MaxLengthValidator(0)])
 
@@ -60,7 +60,7 @@ class EditUserForm(forms.ModelForm):
 
     last_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Lastname'}))
-
+    
     email = forms.EmailField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
 
@@ -75,7 +75,7 @@ class EditUserForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class':'form-control'}),
 
             'last_name': forms.TextInput(attrs={'class':'form-control'}),
-
+            
             'email':forms.TextInput(attrs={'class':'form-control'}),
 
             'phone': forms.NumberInput(attrs={'class':'form-control'}),
@@ -89,7 +89,7 @@ class EditUserForm(forms.ModelForm):
         user.email = self.cleaned_data['email']
         user.agent_img = self.cleaned_data['agent_img']
 
-
+    
         if commit:
             user.save()
             return user
@@ -100,7 +100,7 @@ class ListingForm(forms.ModelForm):
         model = AddProperty
         fields = ['add_title', 'add_img', 'add_price','add_contact','add_desription','listing_type','sponsored','featured', 'offer_type',]
         exclude = ['date', 'user']
-        widgets = {
+        widgets = { 
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.Select(attrs={'class': 'form-control'}),
@@ -108,8 +108,8 @@ class ListingForm(forms.ModelForm):
             'add_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'add_contact': forms.TextInput(attrs={'class': 'form-control'}),
             'offer_type' : forms.Select(attrs={'class': 'form-control'}),
-
-
+            
+            
         }
 
 
@@ -119,7 +119,7 @@ class EditListing(forms.ModelForm):
         model = AddProperty
         exclude = ['date', 'user']
 
-        widgets = {
+        widgets = { 
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.Select(attrs={'class': 'form-control'}),
@@ -127,8 +127,8 @@ class EditListing(forms.ModelForm):
             'add_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'add_contact': forms.TextInput(attrs={'class': 'form-control'}),
             'offer_type' : forms.Select(attrs={'class': 'form-control'}),
-
-
+            
+            
         }
 
 class PasswordChangeForm(PasswordChangeForm):
@@ -140,17 +140,17 @@ class PasswordChangeForm(PasswordChangeForm):
         model = User
         fields = ['password1', 'password2']
 
-        widgets = {
+        widgets = { 
                 'password1': forms.NumberInput(attrs={'class': 'form-control'}),
                 'password2': forms.NumberInput(attrs={'class': 'form-control'}),
-
+            
             }
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.password1 = self.cleaned_data['password1']
         user.password2 = self.cleaned_data['password2']
-
+        
         if commit:
             user.save()
             return user
@@ -162,15 +162,15 @@ class AgentForm(forms.ModelForm):
         model = Agents
         fields = ['agent_title', 'agent_img','agent_contact','agent_desription','agent_address','agent_email']
         exclude = ['user']
-
-        widgets = {
+        
+        widgets = { 
             'agent_img': forms.FileInput(attrs={'class': 'form-control'}),
             'agent_title': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_address': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'agent_contact': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_email': forms.EmailInput(attrs={'class': 'form-control'}),
-
+            
         }
 
 
@@ -180,14 +180,14 @@ class EditAgent(forms.ModelForm):
         model = Agents
         exclude = ['user']
 
-        widgets = {
+        widgets = { 
             'agent_img': forms.FileInput(attrs={'class': 'form-control'}),
             'agent_title': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_address': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_desription': forms.Textarea(attrs={'class': 'form-control'}),
             'agent_contact': forms.TextInput(attrs={'class': 'form-control'}),
             'agent_email': forms.EmailInput(attrs={'class': 'form-control'}),
-
+            
         }
 
 
@@ -249,7 +249,7 @@ class FilterForm(forms.ModelForm):
     FOUR44 = "3.5 Million"
     FIVE55 = "4 Million"
     SIX66 = "4.5 Million"
-    SEVEN77= "5 Million"
+    SEVEN77= "5 Million"    
     CHOOSE = ""
 
     PRICE= [
@@ -297,7 +297,7 @@ class FilterForm(forms.ModelForm):
     # user = forms.ModelChoiceField(
     #     queryset=User.objects.all(), empty_label='Please Choose',
     #     widget=forms.Select(attrs={'class': 'form-control'}))
-
+   
     class Meta():
         fields = ['listing_type', 'offer_type', 'add_price']
         model = AddProperty
