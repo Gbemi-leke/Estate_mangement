@@ -1,36 +1,39 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
-<!Doctype html>
-{% block title %}
+<!DOCTYPE html>
+
+{% block title%}
 Home
 {% endblock %}
+<body>
+	
+	
+	<div id="fh5co-page">
+	{% block content %}
 
-{% block content %}
-
-	<div class="fh5co-page-title" style="background-image: url({% static 'frontend/images/home.jpg' %});">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 animate-box">
-					<h1><span class="colored">Contact</span> Agent</h1>
+		<div class="fh5co-page-title" style="background-image: url({% static 'frontend/images/home.jpg' %});">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 animate-box">
+						<h1 style="color: #ffff !important;"><span class="colored">Contact</span> Agent</h1>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
+		
 
-	<div class="fh5co-contact animate-box">
-		<div class="container">
-			<div class="row">
-				{% if con %}
+		<div class="fh5co-contact animate-box">
+			<div class="container">
+				<div class="row">
 					<div class="col-md-3">
-						<h3>Contact Info.</h3>
-						<h1>{{ con.agent_title }}</h1>
-							<ul class="contact-info">
-								<li><i class="icon-map"></i>{{ con.agent_address }}</li>
-								<li><i class="icon-phone"></i>{{ con.agent_contact }}</li>
-								<li><i class="icon-envelope"></i><a href="#">{{ con.agent_email }}</a></li>
-							</ul>
+						<h3 style="font-size:32px; color: cadetblue !important;">Agent Info.</h3>
+						<h1 style="font-size: 30px;">{{ con.agent_title }}</h1>
+						<ul class="contact-info">
+							<li><i class="fa fa-map"></i>{{ con.agent_address }}</li>
+							<li><i class="fa fa-phone"></i>{{ con.agent_contact }}</li>
+							<li><i class="fa fa-envelope"></i><a href="#">{{ con.agent_email }}</a></li>
+						</ul>
 					</div>
 					<form class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0" method='POST'>
 						{% if messages %}
@@ -51,7 +54,7 @@ Home
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message"></textarea>
+									<textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message" style="height: 200px;"></textarea>
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -61,10 +64,13 @@ Home
 							</div>
 							
 						</div>
-					{% csrf_token %}
+						{% csrf_token %}
 					</form>
-				{% endif %}
-			</div>
-		</div>	
-	</div>
-{% endblock %}
+				</div>
+			</div>	
+		</div>
+
+	{% endblock %}
+</body>
+
+

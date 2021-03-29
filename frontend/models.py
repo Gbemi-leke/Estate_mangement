@@ -54,6 +54,8 @@ class AddProperty(models.Model):
         (CHOOSE, 'Please Choose')
 
     ]
+
+
     ONE = "100,000"
     TWO = "150,00"
     THREE = "200,000"
@@ -81,7 +83,6 @@ class AddProperty(models.Model):
     FIVE55 = "4 Million"
     SIX66 = "4.5 Million"
     SEVEN77= "5 Million"
-    
     CHOOSE = ""
 
     PRICE= [

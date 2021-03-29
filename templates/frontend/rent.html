@@ -1,95 +1,106 @@
-
 {% extends 'frontend/base.html' %}
 {% load static %}
-<!Doctype html>
-{% block title %}
+<!DOCTYPE html>
+
+{% block title%}
 Home
 {% endblock %}
+<body>
+	{% block content %}
+	<div id="fh5co-page">
+	
 
-{% block content %}
-
-	<div class="fh5co-page-title" style="background-image: url({% static 'frontend/images/home.jpg' %});">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 animate-box">
-					<h1><span class="colored">Rent</span> Properties</h1>
+		<div class="fh5co-page-title" style="background-image:url({% static 'frontend/images/home.jpg' %});">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 animate-box">
+						<h1 style="color: #ffff !important;"><span class="colored">Rent</span> Properties</h1>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="best-deal">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-					<h2>We are Offering the Best Real Estate Deals</h2>
-					<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-				</div>
-				{% if person_page_obj %}
-					{% for r in person_page_obj %}
-						{% if r.offer_type == 'R' %}
-							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
-								<div class="fh5co-property card h-100" style="min-height: 200px;">
-									<figure>
-										<img src="{{ r.add_img.url }}" alt="Free Website Templates FreeHTML5.co " class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
-										<a href="{% url 'frontend:detail_buy' r.id %}" class="tag">For Rent</a>
-									</figure>
-									<div class="fh5co-property-innter">
-										<h3><a href="#">{{ r.add_title }}</a></h3>
-										<div class="price-status">
-										<span class="price">&#8358;{{ r.add_price }} <span class="per">/Month</span></span>
+		<div id="best-deal">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
+						<h2>We are Offering the Best Real Estate Deals</h2>
+						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+					</div>
+					{% if person_page_obj %}
+						{% for r in person_page_obj %}
+							{% if r.offer_type == 'R' %}
+								<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
+									<div class="fh5co-property card h-100" style="min-height: 200px;">
+										<figure>
+											<img src="{{ r.add_img.url }}" alt="Free Website Templates FreeHTML5.co " class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;">
+											<a href="{% url 'frontend:detail_buy' r.id %}" class="tag">For Rent</a>
+										</figure>
+										<div class="fh5co-property-innter">
+											<h3><a href="#">{{ r.add_title }}</a></h3>
+											<div class="price-status">
+											<span class="price">&#8358;{{ r.add_price }} <span class="per">/Month</span></span>
+										</div>
+											<p>{{ r.add_desription|truncatewords:50 }}</p>
+											<p>Contact Us:&nbsp; {{ r.add_contact }}</p>
+										</div>
+										
+										<p class="fh5co-property-specification">
+											<span>{{ r.add_date }}</span>
+										</p>
 									</div>
-										<p>{{ r.add_desription|truncatewords:50 }}</p>
-										<p>Contact Us:&nbsp; {{ r.add_contact }}</p>
-									</div>
-									
-									<p class="fh5co-property-specification">
-										<span>{{ r.add_date }}</span>
-									</p>
 								</div>
-							</div>
-						{% endif %}
-					{% endfor %}
-				{% endif %}
-			</div>
-			<div class="row">
-				<div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
-					<nav>
-					  <ul class="pagination">
-					    <li class="disabled">
-					      <a href="?page=1" aria-label="Previous">
-					        <span aria-hidden="true">&laquo;</span>
-					      </a>
-					    </li>
-						{% if person_page_obj.has_previous %}
-					    	<li class="active"><a href="?page=1">1</a></li>
-						{% endif %}
-
-						{% if person_page_obj.has_next %}
-							<li><a href="?page={{ person_page_obj.next_page_number }}">2</a></li>
-							<li><a href="?page={{ person_page_obj.next_page_number }}">3</a></li>
-							<li><a href="?page={{ person_page_obj.next_page_number }}">4</a></li>
-							<li><a href="?page={{ person_page_obj.next_page_number }}">5</a></li>
-							<li>
-							<a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				</div>
+				<div class="row">
+					<div class="col-md-12 text-center animate-box" data-animate-effect="fadeIn">
+						<nav>
+						  <ul class="pagination">
+							<li class="disabled">
+							  <a href="?page=1" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							  </a>
 							</li>
-						{% endif %}
-					  </ul>
-					</nav>
+							{% if person_page_obj.has_previous %}
+								<li class="active"><a href="?page=1">1</a></li>
+							{% endif %}
+	
+							{% if person_page_obj.has_next %}
+								<li><a href="?page={{ person_page_obj.next_page_number }}">2</a></li>
+								<li><a href="?page={{ person_page_obj.next_page_number }}">3</a></li>
+								<li><a href="?page={{ person_page_obj.next_page_number }}">4</a></li>
+								<li><a href="?page={{ person_page_obj.next_page_number }}">5</a></li>
+								<li>
+								<a href="?page={{ person_page_obj.next_page_number }}" aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+								</li>
+							{% endif %}
+						  </ul>
+						</nav>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="fh5co-cta" style="background-image: url(images/slide_4.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="col-md-12 text-center animate-box">
-				<h3>We Try To Update The Site Everyday</h3>
-				<p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+
+
+		
+
+		<div class="fh5co-cta" style="background-image: url(images/slide_4.jpg);">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="col-md-12 text-center animate-box">
+					<h3 style="color:#ffff !important;">We Try To Update The Site Everyday</h3>
+					<p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
+				</div>
 			</div>
 		</div>
-	</div>
 
-{% endblock%}
+
+	
+	{% endblock %}
+</body>
+</html>
+

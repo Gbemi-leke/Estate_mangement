@@ -1,18 +1,22 @@
 {% extends 'frontend/base.html' %}
 {% load static %}
-<!Doctype html>
-{% block title %}
+<!DOCTYPE html>
+
+{% block title%}
 Home
 {% endblock %}
+<body>
+	
+	
+	<div id="fh5co-page">
+	{% block content %}
 
-{% block content %}
-
-	<div class="fh5co-page-title" style="background-image: url({% static 'frontend/images/home.jpg' %})">
+	<div class="fh5co-page-title" style="background-image: url({% static 'frontend/images/home.jpg' %});">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 animate-box">
-					<h1><span class="colored">Contact</span> Us</h1>
+					<h1 style="color: #ffff !important;"><span class="colored">Contact</span> Us</h1>
 				</div>
 			</div>
 		</div>
@@ -23,11 +27,12 @@ Home
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-					<h3>Contact Info.</h3>
+					<h3 style="font-size:20px;">Contact Info.</h3>
 					<ul class="contact-info">
-						<li><i class="icon-map"></i>24 Glorious avenue street,Orimerunmu town, Ogun state</li>
-						<li><i class="icon-phone"></i><a href="https://wa.me/+2347084448398">+ 2347 0844 482 98</li></a>
-						<li><i class="icon-envelope"></i><a href="#">leke.olamide123@gmail.com</a></li>
+						<li style="font-size:14px;"><i class="fa fa-map"></i>24 Glorious avenue street,Orimerunmu town, Ogun state</li>
+						<li><i class="fa fa-phone"></i><a href="">07084448398</a></li>
+						<li><i class="fa fa-envelope"></i><a href="https://wa.me/+2347084448398">leke.olamide123@gmail.com</a></li>
+						<li><i class="fa fa-globe"></i><a href="#">www.yoursite.com</a></li>
 					</ul>
 				</div>
 				<form class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0" method='POST'>
@@ -49,7 +54,7 @@ Home
 						</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message"></textarea>
+								<textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message" style="height: 200px;"></textarea>
 							</div>
 						</div>
 						<div class="col-md-12">
@@ -59,11 +64,13 @@ Home
 						</div>
 						
 					</div>
-				{% csrf_token %}
+					{% csrf_token %}
 				</form>
 			</div>
 		</div>	
 	</div>
 
-	<!-- <div id="map" class="animate-box" data-animate-effect="fadeIn"></div> -->
-{% endblock %}
+	{% endblock %}
+</body>
+
+

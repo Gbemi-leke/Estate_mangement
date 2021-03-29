@@ -18,8 +18,6 @@ class RegisterForm(UserCreationForm):
         attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
     email = forms.EmailField(label='Email*', widget=forms.EmailInput
         (attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
-    phone = forms.CharField(label='Tel*', widget=forms.TextInput(
-        attrs={'class': 'form-control', 'placeholder': 'Enter Phone Number'}))
     password1 = forms.CharField(label='Enter Password*', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
     password2 = forms.CharField(label='Confirm Password*', widget=forms.PasswordInput(
@@ -38,7 +36,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta():
         model = User
-        fields = [ 'first_name','last_name','username', 'email', 'phone', 'password1', 'password2']
+        fields = [ 'first_name','last_name','username', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -46,7 +44,6 @@ class RegisterForm(UserCreationForm):
         user.last_name = self.cleaned_data['last_name']
         user.username = self.cleaned_data['username']
         user.email = self.cleaned_data['email']
-        user.phone = self.cleaned_data['phone']
         # user.pst_image = self.cleaned_data['pst_image']
 
         if commit:
@@ -302,5 +299,5 @@ class FilterForm(forms.ModelForm):
     #     widget=forms.Select(attrs={'class': 'form-control'}))
 
     class Meta():
-        fields = ['listing_type', 'offer_type']
+        fields = ['listing_type', 'offer_type', 'add_price']
         model = AddProperty

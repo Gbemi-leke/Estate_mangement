@@ -46,18 +46,19 @@ def filter_data(request):
     if request.method == 'GET':
         query_form = FilterForm(request.GET)
         if query_form.is_valid():
+            print('Correct')
             add_price = query_form.cleaned_data.get('add_price')
             offer_type = query_form.cleaned_data.get('offer_type')
             listing_type = query_form.cleaned_data.get('listing_type')
             post = AddProperty.objects.all()
             query = AddProperty.objects.filter(offer_type=offer_type,add_price=add_price, listing_type=listing_type)
-
-            return render(request, 'frontend/filter.html', {'q': query, 'qf': query_form})
+            return render(request, 'frontend/filter.html', {'q': query})
         else:
-            return render(request, 'frontend/filter2.html',{'qf':query_form})
-    else:
-        query_form = FilterForm()
-    return render(request, 'frontend/filter.html') 
+            print('Not found')
+            return render(request, 'frontend/filter2.html')
+    # else:
+    #     query_form = FilterForm()
+    # return render(request, 'frontend/filter2.html') 
 
 def buy(request):
     # sale = AddProperty.objects.all()

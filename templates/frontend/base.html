@@ -1,133 +1,203 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html class="no-js">
-	<head>
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en">
 
-    <title>
-        {% block title %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Ansonika">
+  <title>
 
-        {% endblock %}
-    </title>
+    {% block title%}
 
-	<link rel="stylesheet" href="{% static 'frontend/css/animate.css' %}">
-	<link rel="stylesheet" href="{% static 'frontend/css/icomoon.css' %}">
-	<link rel="stylesheet" href="{% static 'frontend/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'frontend/css/bootstrap.min.css' %}">
-	<link rel="stylesheet" href="{% static 'frontend/css/flexslider.css' %}">
-    <link rel="stylesheet" href="{% static 'frontend/css/font-awesome.min.css' %}">
-	<link rel="stylesheet" href="{% static 'frontend/css/style.css' %}">
-	<script src="{% static 'frontend/js/modernizr-2.6.2.min.js' %}"></script>
-	</head>
-	<body>
+    {% endblock%}
 
+</title>
 
-		<div id="fh5co-page">
-        {% if request.user.is_authenticated %}
-            <header id="fh5co-header" role="banner">
-                <div class="container pb-5">
-                    <div class="row">
-                        <div class="header-inner">
+  <!-- Favicons-->
+    <link rel="shortcut icon" href="{% static 'backend/img/galaxy.jfif' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'backend/img/apple-touch-icon-57x57-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{% static 'backend/img/apple-touch-icon-72x72-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{% static 'backend/img/apple-touch-icon-114x114-precomposed.png' %}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{% static 'backend/img/apple-touch-icon-144x144-precomposed.png' %}">
 
-                            <h1>
-                                <!-- <img src="{% static 'frontend/images/real.png' %}" style="width: 40px; height: 35px; padding-bottom: 4px; "> -->
-                                <a href="{% url 'index' %}" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique; color:#57d2ea ;">Real Estate<span style="color:#5bf498 ;">.</span></a>
-                            </h1>
-                            <nav role="navigation">
-                                {% url 'index' as Home %}
-                                {% url 'frontend:buy' as Buy %}
-                                {% url 'frontend:rent' as Rent %}
-                                {% url 'frontend:contact' as Contact %}
-                                {% url 'backend:dashboard' as Dash %}
-                                <ul>
-                                    <li {% if request.path == Home %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
-                                    <li {% if request.path == Buy %} class="active" {% endif %}><a href="{% url 'frontend:buy' %}">Buy</a></li>
-                                    <li {% if request.path == Rent %} class="active" {% endif %}><a href="{% url 'frontend:rent' %}">Rent</a></li>
-                                    <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact us</a></li>
-                                    <li><a href="{% url 'backend:logout_view' %}"><i class="icon-sign-out"></i>&nbsp;Logout</li>
-                                    <li {% if request.path == Dash %} class="active" {% endif %}><a href="{% url 'backend:dashboard' %}" class="icon-user" style="margin-left:px;">&nbsp;My Account</a></li>
+    <!-- GOOGLE WEB FONT -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
 
+    <!-- Bootstrap core CSS-->
+    <link href="{% static 'backend/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Main styles -->
+    <link href="{% static 'backend/css/admin.css' %}" rel="stylesheet">
+    <!-- Icon fonts-->
+    <link href="{% static 'backend/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <!-- Plugin styles -->
+    <link href="{% static 'backend/vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/vendor/dropzone.css' %}" rel="stylesheet">
+    <link href="{% static 'backend/css/date_picker.css' %}" rel="stylesheet">
+    <!-- WYSIWYG Editor -->
+    <link rel="stylesheet" href="{% static 'backend/js/editor/summernote-bs4.css' %}">
+    <!-- Your custom styles -->
+    <link href="{% static 'backend/css/custom.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'backend/vendor/bootstrap/css/bootstrap.css' %}">
+    <link href="{% static 'frontend/css/style.css' %}" rel="stylesheet">
+</head>
 
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
-         {% else %}
-            <header id="fh5co-header" role="banner">
-                <div class="container pb-5">
-                    <div class="row">
-                        <div class="header-inner">
-                            <h1><a href="{% url 'index' %}" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique; color:#57d2ea ;">Real Estate<span style="color:#5bf498 ;">.</span></a></h1>
-                            <nav role="navigation">
-                                {% url 'index' as Home %}
-                                {% url 'frontend:buy' as Buy %}
-                                {% url 'frontend:rent' as Rent %}
-                                {% url 'frontend:contact' as Contact %}
-                                {% url 'frontend:login' as Login %}
-                                <ul>
-                                    <li {% if request.path == Home %} class="active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
-                                    <li {% if request.path == Buy %} class="active" {% endif %}><a href="{% url 'frontend:buy' %}">Buy</a></li>
-                                    <li {% if request.path == Rent %} class="active" {% endif %}><a href="{% url 'frontend:rent' %}">Rent</a></li>
-                                    <li {% if request.path == Contact %} class="active" {% endif %}><a href="{% url 'frontend:contact' %}">Contact us</a></li>
-                                    <li {% if request.path == Login %} class="active" {% endif %}><a href="{% url 'backend:login_view' %}" class="icon-sign-in">&nbsp;Log in</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </header>
+<body class="fixed-nav sticky-footer" id="page-top">
+{% if request.user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+        <a class="navbar-brand" href="{% url 'index' %}" style="height: 36px; width: 150px;">REAL ESTATE</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            {% url 'index' as Home %}
+            {% url 'frontend:buy' as Buy %}
+            {% url 'frontend:rent' as Rent %}
+            {% url 'frontend:contact' as Contact %}
+            {% url 'backend:dashboard' as Dash %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" {% if request.path == Home %} class="active" {% endif %}>
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item" {% if request.path == Buy %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'frontend:buy' %}">Buy</a>
+                </li>
+                <li class="nav-item" {% if request.path == Rent %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'frontend:rent' %}">Rent</a>
+                </li>
+                <li class="nav-item" {% if request.path == Contact %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'frontend:contact' %}">Contact Us</a>
+                </li>
+                <li class="nav-item" {% if request.path == Dash %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'backend:dashboard' %}" class="fa fa-user" style="margin-left:px;">&nbsp;My Acccount</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                </li>
 
-        {% endif %}
+            </ul>
 
-                {% block content %}
-
-                {% endblock %}
-
-
-            <footer id="fh5co-footer" role="contentinfo">
-
-                <div class="container">
-                    <div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-                        <h3>About Us</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
-                        <p><a href="#" class="btn btn-primary btn-outline with-arrow btn-sm">I'm button <i class="icon-arrow-right"></i></a></p>
-                    </div>
-                    <div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-                        <h3>Our Services</h3>
-                        <ul class="float">
-                            <li><a href="#">Web Design</a></li>
-                            <li><a href="#">Branding &amp; Identity</a></li>
-                        </ul>
-                    </div>
-
-
-
-                    <div class="col-md-12 fh5co-copyright text-center">
-                        <p>&copy; 2021 Olamide Website.</p>
-                    </div>
-
-                </div>
-            </footer>
         </div>
+    </nav>
+{% else %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
+        <a class="navbar-brand" href="{% url 'index' %}" style="height: 36px; width: 150px;">REAL ESTATE</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            {% url 'index' as Home %}
+            {% url 'frontend:buy' as Buy %}
+            {% url 'frontend:rent' as Rent %}
+            {% url 'frontend:contact' as Contact %}
+            {% url 'backend:login' as Login %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" {% if request.path == Home %} class="active" {% endif %}>
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item" {% if request.path == Buy %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'frontend:buy' %}">Buy</a>
+                </li>
+                <li class="nav-item" {% if request.path == Rent %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'frontend:rent' %}">Rent</a>
+                </li>
+                <li class="nav-item" {% if request.path == Contact %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'frontend:contact' %}">Contact Us</a>
+                </li>
+                <li class="nav-item" {% if request.path == Login %} class="active" {% endif %}>
+                    <a class="nav-link" href="{%url 'backend:login_view' %}" class="fa fa-sign-in">&nbsp;Log in</a>
+                </li>
 
+            </ul>
 
-            <!-- jQuery -->
-            <script src="{% static 'frontend/js/jquery.min.js' %}"></script>
-            <!-- jQuery Easing -->
-            <script src="{% static 'frontend/js/jquery.easing.1.3.js' %}"></script>
-            <!-- Bootstrap -->
-            <script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
-            <!-- Waypoints -->
-            <script src="{% static 'frontend/js/jquery.waypoints.min.js' %}"></script>
-            <!-- Flexslider -->
-            <script src="{% static 'frontend/js/jquery.flexslider-min.js' %}"></script>
+        </div>
+    </nav>
+{% endif %}
+    {% block content %}
 
-            <!-- MAIN JS -->
-            <script src="{% static 'frontend/js/main.js' %}"></script>
+    {% endblock %}
 
-        </body>
-    </html>
+    <footer id="fh5co-footer" role="contentinfo">
 
+		<div class="container">
+			<div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>About Us</h3>
+				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow btn-sm">I'm button <i class="icon-arrow-right"></i></a></p>
+			</div>
+			<div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>Our Services</h3>
+				<ul class="float">
+					<li><a href="#">Web Design</a></li>
+					<li><a href="#">Branding &amp; Identity</a></li>
+
+                </ul>
+			</div>
+
+			<div class="col-md-12 fh5co-copyright text-center">
+				<p>&copy; 2021 Oluwagbemileke</p>
+			</div>
+
+		</div>
+	</footer>
+	</div>
+
+	<!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'backend/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'backend/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'backend/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="{% static 'backend/vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'backend/vendor/datatables/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'backend/vendor/datatables/dataTables.bootstrap4.js' %}"></script>
+	<script src="{% static 'backend/vendor/jquery.selectbox-0.2.js' %}"></script>
+	<script src="{% static 'backend/vendor/retina-replace.min.js' %}"></script>
+	<script src="{% static 'backend/vendor/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'backend/js/admin.js' %}"></script>
+	<!-- Custom scripts for this page-->
+	<script src="{% static 'backend/vendor/dropzone.min.js' %}"></script>
+	<script src="{% static 'backend/vendor/bootstrap-datepicker.js'  %}"></script>
+	<script>$('input.date-pick').datepicker();</script>
+	<!-- WYSIWYG Editor -->
+	<script src="{% static 'backend/js/editor/summernote-bs4.min.js' %}"></script>
+	<script>
+		$('.editor').summernote({
+		fontSizes: ['10', '14'],
+		toolbar: [
+		// [groupName, [list of button]]
+		['style', ['bold', 'italic', 'underline', 'clear']],
+		['font', ['strikethrough']],
+		['fontsize', ['fontsize']],
+		['para', ['ul', 'ol', 'paragraph']]
+		],
+			placeholder: 'Write here your description....',
+			tabsize: 2,
+			height: 200
+		});
+		</script>
+	</body>
+</html>
