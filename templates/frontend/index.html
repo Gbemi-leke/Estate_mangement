@@ -51,7 +51,7 @@ Home
 							<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
 								<div class="fh5co-property" style="min-height: 200px;">
 									<figure>
-										<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+										<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
 										<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 									</figure>
 									<div class="fh5co-property-innter">
@@ -84,7 +84,7 @@ Home
 					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
 						<div class="fh5co-property" style="min-height: 200px;">
 							<figure>
-								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+								<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
 								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 							</figure>
 							<div class="fh5co-property-innter">
@@ -116,7 +116,7 @@ Home
 					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
 						<div class="fh5co-property" style="min-height: 200px;">
 							<figure>
-								<img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12">
+								<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
 								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
 							</figure>
 							<div class="fh5co-property-innter">
@@ -171,11 +171,11 @@ Home
 			</div>
 		</div>
 
-		<div id="fh5co-agents">
+		<div id="fh5co-agents" style="background-color: black;">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 col-md-offset-2 text-center fh5co-heading animate-box" data-animate-effect="fadeIn">
-						<h2>Our Trusted Agents</h2>
+						<h2 style="color:#ffff !important;">Our Trusted Agents</h2>
 						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 					</div>
 					{% if agent %}

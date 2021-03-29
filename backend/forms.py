@@ -14,13 +14,13 @@ class RegisterForm(UserCreationForm):
         attrs={'class': 'form-control', 'placeholder': 'Enter Firstname'}))
     last_name = forms.CharField(required=False, widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Lastname'}))
-    username = forms.CharField(label='Username*', widget=forms.TextInput(
+    username = forms.CharField(label='Username', widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Username'}))
-    email = forms.EmailField(label='Email*', widget=forms.EmailInput
+    email = forms.EmailField(label='Email', widget=forms.EmailInput
         (attrs={'class': 'form-control', 'placeholder': 'Enter Email'}))
-    password1 = forms.CharField(label='Enter Password*', widget=forms.PasswordInput(
+    password1 = forms.CharField(label='Enter Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
-    password2 = forms.CharField(label='Confirm Password*', widget=forms.PasswordInput(
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
         attrs={'class': 'form-control', 'placeholder': 'Enter Password'}))
 
     # pst_image = forms.FileField(required=False)
