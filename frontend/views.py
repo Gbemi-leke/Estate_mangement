@@ -30,8 +30,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def index(request):
     profile =AddProperty.objects.order_by('-add_date')[:3]
-    featured=AddProperty.objects.order_by('-add_date')[:3]
-    sponsored =AddProperty.objects.order_by('-add_date')[:3]
+    featured=AddProperty.objects.all().filter(featured=True)[:3]
+    sponsored=AddProperty.objects.all().filter(sponsored=True)[:3]
     profile2 =Agents.objects.all()[:3]
     query_form = FilterForm()
     files = {'pro':profile,'featured':featured, 'sponsored':sponsored, 'agent':profile2, 'qf':query_form }

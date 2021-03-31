@@ -1,0 +1,30 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+{% block title%}
+Home
+{% endblock %}
+<body>
+	{% block content %}
+	
+	<div id="fh5co-page">
+		
+		<aside id="fh5co-hero" clsas="js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
+				<div class="container">
+				  	<div class="row">
+					  	<div class="col">
+							<h1 style="color: cadetblue;">Welcome to our Site</h1>
+						</div>
+					
+					</div>  
+				 
+				</div>
+			
+		</aside>
+		
+	</div>
+	{% endblock %}
+</body>
+</html>
+

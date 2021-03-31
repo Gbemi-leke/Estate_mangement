@@ -60,6 +60,9 @@
             {% url 'frontend:contact' as Contact %}
             {% url 'backend:dashboard' as Dash %}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="margin-right: 30px; font-size: 22px; ">
+                    <a href="{%url 'backend:dashboard' %}">Welcome {{ request.user.get_username }} </a>
+                  </li>
                 <li class="nav-item" {% if request.path == Home %} class="active" {% endif %}>
                     <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
@@ -140,7 +143,7 @@
 			</div>
 			
 			<div class="col-md-12 fh5co-copyright text-center">
-				<p>&copy; 2021 Oluwagbemileke</p>	
+				<p><a href="{%url 'backend:login2_view' %}">&copy; 2021 Oluwagbemileke</a></p>	
 			</div>
 			
 		</div>
@@ -165,6 +168,10 @@
         </div>
       </div>
     </div>
+
+    <script src="{% static 'frontend/js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'frontend/js/popper.min.js' %}"></script>
+	<script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'backend/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'backend/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

@@ -87,7 +87,7 @@ class EditUserForm(forms.ModelForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
-        user.agent_img = self.cleaned_data['agent_img']
+        # user.agent_img = self.cleaned_data['agent_img']
 
     
         if commit:
@@ -98,10 +98,13 @@ class ListingForm(forms.ModelForm):
 
     class Meta():
         model = AddProperty
-        fields = ['add_title', 'add_img', 'add_price','add_contact','add_desription','listing_type','sponsored','featured', 'offer_type',]
+        fields = ['add_title', 'add_img','img1','img2', 'img3','add_price','add_contact','add_desription','listing_type','sponsored','featured', 'offer_type',]
         exclude = ['date', 'user']
         widgets = { 
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
+            'img1': forms.FileInput(attrs={'class': 'form-control'}),
+            'img2': forms.FileInput(attrs={'class': 'form-control'}),
+            'img3': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.Select(attrs={'class': 'form-control'}),
             'listing_type': forms.Select(attrs={'class': 'form-control'}),
@@ -117,10 +120,14 @@ class EditListing(forms.ModelForm):
 
     class Meta():
         model = AddProperty
+        fields = ['add_title', 'add_img','img1','img2', 'img3','add_price','add_contact','add_desription','listing_type','sponsored','featured', 'offer_type',]
         exclude = ['date', 'user']
 
         widgets = { 
             'add_img': forms.FileInput(attrs={'class': 'form-control'}),
+            'img1': forms.FileInput(attrs={'class': 'form-control'}),
+            'img2': forms.FileInput(attrs={'class': 'form-control'}),
+            'img3': forms.FileInput(attrs={'class': 'form-control'}),
             'add_title': forms.TextInput(attrs={'class': 'form-control'}),
             'add_price': forms.Select(attrs={'class': 'form-control'}),
             'listing_type': forms.Select(attrs={'class': 'form-control'}),

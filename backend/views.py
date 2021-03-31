@@ -71,14 +71,27 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password, fail_silently=True)
+        user = authenticate(request, username=username, password=password)  
+
+        if user is not None:
+            login(request, user)
+            return render(request, 'backend/user.html')
+        else:
+            messages.error(request, 'Username and Password do not match')    
+    return render(request, 'frontend/login.html')
+
+def login2_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
             return redirect('index')
         else:
             messages.error(request, 'Username and Password do not match')    
-    return render(request, 'frontend/login.html')
+    return render(request, 'frontend/login2.html')
 
 
 def logout_view(request):

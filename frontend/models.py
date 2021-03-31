@@ -115,8 +115,11 @@ class AddProperty(models.Model):
          (SEVEN77, ' 5 Million'),
          (CHOOSE, 'Please Choose')
     ]
-    add_img = models.ImageField(blank=True, verbose_name='Profile Image', null=True, upload_to='uploads/' )
-    add_title = models.CharField(max_length=100, verbose_name='Profile Title')
+    add_img = models.ImageField(blank=True, verbose_name='Property image', null=True, upload_to='uploads/' )
+    img1 = models.ImageField(blank=True, verbose_name='Other Images', null=True, upload_to='uploads/' )
+    img2 = models.ImageField(blank=True, verbose_name='Other Images', null=True, upload_to='uploads/' )
+    img3 = models.ImageField(blank=True, verbose_name='Other Images', null=True, upload_to='uploads/' )
+    add_title = models.CharField(max_length=100, verbose_name='Property Name')
     add_price = models.CharField(max_length=40, choices=PRICE, default=CHOOSE)
     listing_type = models.CharField(max_length=40, choices=PROPERTY_TYPE, default=CHOOSE)
     add_desription = models.TextField(verbose_name='Description')
@@ -124,8 +127,8 @@ class AddProperty(models.Model):
     add_date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     offer_type = models.CharField(max_length=40, choices=OFFER_TYPE, default=CHOOSE)
-    sponsored = models.BooleanField(default=False, blank=True)
-    featured = models.BooleanField(default=False, blank=True)
+    sponsored =models.BooleanField()
+    featured = models.BooleanField()
     
 
     class Meta():
