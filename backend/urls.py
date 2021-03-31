@@ -6,6 +6,7 @@ app_name = 'backend'
 
 urlpatterns = [
     path('login/', views.login_view, name='login_view'),
+    path('login-admin/', views.login2_view, name='login2_view'),
     path('logout_view-page/', views.logout_view, name='logout_view'),
     path('password_reset/', views.password_reset_request, name='password_reset_request'),
     path('dashboard-page/', views.dashboard, name='dashboard'),

@@ -57,10 +57,19 @@
   </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" style="margin-right: 30px; font-size: 22px; ">
-          Welcome {{ request.user.get_username }} 
+          <a href="{%url 'backend:dashboard' %}">Welcome {{ request.user.get_username }} </a>
         </li>
-        <li class="nav-item" style="margin-right: 30px;">
-          <img src="{{ user.user_image }}" class="img-circle">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'frontend:buy' %}">Buy</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'frontend:rent' %}">Rent</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'frontend:contact' %}">Contact Us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

@@ -10,13 +10,13 @@
   <meta name="description" content="">
   <meta name="author" content="Ansonika">
   <title>
-
+      
     {% block title%}
 
     {% endblock%}
 
 </title>
-
+	
   <!-- Favicons-->
     <link rel="shortcut icon" href="{% static 'backend/img/galaxy.jfif' %}" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'backend/img/apple-touch-icon-57x57-precomposed.png' %}">
@@ -26,7 +26,7 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
-
+        
     <!-- Bootstrap core CSS-->
     <link href="{% static 'backend/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Main styles -->
@@ -46,19 +46,23 @@
 </head>
 
 <body class="fixed-nav sticky-footer" id="page-top">
+
 {% if request.user.is_authenticated %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
-        <a class="navbar-brand" href="{% url 'index' %}" style="height: 36px; width: 150px;">REAL ESTATE</a>
+        <a class="navbar-brand" href="{% url 'index' %}" style="height: 36px; width: 150px; margin-left:100px;">REAL ESTATE</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="margin-right: 100px;">
             {% url 'index' as Home %}
             {% url 'frontend:buy' as Buy %}
             {% url 'frontend:rent' as Rent %}
             {% url 'frontend:contact' as Contact %}
             {% url 'backend:dashboard' as Dash %}
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="margin-right: 30px; font-size: 22px; ">
+                    <a href="{%url 'backend:dashboard' %}">Welcome {{ request.user.get_username }} </a>
+                  </li>
                 <li class="nav-item" {% if request.path == Home %} class="active" {% endif %}>
                     <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
@@ -78,18 +82,18 @@
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-fw fa-sign-out"></i>Logout</a>
                 </li>
-
-            </ul>
-
+                
+            </ul> 
+        
         </div>
     </nav>
 {% else %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
-        <a class="navbar-brand" href="{% url 'index' %}" style="height: 36px; width: 150px;">REAL ESTATE</a>
+        <a class="navbar-brand" href="{% url 'index' %}" style="height: 36px; width: 150px; margin-left: 100px;">REAL ESTATE</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
+        <div class="collapse navbar-collapse" id="navbarResponsive" style="margin-right: 100px;">
             {% url 'index' as Home %}
             {% url 'frontend:buy' as Buy %}
             {% url 'frontend:rent' as Rent %}
@@ -111,9 +115,9 @@
                 <li class="nav-item" {% if request.path == Login %} class="active" {% endif %}>
                     <a class="nav-link" href="{%url 'backend:login_view' %}" class="fa fa-sign-in">&nbsp;Log in</a>
                 </li>
-
-            </ul>
-
+                
+            </ul> 
+        
         </div>
     </nav>
 {% endif %}
@@ -122,7 +126,7 @@
     {% endblock %}
 
     <footer id="fh5co-footer" role="contentinfo">
-
+	
 		<div class="container">
 			<div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 				<h3>About Us</h3>
@@ -134,18 +138,18 @@
 				<ul class="float">
 					<li><a href="#">Web Design</a></li>
 					<li><a href="#">Branding &amp; Identity</a></li>
-
+					
                 </ul>
 			</div>
-
+			
 			<div class="col-md-12 fh5co-copyright text-center">
-				<p>&copy; 2021 Oluwagbemileke</p>
+				<p><a href="{%url 'backend:login2_view' %}">&copy; 2021 Oluwagbemileke</a></p>	
 			</div>
-
+			
 		</div>
 	</footer>
 	</div>
-
+	
 	<!-- Logout Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -164,6 +168,10 @@
         </div>
       </div>
     </div>
+
+    <script src="{% static 'frontend/js/jquery-3.3.1.min.js' %}"></script>
+	<script src="{% static 'frontend/js/popper.min.js' %}"></script>
+	<script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'backend/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'backend/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

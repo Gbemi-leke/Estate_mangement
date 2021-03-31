@@ -112,28 +112,26 @@ Home
 					<h1 class='text-center '>Featured Properties</h1>
 				</div>
 				{% if featured %}
-					{% for p in featured %}
-					<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
-						<div class="fh5co-property" style="min-height: 200px;">
-							<figure>
-								<a href="{% url 'frontend:detail_buy' p.id %}"><img src="{{ p.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
-								<a href="{% url 'frontend:detail_buy' p.id %}" class="tag">{{p.pro_sale }}</a>
-							</figure>
-							<div class="fh5co-property-innter">
-								<h3><a href="{% url 'frontend:detail_buy' p.id %}">{{p.add_title }}</a></h3>
-								<div class="price-status">
-								<span class="price">&#8358;{{p.add_price }} </span>
+					{% for f in featured %}
+						<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn" style="min-height: 200px;">
+							<div class="fh5co-property" style="min-height: 200px;">
+								<figure>
+									<a href="{% url 'frontend:detail_buy' f.id %}"><img src="{{ f.add_img.url }}" alt="Free Website Templates FreeHTML5.co" class="img-responsive col-lg-12"></a>
+									<a href="{% url 'frontend:detail_buy' f.id %}" class="tag">{{f.pro_sale }}</a>
+								</figure>
+								<div class="fh5co-property-innter">
+									<h3><a href="{% url 'frontend:detail_buy' f.id %}">{{f.add_title }}</a></h3>
+									<div class="price-status">
+									<span class="price">&#8358;{{f.add_price }} </span>
+								</div>
+								<p>{{f.add_desription|truncatewords:40 }}</p>
+								<p>Contact Us:&nbsp; {{ f.add_contact }}</p>
+								</div>
+								<p class="fh5co-property-specification">
+									{{f.add_date }}
+								</p>
 							</div>
-							<p>{{p.add_desription|truncatewords:40 }}</p>
-							<p>Contact Us:&nbsp; {{ p.add_contact }}</p>
-							</div>
-							<p class="fh5co-property-specification">
-								{{p.add_date }}
-							</p>
 						</div>
-
-						
-					</div>
 					{% endfor %}
 				{% endif %}
 			</div>

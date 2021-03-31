@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import UpdateView 
 
 from django.contrib import messages
 
@@ -63,7 +63,7 @@ def password_reset_request(request):
 def dashboard(request):
     if request.user.is_staff:
         return render(request, 'backend/index.html')
-    else:
+    else: 
         return render(request, 'backend/user.html')
 
 
@@ -71,13 +71,27 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password, fail_silently=False)
+        user = authenticate(request, username=username, password=password)  
+
+        if user is not None:
+            login(request, user)
+            return render(request, 'backend/user.html')
+        else:
+            messages.error(request, 'Username and Password do not match')    
+    return render(request, 'frontend/login.html')
+
+def login2_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
             return redirect('index')
-
-    return render(request, 'frontend/login.html')
+        else:
+            messages.error(request, 'Username and Password do not match')    
+    return render(request, 'frontend/login2.html')
 
 
 def logout_view(request):
@@ -96,7 +110,7 @@ def success_message(request):
 #             listf.user = request.user
 #             listf.save()
 #             return redirect('backend:add_newlisting')
-
+            
 #     else:
 #         list_form = ListingForm()
 #     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
@@ -110,7 +124,7 @@ def add_agent(request):
             agent.user = request.user
             agent.save()
             return redirect('backend:add_agent')
-
+            
     else:
         view_form = AgentForm()
     return render(request, 'backend/add_agent.html', {'agent': view_form})
@@ -144,7 +158,7 @@ def edit_newlisting(request, post_id):
             listf.user = request.user
             listf.save()
             return redirect('backend:new_listings')
-
+            
     else:
         post_form = EditListing(instance=single_post)
     return render(request, 'backend/edit_post.html', {'editf': post_form})
@@ -154,7 +168,7 @@ def edit_newlisting(request, post_id):
 def new_listings(request):
     hotel_list = AddProperty.objects.filter(user=request.user)
     return render(request, 'backend/newlistings.html', {'hlist':hotel_list})
-
+    
 @login_required(login_url='/backend/login/')
 def view_newlistingdetails(request, pk):
     post = get_object_or_404(AddProperty, pk=pk)
@@ -174,7 +188,7 @@ def register_form(request):
             # messages.success(request, 'Succesfully Registered')
             return redirect('backend:success_message')
     else:
-        register_form = RegisterForm()
+        register_form = RegisterForm() 
     return render(request, 'frontend/signup.html', {'reg': register_form})
 
 
@@ -251,12 +265,12 @@ def pass_form(request):
 @login_required(login_url='/backend/login/')
 def list_users(request):
     show_user = User.objects.all().order_by('last_name')
-    return render(request, 'backend/view-users.html', {'users':show_user})
+    return render(request, 'backend/view-users.html', {'users':show_user})  
 
 @login_required(login_url='/backend/login/')
 def list_all_post(request):
     show_post = AddProperty.objects.all().order_by('-add_date')
-    return render(request, 'backend/view-all-post.html', {'post':show_post})
+    return render(request, 'backend/view-all-post.html', {'post':show_post})  
 
 @login_required(login_url='/backend/login/')
 def delete_upload(request, del_id):
