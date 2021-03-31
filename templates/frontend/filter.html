@@ -11,7 +11,7 @@ Post List
         <div class="container">
             <div class="row">
                 <div class="col-md-12 animate-box">
-                    <h1 style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;"><span class="colored">Filter</span> Result</h1>
+                    <h1 style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;color:#ffff !important;"><span class="colored">Filter</span> Result</h1>
                 </div>
             </div>
         </div>
@@ -29,16 +29,16 @@ Post List
                                         <div class="thumbnail">
                                             <a href="{% url 'frontend:detail_buy' p.id %}">
                                                 <img src="{{ p.add_img.url }}" class="img-responsive col-lg-12" >
-                                                <h1 style="text-align: center; font-size: 40px; text-decoration: none !important; padding-top: 10px; color: cadetblue; 
+                                                <h1 style="text-align: center; font-size: 40px; text-decoration: none !important; padding-top: 10px; color: cadetblue;
                                                 font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">{{ p.add_title }}</h1>
                                             </a>
-                                            
+
                                         </div>
-                                    </div> 
+                                    </div>
                                     <div class="col-md-8 col-sm-8">
                                         <div class="blog-content">
                                             <p>
-                                            Time:{{ p.add_date|date:'H:i a' }}, 
+                                            Time:{{ p.add_date|date:'H:i a' }},
                                             Posted By: <span style="color: blue !important;">{{ p.user.username }}</span>.
                                             </p>
                                             <h1 style="color:#5de8df; font-size: 35px;">{{ p.listing_type }}</h1>
@@ -49,7 +49,7 @@ Post List
                                         </div>
                                     </div>
                                 </div>
-                            <!-- END OF BLOG ROW 1 --> 
+                            <!-- END OF BLOG ROW 1 -->
                             </div>
                             <!-- END OF ASIDE CONTENT -->
                         </div>
