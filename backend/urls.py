@@ -31,5 +31,7 @@ urlpatterns = [
     path('list-users/', views.list_users, name='list_users'),
     path('list-all-post/', views.list_all_post, name='list_all_post'),
     path('delete_upload/<int:del_id>', views.delete_upload, name='delete_upload'),
+    # path('reset-password/',auth_views.PasswordResetView.as_view(template_name='registration/reset-password.html', email_template_name='registration/password-reset-email.html', success_url = reverse_lazy('backend:password_reset_done'), form_class=PasswordReset), name='password_reset'),
+    # path('password-reset/<uidb64>/<token>/',auth_views.PasswordResetConfirmView.as_view(template_name='registration/password-confirm-form.html',form_class=SetPassword, success_url = reverse_lazy('backend:password_reset_complete')), name='password_reset_confirm'),
    
 ]

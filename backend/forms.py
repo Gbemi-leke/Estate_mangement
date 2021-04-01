@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.forms import(PasswordResetForm, SetPasswordForm, PasswordChangeForm, UserChangeForm, UserCreationForm)
 
 
 
@@ -25,9 +26,6 @@ class RegisterForm(UserCreationForm):
 
     # pst_image = forms.FileField(required=False)
         
-    botfield = forms.CharField(required=False, widget=forms.HiddenInput(),
-                               validators=[validators.MaxLengthValidator(0)])
-
     def clean_email(self):
         email_field = self.cleaned_data.get('email')
         if User.objects.filter(email=email_field).exists():
@@ -308,3 +306,19 @@ class FilterForm(forms.ModelForm):
     class Meta():
         fields = ['listing_type', 'offer_type', 'add_price']
         model = AddProperty
+
+
+
+
+class PasswordReset(PasswordResetForm):
+    email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg', 'placeholder':'Email'}))
+    
+class SetPassword(SetPasswordForm):
+    new_password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control form-control-lg', 'placeholder':'New Password'}))
+    new_password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control form-control-lg', 'placeholder':'Confirm Password'}))
+
+class ChangePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(label='Old Password', widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Old Password'}))
+    new_password1 = forms.CharField(label='New Password', widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'New Password'}))
+    new_password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Confirm Password'}))
+    botcatcher = forms.CharField(required=False, widget=forms.HiddenInput, validators=[validators.MaxLengthValidator(0)])

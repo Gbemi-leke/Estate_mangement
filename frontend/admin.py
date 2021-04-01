@@ -5,5 +5,5 @@ from frontend.models import *
 admin.site.register(Agents)
 admin.site.register(AddProperty)
 admin.site.register(Location)
-admin.site.register(UserProfile)
+admin.site.register(Profile)
 admin.site.site_header = 'Real Estate'

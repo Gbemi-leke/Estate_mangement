@@ -1,0 +1,28 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+<!Doctype html>
+{% block title %}
+Activation 
+{% endblock %}
+
+{% block content %}
+		<div class="fh5co-page-title"  style="background-image: url({% static 'frontend/images/home.jpg' %});">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 animate-box" >
+						<h1 style="color: #ffff !important;"><span class="colored">Mail</span>&nbsp; Sent&nbsp;<i class="fa fa-fw fa-envelope-open"></i></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="best-deal">
+			<div class="container p-5 ">
+				<div class="row">
+					<h2 class="font-weight-bold mt-3">Activation link sent! Please check your mail</h2>	
+				</div>
+			</div>
+		</div>
+
+
+{% endblock%}
