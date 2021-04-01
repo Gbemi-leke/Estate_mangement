@@ -19,6 +19,8 @@ from django.contrib.auth import views as auth_views
 from frontend import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import url
+from backend.views import activation_sent_view, activate
 
 urlpatterns = [
     path('', views.index, name='index'),
@@ -28,6 +30,8 @@ urlpatterns = [
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='backend/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='backend/password_reset_confirm.html'), name='password_reset_confirm'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='backend/password_reset_complete.html'), name='password_reset_complete'),
+    path('sent/', activation_sent_view, name="activation_sent"),
+    path('activate/<slug:uidb64>/<slug:token>/', activate, name='activate'),
     path('admin/', admin.site.urls),
 ]
 if settings.DEBUG:

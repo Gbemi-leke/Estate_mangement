@@ -27,6 +27,21 @@ from django.utils.encoding import force_bytes
 from frontend.models import *
 from backend.forms import *
 
+# signUp
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_text
+from django.contrib.auth.models import User
+from django.db import IntegrityError
+from django.utils.http import urlsafe_base64_decode
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from backend.tokens import account_activation_token
+from .tokens import account_activation_token
+from django.template.loader import render_to_string
+#end
+
 # Create your views here.
 
 
@@ -43,7 +58,7 @@ def password_reset_request(request):
 					c = {
 					"email":user.email,
 					'domain':'127.0.0.1:8000',
-					'site_name': 'Website',
+					'site_name': 'Real Estate',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
 					'token': default_token_generator.make_token(user),
@@ -51,7 +66,7 @@ def password_reset_request(request):
 					}
 					email = render_to_string(email_template_name, c)
 					try:
-						send_mail(subject, email, 'leke.olamide123@gmail.com' , [user.email], fail_silently=True)
+						send_mail(subject, email, 'leke.olamide123@gmail.com' , [user.email], fail_silently=False)
 					except BadHeaderError:
 						return HttpResponse('Invalid header found.')
 					return redirect ("/password_reset/done/")
@@ -101,19 +116,7 @@ def logout_view(request):
 def success_message(request):
     return render(request, 'backend/success.html')
 
-@login_required(login_url='/backend/login/')
-# def add_newlisting(request):
-#     if request.method == 'POST':
-#         list_form = ListingForm(request.POST, request.FILES, fail_silently=True)
-#         if list_form.is_valid():
-#             listf = list_form.save(commit=False)
-#             listf.user = request.user
-#             listf.save()
-#             return redirect('backend:add_newlisting')
-            
-#     else:
-#         list_form = ListingForm()
-#     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
+
 
 @login_required(login_url='/backend/login/')
 def add_agent(request):
@@ -181,15 +184,55 @@ def delete_newproperty(request, listf_id):
     return redirect('backend:new_listings')
 
 def register_form(request):
-    if request.method == 'POST':
-        register_form = RegisterForm(request.POST)
-        if register_form.is_valid():
-            register_form.save()
-            # messages.success(request, 'Succesfully Registered')
-            return redirect('backend:success_message')
+    if request.method  == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()
+            user.profile.first_name = form.cleaned_data.get('first_name')
+            user.profile.last_name = form.cleaned_data.get('last_name')
+            user.profile.email = form.cleaned_data.get('email')
+            # user can't login until link confirmed
+            user.is_active = False
+            user.save()
+            current_site = get_current_site(request)
+            subject = 'Please Activate Your Account'
+            # load a template like get_template() 
+            # and calls its render() method immediately.
+            message = render_to_string('backend/activation_request.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                # method will generate a hash value with user related data
+                'token': account_activation_token.make_token(user),
+            })
+            user.email_user(subject, message)
+            return redirect('activation_sent')
+
+            # messages.success(request, 'User Registered')
     else:
-        register_form = RegisterForm() 
-    return render(request, 'frontend/signup.html', {'reg': register_form})
+        form = RegisterForm()
+    return render(request, 'frontend/signup.html', {'reg':form})
+def activation_sent_view(request):
+    return render(request, 'backend/activation_sent.html')
+
+def activate (request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    # checking if the user exists, if the token is valid.
+    if user is not None and account_activation_token.check_token(user, token):
+        # if valid set active true 
+        user.is_active = True
+        # set signup_confirmation true
+        user.profile.signup_confirmation = True
+        user.save()
+        login(request, user)
+        return redirect('backend:login_view')
+    else:
+        return render(request, 'backend/activation_invalid.html')
 
 
 @login_required(login_url='/backend/login/')

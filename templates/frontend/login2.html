@@ -34,11 +34,11 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-form-title" style="background-image: url({% static 'login/images/bg-01.jpg' %});">
+				<a href="{% url 'index' %}"><div class="login100-form-title" style="background-image: url({% static 'login/images/bg-01.jpg' %});">
 					<span class="login100-form-title-1">
 						Sign In
 					</span>
-				</div>
+				</div></a>
 
 				<form class="login100-form validate-form" method='post' class="form">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
@@ -62,7 +62,7 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt1">
+							<a href="{%url 'backend:password_reset_request' %}" class="txt1">
 								Forgot Password?
 							</a>
 						</div>

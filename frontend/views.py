@@ -130,7 +130,7 @@ def contact2(request, agent_id):
         html_message =render_to_string('frontend/mail-template1.html', context)
         plain_message = strip_tags(html_message)
         from_email = ' Real Estate<leke.olamide123@gmail.com>'
-        send =  mail.send_mail(subject, plain_message, from_email, ['leke.olamide123@gmail.com', email], html_message=html_message, fail_silently=True)
+        send =  mail.send_mail(subject, plain_message, from_email, ['leke.olamide123@gmail.com'], html_message=html_message, fail_silently=True)
         if send:
             messages.success(request, 'Email sent sucessfully')
         else:
