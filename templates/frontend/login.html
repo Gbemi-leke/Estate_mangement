@@ -8,7 +8,7 @@ Home
 
   <body>
     {% block content %}
-      <div class="container-fluid js-fullheight" style="background-image: url(images/bg-6.jpg); background-repeat: no-repeat; background-size: cover;" >
+      <div class="container-fluid js-fullheight" style="background-image: url({% static 'frontend/images/bg-6.jpg' %}); background-repeat: no-repeat; background-size: cover;" >
         <div class="row">
           <div class="col-sm-4 col-sm-offset-4 pb-5" style="margin-top:60px;">
             <div class="login-form bg-primary" style="border-radius:10px; padding: 20px; border-radius: 10px;">
@@ -16,6 +16,11 @@ Home
                 <h1 style="font-family: monospace;">Login</h1>
               </div>
               <form method='post' action="" class="form">
+                {% if messages %}
+                  {% for mes in messages %}
+                    <div class="alert {{ mes.tags }}">{{ mes }}</div>
+                  {% endfor %}
+                {% endif %}
                 <div class="form-group">
                   <label>Username</label>
                   <input type="text" name="username" placeholder="Username" class="form-control" style="border-radius:10px; background-color: rgb(255, 255, 255);">

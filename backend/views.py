@@ -45,6 +45,7 @@ from django.template.loader import render_to_string
 # Create your views here.
 
 
+
 def password_reset_request(request):
 	if request.method == "POST":
 		password_reset_form = PasswordResetForm(request.POST)
@@ -57,7 +58,7 @@ def password_reset_request(request):
 					email_template_name = "backend/password_reset_email.txt"
 					c = {
 					"email":user.email,
-					'domain':'127.0.0.1:8000',
+					'domain':current_site.domain,
 					'site_name': 'Real Estate',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
@@ -160,12 +161,12 @@ def edit_newlisting(request, post_id):
             listf = post_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            return redirect('backend:new_listings')
-            
+            messages.success(request, 'Successfully edited.')
+
     else:
         post_form = EditListing(instance=single_post)
     return render(request, 'backend/edit_post.html', {'editf': post_form})
-
+            
 
 @login_required(login_url='/backend/login/')
 def new_listings(request):
@@ -213,6 +214,7 @@ def register_form(request):
     else:
         form = RegisterForm()
     return render(request, 'frontend/signup.html', {'reg':form})
+
 def activation_sent_view(request):
     return render(request, 'backend/activation_sent.html')
 
@@ -243,14 +245,13 @@ def add_newlisting(request):
             listf = list_form.save(commit=False)
             listf.user = request.user
             listf.save()
-            return redirect('backend:add_newlisting')
+            messages.success(request, 'Add successfully.')
     else:
         list_form = ListingForm()
     return render(request, 'backend/add-newlisting.html', {'listf': list_form})
 
 
-def messages(request):
-    return render(request, 'backend/messages.html')
+
 
 @login_required(login_url='/backend/login/')
 def user_profile(request):
@@ -262,7 +263,7 @@ def edit_form(request):
         edit_form = EditUserForm(request.POST, instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
-            # messages.success(request, 'User edited successfully.')
+            messages.success(request, 'User edited successfully.')
     else:
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit_user_profile.html', {'edit_key':edit_form})
@@ -273,10 +274,11 @@ def edit_newform(request):
         edit_form = EditUserForm(request.POST, instance=request.user)
         if edit_form.is_valid():
             edit_form.save()
-            # messages.success(request, 'User edited successfully.')
+            messages.success(request, 'User edited successfully.')
     else:
         edit_form = EditUserForm(instance=request.user)
     return render(request, 'backend/edit_newuser_profile.html', {'edit_key':edit_form})
+
 
 @login_required(login_url='/backend/login/')
 def reset(request):
@@ -286,7 +288,7 @@ def reset(request):
         if pass_form.is_valid():
             pass_form.save()
             update_session_auth_hash(request, pass_form.user)
-            # messages.success(request, 'Password changed successfully.')
+            messages.success(request, 'Password changed successfully.')
     else:
         pass_form = PasswordChangeForm(user=request.user)
     return render(request, 'backend/reset.html', {'pass_key':pass_form})
@@ -299,7 +301,7 @@ def pass_form(request):
         if pass_form.is_valid():
             pass_form.save()
             update_session_auth_hash(request, pass_form.user)
-            # messages.success(request, 'Password changed successfully.')
+            messages.success(request, 'Password changed successfully.')
     else:
         pass_form = PasswordChangeForm(user=request.user)
     return render(request, 'backend/pass_form.html', {'pass_key':pass_form})

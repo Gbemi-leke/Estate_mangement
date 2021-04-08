@@ -140,6 +140,22 @@ class AddProperty(models.Model):
     def __str__(self):
         return self.add_title
 
+    def img_url(self):
+        if self.add_img:
+            return self.add_img.url
+
+    def img1_url(self):
+        if self.img1:
+            return self.img1.url
+
+    def img2_url(self):
+        if self.img2:
+            return self.img2.url
+
+    def img3_url(self):
+        if self.img3:
+            return self.img3.url
+
 
 class Location(models.Model):
     location_name = models.CharField(max_length=100, verbose_name='Location Nmae')
@@ -167,3 +183,4 @@ def create_user_profile(sender, instance, created, **kwargs):
         instance.profile.save()
     except ObjectDoesNotExist:
         Profile.objects.create(user=instance)
+
