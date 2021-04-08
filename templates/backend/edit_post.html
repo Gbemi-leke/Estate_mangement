@@ -32,7 +32,12 @@ Home
                         </div>
                         <div class="row">
                             <div  class="form-group col-lg-6">
-                                <form method="post" required enctype="multipart/form-data">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% if messages %}
+                                        {% for mes in messages %}
+                                        <div class="alert {{ mes.tags }}">{{ mes }}</div>
+                                        {% endfor %}
+                                    {% endif %}
                                     {{ editf.as_p }}
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger">Save</button>

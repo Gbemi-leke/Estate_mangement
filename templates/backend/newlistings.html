@@ -44,7 +44,7 @@ Home
                                     <li>
                                         {% if hlist %}
                                             {% for h in hlist %}
-                                                <figure><img src="{{ h.add_img.url }}" alt="" ></figure>
+                                                <figure><img src="{{ h.img_url }}" alt="" ></figure>
                                                 <small>Property</small>
                                                 <h4>{{ h.add_title }}</h4>
                                                 <p>{{ h.add_desription|truncatewords:50 }}</p>

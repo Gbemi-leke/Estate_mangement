@@ -54,7 +54,7 @@ Listing
                                   <td>{{ u.listing_type }}</td>
                                   <td>{{ u.add_price}}</td>
                                   <td>{{ u.add_date  }}</td>
-                                  <td><img src="{{ u.add_img.url }}" width="30" height="30" alt=""></td>
+                                  <td><img src="{{ u.img_url }}" width="30" height="30" alt=""></td>
                                   <td>{{ u.user.username }}</td>
                                   <td>
                                     <a href="{%url 'backend:delete_upload' u.id %}" class="fa fa-fw fa-times-circle-o" style="color: red !important;">&nbsp;Delete</a>

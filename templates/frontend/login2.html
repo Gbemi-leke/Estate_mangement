@@ -41,6 +41,11 @@
 				</div></a>
 
 				<form class="login100-form validate-form" method='post' class="form">
+					{% if messages %}
+						{% for mes in messages %}
+							<div class="alert {{ mes.tags }}">{{ mes }}</div>
+						{% endfor %}
+					{% endif %}
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input type="text" name="username" placeholder="Username" class="form-control" placeholder="Enter username">

@@ -82,6 +82,7 @@ def buy(request):
 
 def detail_buy(request, buy_id):
     detail =AddProperty.objects.get(id=buy_id)
+    agent_email = detail.user.email
     if request.method =='POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -92,7 +93,7 @@ def detail_buy(request, buy_id):
         html_message =render_to_string('frontend/mail-template2.html', context)
         plain_message = strip_tags(html_message)
         from_email = 'Client <leke.olamide123@gmail.com>'
-        send =  mail.send_mail(subject, plain_message, from_email, ['leke.olamide123@gmail.com', email], html_message=html_message, fail_silently=True)
+        send =  mail.send_mail(subject, plain_message, from_email, [agent_email], html_message=html_message, fail_silently=True)
         if send:
             messages.success(request, 'Email sent sucessfully')
         else:

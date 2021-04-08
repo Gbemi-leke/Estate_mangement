@@ -19,7 +19,6 @@ urlpatterns = [
     path('edit_newform-page/', views.edit_newform, name='edit_newform'),
     path('pass_form-page/', views.pass_form, name='pass_form'),
     path('reset/', views.reset, name='reset'),
-    path('messages-page/', views.messages, name='messages'),
     path('success-message/', views.success_message, name='success_message'),
     path('register-page/', views.register_form, name='register_form'),
     path('logout/', views.logout_view, name='logout_view'),
