@@ -138,18 +138,19 @@ class EditListing(forms.ModelForm):
 
 class PasswordChangeForm(PasswordChangeForm):
 
+    old_password = forms.CharField(label='Old password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Password'}))
+    new_password1 = forms.CharField(label='New password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Password'}))
+    new_password2= forms.CharField(label='Confirm Password', widget=forms.PasswordInput(
+        attrs={'class':'form-control', 'placeholder':'Enter Password'}))
+
     botfield = forms.CharField(required=False, widget=forms.HiddenInput(),
                                validators=[validators.MaxLengthValidator(0)])
 
     class Meta():
         model = User
         fields = ['password1', 'password2']
-
-        widgets = {
-                'password1': forms.NumberInput(attrs={'class': 'form-control'}),
-                'password2': forms.NumberInput(attrs={'class': 'form-control'}),
-
-            }
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -310,7 +311,7 @@ class FilterForm(forms.ModelForm):
 
 
 
-class PasswordReset(PasswordResetForm):
+class PasswordResetForm(PasswordResetForm):
     email = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control form-control-lg', 'placeholder':'Email'}))
 
 class SetPassword(SetPasswordForm):

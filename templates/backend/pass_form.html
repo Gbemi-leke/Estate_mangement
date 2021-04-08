@@ -25,20 +25,23 @@ Change Password
                         <div class="alert alert-success">{{ message }}</div>
                     {% endfor %}
                 {% endif %}
-                
+
                 <form method="post" >
                     {% csrf_token %}
                     {{ pass_key.as_p }}
                         <input type="submit" value="Change Password" class="btn btn-success">
                 </form>
+                <!--<div class="pt-4">-->
+                <!--   <input type="submit" value="Forgotten Password?" class="btn btn-warning">-->
+                <!--</div>-->
             </div>
-            
+
 
         </div>
     </div>
-    		
-            
-        
-       
+
+
+
+
 {% endblock %}
 </body>

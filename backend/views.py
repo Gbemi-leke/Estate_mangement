@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.generic.edit import UpdateView 
+from django.views.generic.edit import UpdateView
 
 from django.contrib import messages
 
@@ -57,7 +57,7 @@ def password_reset_request(request):
 					email_template_name = "backend/password_reset_email.txt"
 					c = {
 					"email":user.email,
-					'domain':'127.0.0.1:8000',
+					'domain':current_site.domain,
 					'site_name': 'Real Estate',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
@@ -78,7 +78,7 @@ def password_reset_request(request):
 def dashboard(request):
     if request.user.is_staff:
         return render(request, 'backend/index.html')
-    else: 
+    else:
         return render(request, 'backend/user.html')
 
 
@@ -86,13 +86,13 @@ def login_view(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)  
+        user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
             return render(request, 'backend/user.html')
         else:
-            messages.error(request, 'Username and Password do not match')    
+            messages.error(request, 'Username and Password do not match')
     return render(request, 'frontend/login.html')
 
 def login2_view(request):
@@ -105,7 +105,7 @@ def login2_view(request):
             login(request, user)
             return redirect('index')
         else:
-            messages.error(request, 'Username and Password do not match')    
+            messages.error(request, 'Username and Password do not match')
     return render(request, 'frontend/login2.html')
 
 
@@ -127,7 +127,7 @@ def add_agent(request):
             agent.user = request.user
             agent.save()
             return redirect('backend:add_agent')
-            
+
     else:
         view_form = AgentForm()
     return render(request, 'backend/add_agent.html', {'agent': view_form})
@@ -161,7 +161,7 @@ def edit_newlisting(request, post_id):
             listf.user = request.user
             listf.save()
             return redirect('backend:new_listings')
-            
+
     else:
         post_form = EditListing(instance=single_post)
     return render(request, 'backend/edit_post.html', {'editf': post_form})
@@ -171,7 +171,7 @@ def edit_newlisting(request, post_id):
 def new_listings(request):
     hotel_list = AddProperty.objects.filter(user=request.user)
     return render(request, 'backend/newlistings.html', {'hlist':hotel_list})
-    
+
 @login_required(login_url='/backend/login/')
 def view_newlistingdetails(request, pk):
     post = get_object_or_404(AddProperty, pk=pk)
@@ -197,7 +197,7 @@ def register_form(request):
             user.save()
             current_site = get_current_site(request)
             subject = 'Please Activate Your Account'
-            # load a template like get_template() 
+            # load a template like get_template()
             # and calls its render() method immediately.
             message = render_to_string('backend/activation_request.html', {
                 'user': user,
@@ -224,7 +224,7 @@ def activate (request, uidb64, token):
         user = None
     # checking if the user exists, if the token is valid.
     if user is not None and account_activation_token.check_token(user, token):
-        # if valid set active true 
+        # if valid set active true
         user.is_active = True
         # set signup_confirmation true
         user.profile.signup_confirmation = True
@@ -308,12 +308,12 @@ def pass_form(request):
 @login_required(login_url='/backend/login/')
 def list_users(request):
     show_user = User.objects.all().order_by('last_name')
-    return render(request, 'backend/view-users.html', {'users':show_user})  
+    return render(request, 'backend/view-users.html', {'users':show_user})
 
 @login_required(login_url='/backend/login/')
 def list_all_post(request):
     show_post = AddProperty.objects.all().order_by('-add_date')
-    return render(request, 'backend/view-all-post.html', {'post':show_post})  
+    return render(request, 'backend/view-all-post.html', {'post':show_post})
 
 @login_required(login_url='/backend/login/')
 def delete_upload(request, del_id):

@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 
 {% block title%}
-Home 
+Home
 {% endblock %}
 
 
 
-<body class="sticky-footer" > 
+<body class="sticky-footer" >
     {% block content %}
-        {% if request.user.is_staff %} 
+        {% if request.user.is_staff %}
             {% include 'backend/admin_sidebar.html' %}
         {% else %}
             {% include 'backend/user_sidebar.html' %}
         {% endif %}
-            
-    
+
+
         <div class="content-wrapper" style="font-family: Georgia, 'Times New Roman', Times, serif; font-style: oblique;">
             <div class="container-fluid">
                 <!-- Breadcrumbs-->
@@ -32,7 +32,7 @@ Home
                         </div>
                         <div class="row">
                             <div  class="form-group col-lg-6">
-                                <form method="post" enctype="multipart/form-data">
+                                <form method="post" required enctype="multipart/form-data">
                                     {{ editf.as_p }}
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger">Save</button>
@@ -41,12 +41,12 @@ Home
                         </div>
                     </div>
                     <!-- /box_general-->
-                    
+
             </div>
             <!-- /.container-fluid-->
         </div>
         <!-- /.container-wrapper-->
-    
+
     {% endblock %}
 
 
@@ -65,7 +65,7 @@ Home
                 <span aria-hidden="true">×</span>
             </button>
             </div>
-            <div class="modal-body">{{ request.user.get_full_name }}Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">{{ request.user.username }}Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             <a class="btn btn-primary" href="{% url 'backend:logout_view' %}">Logout</a>

@@ -8,7 +8,7 @@ Home
 
   <body>
     {% block content %}
-      <div class="container-fluid js-fullheight" style="background-image: url(images/bg-6.jpg); background-repeat: no-repeat; background-size: cover;" >
+      <div class="container-fluid js-fullheight" style="background-image: url({% static 'frontend/images/bg-6.jpg' %}); background-repeat: no-repeat; background-size: cover;" >
         <div class="row">
           <div class="col-sm-4 col-sm-offset-4 pb-5" style="margin-top:60px;">
             <div class="login-form bg-primary" style="border-radius:10px; padding: 20px; border-radius: 10px;">
@@ -29,7 +29,7 @@ Home
                 <div class="pt-3">
                   <input type="submit" name="login" value="Login" class="btn btn-success btn-block ">
                 </div>
-                
+
                 <div class="row" style="font-size:14px !important;">
                   <div class="col-sm-4 mt-5 col-4">
                     <h5><a href="{%url 'backend:password_reset_request' %}"  class="login-links" style="color: black;font-size:14px !important;">Reset Password</a></h5>

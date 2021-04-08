@@ -7,9 +7,9 @@ Home
 {% endblock %}
 <body>
 	{% block content %}
-	
+
 	<div id="fh5co-page">
-		
+
 		<aside id="fh5co-hero" clsas="js-fullheight" style="background-image: url({% static 'frontend/images/home.jpg' %}); background-repeat: no-repeat; background-size: cover;">
 				<div class="container">
 				  <div class="row">
@@ -29,14 +29,14 @@ Home
 									<input type="submit" class="btn btn-primary" value="Filter">
 								</div>
 							</div>
-							
+
 						</form>
 					</div>
-					
-				  </div>  
-				 
+
+				  </div>
+
 				</div>
-			
+
 		</aside>
 
 		<div id="best-deal">
@@ -67,7 +67,7 @@ Home
 									</p>
 								</div>
 
-								
+
 							</div>
 						{% endfor%}
 					{% endif %}
@@ -100,7 +100,7 @@ Home
 							</p>
 						</div>
 
-						
+
 					</div>
 					{% endfor%}
 				{% endif %}
@@ -159,7 +159,7 @@ Home
 						</blockquote>
 					</div>
 					<div class="col-md-4 text-center item-block animate-box" data-animate-effect="fadeIn">
-							
+
 						<blockquote>
 							<p>&ldquo; The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. S	he had a last view back on the skyline of her hometown Bookmarksgrove. &rdquo;</p>
 							<p><span class="fh5co-author"><cite>Mit Chell</cite></span><i class="fa facebook-color fa-facebook pull-right"></i></p>
@@ -186,7 +186,7 @@ Home
 									<h1 style="font-size: 30px;">{{ a.agent_title }}</h1>
 									<p>{{ a.agent_desription }}</p>
 									<p><a href="{% url 'frontend:contact2' a.id %}" class="btn btn-primary btn-outline">Contact</a></p>
-								</div>								
+								</div>
 							</div>
 						{% endfor %}
 					{% endif %}
