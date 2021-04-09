@@ -58,7 +58,7 @@ def filter_data(request):
             return render(request, 'frontend/filter2.html')
     # else:
     #     query_form = FilterForm()
-    # return render(request, 'frontend/filter2.html') 
+    # return render(request, 'frontend/filter2.html')
 
 def buy(request):
     # sale = AddProperty.objects.all()
@@ -68,7 +68,7 @@ def buy(request):
     page_number = request.GET.get('page')
     person_page_obj = paginated_filter.get_page(page_number)
     context = {
-        'person_page_obj': add_post, 
+        'person_page_obj': add_post,
         'most_recent': most_recent
         # 'buy':sale
     }
@@ -121,22 +121,6 @@ def contact(request):
 
 def contact2(request, agent_id):
     contact =Agents.objects.get(id=agent_id)
-    if request.method =='POST':
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        message = request.POST.get('message')
-        print(name+' '+email+' '+message)
-        subject = 'Agent Form'
-        context = {'name':name, 'email':email, 'message':message }
-        html_message =render_to_string('frontend/mail-template1.html', context)
-        plain_message = strip_tags(html_message)
-        from_email = ' Real Estate<leke.olamide123@gmail.com>'
-        send =  mail.send_mail(subject, plain_message, from_email, ['leke.olamide123@gmail.com'], html_message=html_message, fail_silently=True)
-        if send:
-            messages.success(request, 'Email sent sucessfully')
-        else:
-            messages.error(request, 'Mail not sent')
-
     return render(request, 'frontend/contact2.html', {'con':contact})
 
 def rent(request):
@@ -147,7 +131,7 @@ def rent(request):
     page_number = request.GET.get('page')
     person_page_obj = paginated_filter.get_page(page_number)
     context = {
-        'person_page_obj': add_post, 
+        'person_page_obj': add_post,
         'most_recent': most_recent
         # 'rent':hire
     }

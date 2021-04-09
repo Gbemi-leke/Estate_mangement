@@ -9,14 +9,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="Ansonika">
-  <title>
-      
-    {% block title%}
+  <title> Oluwagbemileke | Real Estate </title>
 
-    {% endblock%}
-
-</title>
-	
   <!-- Favicons-->
     <link rel="shortcut icon" href="{% static 'backend/img/galaxy.jfif' %}" type="image/x-icon">
     <link rel="apple-touch-icon" type="image/x-icon" href="{% static 'backend/img/apple-touch-icon-57x57-precomposed.png' %}">
@@ -26,7 +20,7 @@
 
     <!-- GOOGLE WEB FONT -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800" rel="stylesheet">
-        
+
     <!-- Bootstrap core CSS-->
     <link href="{% static 'backend/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <!-- Main styles -->
@@ -83,9 +77,9 @@
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
                     <i class="fa fa-fw fa-sign-out"></i>Logout</a>
                 </li>
-                
-            </ul> 
-        
+
+            </ul>
+
         </div>
     </nav>
 {% else %}
@@ -116,9 +110,9 @@
                 <li class="nav-item" {% if request.path == Login %} class="active" {% endif %}>
                     <a class="nav-link" href="{%url 'backend:login_view' %}" class="fa fa-sign-in">&nbsp;Log in</a>
                 </li>
-                
-            </ul> 
-        
+
+            </ul>
+
         </div>
     </nav>
 {% endif %}
@@ -128,30 +122,41 @@
     {% endblock %}
 
     <footer id="fh5co-footer" role="contentinfo">
-	
+
 		<div class="container">
-			<div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-				<h3>About Us</h3>
+		<div class="row">
+		    <div class="col-md-4 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h2 style=" color:white !important;">About Us</h2>
 				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
 				<p><a href="#" class="btn btn-primary btn-outline with-arrow btn-sm">I'm button <i class="icon-arrow-right"></i></a></p>
 			</div>
-			<div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
-				<h3>Our Services</h3>
+			<div class="col-md-4 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h2 style=" color:white !important;">Our Services</h2>
 				<ul class="float">
 					<li><a href="#">Web Design</a></li>
 					<li><a href="#">Branding &amp; Identity</a></li>
-					
+
+                </u0l>
+			</div>
+			<div class="col-md-4 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h2 style=" color:white !important;">Contact US</h2>
+				<ul class="float">
+				<li><i class="fa  fa-instagram"></i><a href="https://www.instagram.com/leke_olamide/">&nbsp;leke_olamide</a></li>
+					<li><i class="fa fa-whatsapp"></i><a href="https://wa.me/+2347084448398">&nbsp;07084448398</a></li>
+					<li><i class="fa fa-envelope"></i><a href="mailto:leke.olamide123@gmail.com">&nbsp;leke.olamide123@gmail.com</a></li>
+
                 </ul>
 			</div>
-			
+		</div>
+
 			<div class="col-md-12 fh5co-copyright text-center">
-				<p><a href="{%url 'backend:login2_view' %}">&copy; 2021 Oluwagbemileke</a></p>	
+				<p><a href="{%url 'backend:login2_view' %}">&copy; 2021 Oluwagbemileke</a></p>
 			</div>
-			
+
 		</div>
 	</footer>
 	</div>
-	
+
 	<!-- Logout Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

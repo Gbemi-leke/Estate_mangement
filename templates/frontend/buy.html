@@ -7,10 +7,10 @@ Home
 {% endblock %}
 
 <body>
-	
+
 	<div id="fh5co-page">
 		{% block content %}
-		
+
 		<div class="fh5co-page-title" style="background-image:url({% static 'frontend/images/home.jpg' %});">
 			<div class="overlay"></div>
 			<div class="container">
@@ -34,7 +34,7 @@ Home
 								<div class="col-md-4 item-block animate-box" data-animate-effect="fadeIn">
 									<div class="fh5co-property card h-100" style="min-height: 200px;">
 										<figure>
-											<a  href="{% url 'frontend:detail_buy' b.id %}"><img src="{{ b.img.url }}" alt="Card image cap" class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;"></a>
+											<a  href="{% url 'frontend:detail_buy' b.id %}"><img src="{{ b.img_url }}" alt="Card image cap" class="card-img-top img-fluid img-responsive" style="width: 640px; height: 425;"></a>
 											<a href="{% url 'frontend:detail_buy' b.id %}" class="tag">For Sale</a>
 										</figure>
 										<div class="fh5co-property-innter">
@@ -67,7 +67,7 @@ Home
 							{% if person_page_obj.has_previous %}
 								<li class="active"><a href="?page=1">1</a></li>
 							{% endif %}
-	
+
 							{% if person_page_obj.has_next %}
 								<li><a href="?page={{ person_page_obj.next_page_number }}">2</a></li>
 								<li><a href="?page={{ person_page_obj.next_page_number }}">3</a></li>
@@ -89,7 +89,7 @@ Home
 
 
 
-		
+
 
 		<div class="fh5co-cta" style="background-image: url(images/slide_4.jpg);">
 			<div class="overlay"></div>
@@ -103,9 +103,9 @@ Home
 
 		{% endblock %}
 
-		
+
 		<footer id="fh5co-footer" role="contentinfo">
-		
+
 			<div class="container">
 				<div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
 					<h3>About Us</h3>
@@ -138,15 +138,15 @@ Home
 						<li><a href="#"><i class="icon-instagram"></i></a></li>
 					</ul>
 				</div>
-				
+
 				<div class="col-md-12 fh5co-copyright text-center">
-					<p>&copy; 2016 Free HTML5 template. All Rights Reserved. <span>Designed with <i class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images by <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></p>	
+					<p>&copy; 2016 Free HTML5 template. All Rights Reserved. <span>Designed with <i class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images by <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></p>
 				</div>
-				
+
 			</div>
 		</footer>
 	</div>
-	
+
 	<!-- Logout Modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">

@@ -6,8 +6,8 @@
 Home
 {% endblock %}
 <body>
-	
-	
+
+
 	<div id="fh5co-page">
 	{% block content %}
 
@@ -21,12 +21,12 @@ Home
 				</div>
 			</div>
 		</div>
-		
+
 
 		<div class="fh5co-contact animate-box">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3">
+					<div class="col-md-6">
 						<h3 style="font-size:32px; color: cadetblue !important;">Agent Info.</h3>
 						<h1 style="font-size: 30px;">{{ con.agent_title }}</h1>
 						<ul class="contact-info">
@@ -35,39 +35,15 @@ Home
 							<li><i class="fa fa-envelope"></i><a href="#">{{ con.agent_email }}</a></li>
 						</ul>
 					</div>
-					<form class="col-md-8 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0" method='POST'>
-						{% if messages %}
-							{% for mes in messages %}
-								<div class="alert {{ mes.tags }}">{{ mes }}</div>
-							{% endfor %}
-						{% endif %}
+			        <form class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0" method='POST'>
 						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" name="name" id="labelName" required placeholder="Name" type="text">
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="form-group">
-									<input class="form-control" name="email" id="labelEmail" required placeholder="Email" type="email">
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<textarea name="message" id="labelMessage" class="form-control" required cols="30" rows="7" placeholder="Message" style="height: 200px;"></textarea>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="form-group">
-									<input value="Send Message" class="btn btn-primary" type="submit">
-								</div>
-							</div>
-							
+						<figure>
+							<img class=" img-responsive col-sm-12" src="{{con.agent_img.url }}" style="width:400px; height:200;">
+						</figure>
 						</div>
-						{% csrf_token %}
 					</form>
 				</div>
-			</div>	
+			</div>
 		</div>
 
 	{% endblock %}
