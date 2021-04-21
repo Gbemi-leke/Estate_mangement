@@ -39,7 +39,7 @@ class AddProperty(models.Model):
 
     ]
 
-    
+
     BUNGALOW = "Bungalow"
     DUPLEX = "Duplex"
     FLAT = "Flat"
@@ -132,11 +132,11 @@ class AddProperty(models.Model):
     offer_type = models.CharField(max_length=40, choices=OFFER_TYPE, default=CHOOSE)
     sponsored =models.BooleanField()
     featured = models.BooleanField()
-    
+
 
     class Meta():
         verbose_name_plural = 'AddProperty'
-        
+
     def __str__(self):
         return self.add_title
 
@@ -157,14 +157,6 @@ class AddProperty(models.Model):
             return self.img3.url
 
 
-class Location(models.Model):
-    location_name = models.CharField(max_length=100, verbose_name='Location Nmae')
-
-    def __str__(self):
-        return self.location_name
-
-    class Meta():
-        verbose_name_plural= "Property Location"
 
 
 class Profile(models.Model):
